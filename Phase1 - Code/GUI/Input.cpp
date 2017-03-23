@@ -44,7 +44,7 @@ ActionType Input::GetUserAction() const
 		{
 			//Check whick Menu item was clicked
 			//==> This assumes that menu items are lined up horizontally <==
-			int ClickedItemOrder = (x / 80);
+			int ClickedItemOrder = (x / UI.MenuItemWidth);
 			//Divide x coord of the point clicked by the menu item width (int division)
 			//if division result is 0 ==> first item is clicked, if 1 ==> 2nd item and so on
 
@@ -63,10 +63,11 @@ ActionType Input::GetUserAction() const
 			case ITM_Copy: return COPY;
 			case ITM_Paste: return PASTE;
 			case ITM_Del: return DEL;
+			case ITM_ROTATE:return ROTATE;
 			case ITM_Undo: return UNDO;
+			case ITM_Redo: return REDO;
 			case ITM_Play: return TO_PLAY;
 			case ITM_EXIT: return EXIT;
-
 			default: return EMPTY;	//A click on empty place in desgin toolbar
 			}
 		}
