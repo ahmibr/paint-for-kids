@@ -96,11 +96,18 @@ int main()
 
 
 		///TODO: Add code to draw Line, Normal and Highlighted
+
 	pOut->PrintMessage("Press 2 points");
 	pIn->GetPointClicked(P1.x, P1.y);
 	pIn->GetPointClicked(P2.x, P2.y);
 
 	pOut->DrawLine(P1, P2, gfxInfo, false);
+
+	pOut->PrintMessage("Drawing a Line Test ,  Click to Highlight");
+	pIn->GetPointClicked(x, y);	//Wait for any click
+
+	pOut->DrawLine(P1, P2, gfxInfo, true);
+
 
 	pOut->PrintMessage("Drawing a Line Test ==> OK,  Click anywhere to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
@@ -125,7 +132,7 @@ int main()
 	gfxInfo.isFilled = false;	//Figure is NOT filled
 
 	pOut->DrawTriangle(P1, P2, P3, gfxInfo, false);
-								///TODO: Add code to draw Triangle in all possible states
+	///TODO: Add code to draw Triangle in all possible states
 	pOut->PrintMessage("Drawing a Triangle ==> Highlighted non-filled, Click to Highlight");
 	pIn->GetPointClicked(x, y);	//Wait for any click
 	pOut->DrawTriangle(P1, P2, P3, gfxInfo, true);
@@ -136,7 +143,7 @@ int main()
 	pIn->GetPointClicked(P1.x, P1.y);
 	pIn->GetPointClicked(P2.x, P2.y);
 	pIn->GetPointClicked(P3.x, P3.y);
-	
+
 	gfxInfo = pIn->GraphicsInfo();
 
 	pOut->DrawTriangle(P1, P2, P3, gfxInfo, false);
@@ -144,7 +151,7 @@ int main()
 	pOut->PrintMessage("Drawing a Triangle ==> Highlighted non-filled, Click to Highlight");
 	pIn->GetPointClicked(x, y);	//Wait for any click
 	pOut->DrawTriangle(P1, P2, P3, gfxInfo, true);
-	
+
 
 	pOut->PrintMessage("Drawing a Triangle Test ==> OK,  Click anywhere to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
@@ -169,13 +176,13 @@ int main()
 	pIn->GetPointClicked(x, y);	//Wait for any click
 	pOut->DrawCirc(P1, P2, gfxInfo, true);
 
-
 	pOut->PrintMessage("Drawing a Circle, filled and Highlighted filled,  Click to continue");
 	pIn->GetPointClicked(P1.x, P1.y);	//Wait for any click
 
 	pOut->PrintMessage("Drawing a Circle ==> filled,  Click two points");
 	pIn->GetPointClicked(P1.x, P1.y);	//Wait for any click
 	pIn->GetPointClicked(P2.x, P2.y);	//Wait for any click
+	gfxInfo = pIn->GraphicsInfo();
 	gfxInfo.isFilled = true;
 	pOut->DrawCirc(P1, P2, gfxInfo, false);
 
@@ -249,11 +256,11 @@ int main()
 		case RESIZE:
 			pOut->PrintMessage("Action: Resize, Click anywhere");
 			break;
-		
+
 		case SAVE:
 			pOut->PrintMessage("Action: Save, Click anywhere");
 			break;
-		
+
 		case LOAD:
 			pOut->PrintMessage("Action: Load, Click anywhere");
 			break;

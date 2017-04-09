@@ -2,6 +2,7 @@
 #include <cmath>
 #include<SFML\Graphics.hpp>
 
+#define PI acos(-1)
 
 Output::Output()
 {
@@ -205,7 +206,9 @@ int Output::getCrntPenWidth() const		//get current pen width
 
 void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) const
 {
+
 	sf::Color DrawingClr;
+
 	if (selected)
 		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
 	else
@@ -246,20 +249,21 @@ void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 
 void Output::DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected) const
 {
-	sf::ConvexShape *line;
+	sf::Color DrawingClr;
+	if (selected)
+		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
+	else
+		DrawingClr = LineGfxInfo.FillClr;
 
-	line = new sf::ConvexShape(4);
+	sf::RectangleShape *line = new sf::RectangleShape(sf::Vector2f(sqrt(pow(P1.x-P2.x,2)+pow(P1.y-P2.y,2)), LineGfxInfo.BorderWdth));
 
-	line->setPoint(0, sf::Vector2f(P1.x, P1.y));
-	line->setPoint(1, sf::Vector2f(P2.x, P2.y));
-	line->setPoint(2, sf::Vector2f(P2.x, P2.y + 0.01));
-	line->setPoint(3, sf::Vector2f(P1.x, P1.y + 0.01));
+	if (P1.x > P2.x)
+		swap(P1, P2);
 
-	//line->setFillColor(LineGfxInfo.FillClr);
-
-	line->setOutlineColor(LineGfxInfo.FillClr);
-
-	line->setOutlineThickness(LineGfxInfo.BorderWdth);
+	line->setPosition(sf::Vector2f(P2.x, P2.y));
+	line->rotate(180*atan2(P1.y - P2.y, P1.x - P2.x)/PI);
+	
+	line->setFillColor(DrawingClr);
 
 	drawnObjects->push_back(line);
 
