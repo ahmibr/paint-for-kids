@@ -3,20 +3,19 @@
 #include<SFML\Graphics.hpp>
 
 #define PI acos(-1)
-
 Output::Output()
 {
 	//Initialize user interface parameters
 	UI.InterfaceMode = MODE_DRAW;
 
-	UI.width = 1400;
+	UI.width = 1280;
 	UI.height = 720;
 	UI.wx = 5;
 	UI.wy = 5;
 
 	UI.StatusBarHeight = 50;
 	UI.ToolBarHeight = 50;
-	UI.MenuItemWidth = 80;
+	UI.MenuItemWidth = 64;
 
 	UI.DrawColor = sf::Color::Blue;	//Drawing color
 	UI.FillColor = sf::Color::Green;	//Filling color
@@ -45,27 +44,30 @@ Output::Output()
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	//initializing boxes of status bar | window background | Menu items
 
-	MenuItemImages[ITM_RECT].loadFromFile("images\\MenuItems\\Menu_Rect.jpg", sf::IntRect(0, 0, 80, UI.ToolBarHeight));
-	MenuItemImages[ITM_CIRC].loadFromFile("images\\MenuItems\\Menu_Circ.jpg", sf::IntRect(0, 0, 80, UI.ToolBarHeight));
-	MenuItemImages[ITM_Tri].loadFromFile("images\\MenuItems\\Menu_Tri.jpg", sf::IntRect(0, 0, 80, UI.ToolBarHeight));
-	MenuItemImages[ITM_Line].loadFromFile("images\\MenuItems\\Menu_Line.jpg", sf::IntRect(0, 0, 80, UI.ToolBarHeight));
-	MenuItemImages[ITM_Color].loadFromFile("images\\MenuItems\\Menu_Color.jpg", sf::IntRect(0, 0, 80, UI.ToolBarHeight));
-	MenuItemImages[ITM_Zoom].loadFromFile("images\\MenuItems\\Menu_Zoom.jpg", sf::IntRect(0, 0, 80, UI.ToolBarHeight));
-	MenuItemImages[ITM_Resize].loadFromFile("images\\MenuItems\\Menu_Resize.jpg", sf::IntRect(0, 0, 80, UI.ToolBarHeight));
-	MenuItemImages[ITM_Save].loadFromFile("images\\MenuItems\\Menu_Save.jpg", sf::IntRect(0, 0, 80, UI.ToolBarHeight));
-	MenuItemImages[ITM_Load].loadFromFile("images\\MenuItems\\Menu_Load.jpg", sf::IntRect(0, 0, 80, UI.ToolBarHeight));
-	MenuItemImages[ITM_Cut].loadFromFile("images\\MenuItems\\Menu_Cut.jpg", sf::IntRect(0, 0, 80, UI.ToolBarHeight));
-	MenuItemImages[ITM_Copy].loadFromFile("images\\MenuItems\\Menu_Copy.jpg", sf::IntRect(0, 0, 80, UI.ToolBarHeight));
-	MenuItemImages[ITM_Paste].loadFromFile("images\\MenuItems\\Menu_Paste.jpg", sf::IntRect(0, 0, 80, UI.ToolBarHeight));
-	MenuItemImages[ITM_Del].loadFromFile("images\\MenuItems\\Menu_Del.jpg", sf::IntRect(0, 0, 80, UI.ToolBarHeight));
-	MenuItemImages[ITM_Undo].loadFromFile("images\\MenuItems\\Menu_Undo.jpg", sf::IntRect(0, 0, 80, UI.ToolBarHeight));
-	MenuItemImages[ITM_Play].loadFromFile("images\\MenuItems\\Menu_Play.jpg", sf::IntRect(0, 0, 80, UI.ToolBarHeight));
-	MenuItemImages[ITM_EXIT].loadFromFile("images\\MenuItems\\Menu_Exit.jpg", sf::IntRect(0, 0, 80, UI.ToolBarHeight));
+	MenuItemImages[ITM_RECT].loadFromFile("images\\MenuItems\\Menu_Rect.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
+	MenuItemImages[ITM_CIRC].loadFromFile("images\\MenuItems\\Menu_Circ.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
+	MenuItemImages[ITM_Tri].loadFromFile("images\\MenuItems\\Menu_Tri.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
+	MenuItemImages[ITM_Line].loadFromFile("images\\MenuItems\\Menu_Line.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
+	MenuItemImages[ITM_Color].loadFromFile("images\\MenuItems\\Menu_Color.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
+	MenuItemImages[ITM_Zoom].loadFromFile("images\\MenuItems\\Menu_Zoom.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
+	MenuItemImages[ITM_Resize].loadFromFile("images\\MenuItems\\Menu_Resize.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
+	MenuItemImages[ITM_Save].loadFromFile("images\\MenuItems\\Menu_Save.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
+	MenuItemImages[ITM_Load].loadFromFile("images\\MenuItems\\Menu_Load.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
+	MenuItemImages[ITM_Cut].loadFromFile("images\\MenuItems\\Menu_Cut.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
+	MenuItemImages[ITM_Copy].loadFromFile("images\\MenuItems\\Menu_Copy.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
+	MenuItemImages[ITM_Paste].loadFromFile("images\\MenuItems\\Menu_Paste.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
+	MenuItemImages[ITM_Front].loadFromFile("images\\MenuItems\\Menu_Front.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
+	MenuItemImages[ITM_Back].loadFromFile("images\\MenuItems\\Menu_Back.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
+	MenuItemImages[ITM_Del].loadFromFile("images\\MenuItems\\Menu_Del.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
+	MenuItemImages[ITM_Undo].loadFromFile("images\\MenuItems\\Menu_Undo.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
+	MenuItemImages[ITM_Redo].loadFromFile("images\\MenuItems\\Menu_Redo.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
+	MenuItemImages[ITM_Play].loadFromFile("images\\MenuItems\\Menu_Play.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
+	MenuItemImages[ITM_EXIT].loadFromFile("images\\MenuItems\\Menu_Exit.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
 
-	MenuPlayImages[ITM_Pick].loadFromFile("images\\MenuItems\\Menu_Pick.jpg", sf::IntRect(0, 0, 80, UI.ToolBarHeight));
-	MenuPlayImages[ITM_Find].loadFromFile("images\\MenuItems\\Menu_Find.jpg", sf::IntRect(0, 0, 80, UI.ToolBarHeight));
-	MenuPlayImages[ITM_Draw].loadFromFile("images\\MenuItems\\Menu_Draw.jpg", sf::IntRect(0, 0, 80, UI.ToolBarHeight));
-	MenuPlayImages[ITM_EXIT2].loadFromFile("images\\MenuItems\\Menu_Exit.jpg", sf::IntRect(0, 0, 80, UI.ToolBarHeight));
+	MenuPlayImages[ITM_Pick].loadFromFile("images\\MenuItems\\Menu_Pick.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
+	MenuPlayImages[ITM_Find].loadFromFile("images\\MenuItems\\Menu_Find.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
+	MenuPlayImages[ITM_Draw].loadFromFile("images\\MenuItems\\Menu_Draw.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
+	MenuPlayImages[ITM_EXIT2].loadFromFile("images\\MenuItems\\Menu_Exit.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
 
 	//Draw a line under the toolbar
 	toolbarLine->setOutlineColor(sf::Color::Red);
@@ -75,13 +77,13 @@ Output::Output()
 	for (int i = 0; i < DRAW_ITM_COUNT; i++)
 	{
 		MenuItemSprites[i].setTexture(MenuItemImages[i]);
-		MenuItemSprites[i].setPosition(sf::Vector2f(i * 80, 0));
+		MenuItemSprites[i].setPosition(sf::Vector2f(i * UI.MenuItemWidth, 0));
 	}
 
 	for (int i = 0; i < PLAY_ITM_COUNT; i++)
 	{
 		MenuPlaySprites[i].setTexture(MenuPlayImages[i]);
-		MenuPlaySprites[i].setPosition(sf::Vector2f(i * 80, 0));
+		MenuPlaySprites[i].setPosition(sf::Vector2f(i * UI.MenuItemWidth, 0));
 	}
 
 	//Create the output window
@@ -206,9 +208,7 @@ int Output::getCrntPenWidth() const		//get current pen width
 
 void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) const
 {
-
 	sf::Color DrawingClr;
-
 	if (selected)
 		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
 	else
@@ -255,14 +255,14 @@ void Output::DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected) co
 	else
 		DrawingClr = LineGfxInfo.FillClr;
 
-	sf::RectangleShape *line = new sf::RectangleShape(sf::Vector2f(sqrt(pow(P1.x-P2.x,2)+pow(P1.y-P2.y,2)), LineGfxInfo.BorderWdth));
+	sf::RectangleShape *line = new sf::RectangleShape(sf::Vector2f(sqrt(pow(P1.x - P2.x, 2) + pow(P1.y - P2.y, 2)), LineGfxInfo.BorderWdth));
 
 	if (P1.x > P2.x)
 		swap(P1, P2);
 
 	line->setPosition(sf::Vector2f(P2.x, P2.y));
-	line->rotate(180*atan2(P1.y - P2.y, P1.x - P2.x)/PI);
-	
+	line->rotate(180 * atan2(P1.y - P2.y, P1.x - P2.x) / PI);
+
 	line->setFillColor(DrawingClr);
 
 	drawnObjects->push_back(line);

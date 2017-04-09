@@ -101,8 +101,11 @@ ActionType Input::GetUserAction() const
 			case ITM_Cut: return CUT;
 			case ITM_Copy: return COPY;
 			case ITM_Paste: return PASTE;
+			case ITM_Front: return BRNG_FRNT;
+			case ITM_Back: return SEND_BACK;
 			case ITM_Del: return DEL;
 			case ITM_Undo: return UNDO;
+			case ITM_Redo: return REDO;
 			case ITM_Play: return TO_PLAY;
 			case ITM_EXIT: return EXIT;
 

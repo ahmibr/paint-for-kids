@@ -43,7 +43,7 @@ int main()
 	pOut->PrintMessage("Drawing a Rectangle, filled/non-filled and Highlighted filled/non-filled,  Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
 
-	// 2.1.1 - Drawing non-filled rectangle
+								// 2.1.1 - Drawing non-filled rectangle
 	pOut->PrintMessage("Drawing a Rectangle ==> non-filled,  Click two points");
 	pIn->GetPointClicked(P1.x, P1.y);
 	pIn->GetPointClicked(P2.x, P2.y);
@@ -53,7 +53,7 @@ int main()
 	gfxInfo.DrawClr = sf::Color::Black;	//any color for border
 	gfxInfo.isFilled = false;	//Figure is NOT filled
 
-	//gfxInfo = pIn->GraphicsInfo();		//test
+								//gfxInfo = pIn->GraphicsInfo();		//test
 
 	pOut->DrawRect(P1, P2, gfxInfo, false);
 
@@ -95,7 +95,7 @@ int main()
 	pIn->GetPointClicked(x, y);	//Wait for any click
 
 
-		///TODO: Add code to draw Line, Normal and Highlighted
+								///TODO: Add code to draw Line, Normal and Highlighted
 
 	pOut->PrintMessage("Press 2 points");
 	pIn->GetPointClicked(P1.x, P1.y);
@@ -121,7 +121,7 @@ int main()
 	pOut->PrintMessage("Drawing a Triangle, filled/non-filled and Highlighted filled/non-filled,  Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
 
-	// 2.1.1 Drawing non-filled traingle
+								// 2.1.1 Drawing non-filled traingle
 	pOut->PrintMessage("Drawing a Triangle ==> non-filled,  Click three points");
 	pIn->GetPointClicked(P1.x, P1.y);
 	pIn->GetPointClicked(P2.x, P2.y);
