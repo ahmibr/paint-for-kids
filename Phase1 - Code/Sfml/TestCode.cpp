@@ -204,12 +204,16 @@ int main()
 
 	pOut->PrintMessage("Testing Input ability to read strings. Press Enter when you finish");
 
-	pIn->GetSrting(pOut);
+	string textEntered = pIn->GetSrting(pOut);
 
 	///TODO: Add code here to 
 	// 1- Read a string from the user on the status bar
 	// 2- After reading the stirng clear the status bar
 	// 3- print on the status bar "You Entered" then print the string
+
+	pOut->PrintMessage("You Entered : " + textEntered + " ,Click to continue");
+
+	pIn->GetPointClicked(x,y);
 
 	pOut->PrintMessage("Read string test is done, Click anywhere to continue");
 
