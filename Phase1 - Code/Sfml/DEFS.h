@@ -30,7 +30,6 @@ enum ActionType //The actions supported (you can add more if needed)
 	TO_PLAY,			//Switch interface to Play mode
 
 	///TODO: Add more action types (if needed)
-
 	UNDO,
 	REDO,
 	ZOOM,

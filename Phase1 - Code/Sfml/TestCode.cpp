@@ -48,6 +48,7 @@ int main()
 	pIn->GetPointClicked(P1.x, P1.y);
 	pIn->GetPointClicked(P2.x, P2.y);
 
+	
 	gfxInfo.BorderWdth = 3;
 
 	gfxInfo.DrawClr = sf::Color::Black;	//any color for border
@@ -67,12 +68,13 @@ int main()
 	pOut->PrintMessage("Drawing a Rectangle ==> filled,  Click two points");
 	pIn->GetPointClicked(P1.x, P1.y);
 	pIn->GetPointClicked(P2.x, P2.y);
-
+	
+	/*
 	gfxInfo.BorderWdth = 4;
 	gfxInfo.DrawClr = sf::Color::Blue;	//any color for border
 	gfxInfo.FillClr = sf::Color::Green;//any color for filling
 	gfxInfo.isFilled = true;//Figure is filled
-
+	*/
 	pIn->GraphicsInfo(gfxInfo);
 	pOut->DrawRect(P1, P2, gfxInfo, false);
 
@@ -213,7 +215,7 @@ int main()
 
 	pOut->PrintMessage("You Entered : " + textEntered + " ,Click to continue");
 
-	pIn->GetPointClicked(x,y);
+	pIn->GetPointClicked(x, y);
 
 	pOut->PrintMessage("Read string test is done, Click anywhere to continue");
 
@@ -261,6 +263,10 @@ int main()
 			pOut->PrintMessage("Action: Resize, Click anywhere");
 			break;
 
+		case ROTATE:
+			pOut->PrintMessage("Action: Rotate, Click anywhere");
+			break;
+
 		case SAVE:
 			pOut->PrintMessage("Action: Save, Click anywhere");
 			break;
@@ -292,9 +298,18 @@ int main()
 
 		case REDO:
 			pOut->PrintMessage("Action: REDO , Click anywhere");
+			break;
 
 		case CHNG_DRAW_CLR:
 			pOut->PrintMessage("Action: Change color , Click anywhere");
+			break;
+
+		case BRNG_FRNT:
+			pOut->PrintMessage("Action: Bring to front , Click anywhere");
+			break;
+
+		case SEND_BACK:
+			pOut->PrintMessage("Action: Send to back , Click anywhere");
 			break;
 
 		case STATUS:

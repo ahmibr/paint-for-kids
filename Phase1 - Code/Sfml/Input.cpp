@@ -96,6 +96,7 @@ ActionType Input::GetUserAction() const
 			case ITM_Color: return CHNG_DRAW_CLR;
 			case ITM_Zoom: return ZOOM;
 			case ITM_Resize: return RESIZE;
+			case ITM_Rotate: return ROTATE;
 			case ITM_Save: return SAVE;
 			case ITM_Load: return LOAD;
 			case ITM_Cut: return CUT;
