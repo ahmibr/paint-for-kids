@@ -166,13 +166,15 @@ ActionType Input::GetUserAction() const
 
 
 //Added a function to return graphix of shape
-GfxInfo Input::GraphicsInfo() {
-	sf::RenderWindow colorPalette(sf::VideoMode(300, 350), "Color Palette", sf::Style::Close);
+void Input::GraphicsInfo(GfxInfo &choice) {
+	sf::RenderWindow colorPalette(sf::VideoMode(300, 400), "Color Palette", sf::Style::Close);
 
-	sf::RectangleShape bckGrnd(sf::Vector2f(300, 350));		//background color
+	sf::RectangleShape bckGrnd(sf::Vector2f(300, 400));		//background color
 	sf::RectangleShape color[3][3];
 
-	bool fillColorSelected = false;
+	//bool fillColorSelected = false;
+
+	int operation = 0;
 
 	sf::Font f;
 	f.loadFromFile("Resource Files\\Arial.ttf");
@@ -185,15 +187,12 @@ GfxInfo Input::GraphicsInfo() {
 	transparentOption.setFillColor(sf::Color::Red);
 	transparentOption.setPosition(150, 15);
 
+	sf::Text nextOperation("No change in Draw Color go to Fill Color.", f, 15);
+	nextOperation.setFillColor(sf::Color::Black);
+	nextOperation.setPosition(0, 350);
+
 	bckGrnd.setFillColor(UI.BkGrndColor);
 
-	GfxInfo choice;
-	choice.isFilled = false;			//default if closed the window
-	choice.DrawClr = sf::Color::Black;
-	choice.BorderWdth = 3;
-
-
-	int counter = 0;
 	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < 3; j++)
@@ -213,10 +212,14 @@ GfxInfo Input::GraphicsInfo() {
 	color[1][2].setFillColor(sf::Color(255, 127.5, 0));	//red + blue
 	color[2][2].setFillColor(sf::Color(127.5, 127.5, 127.5));	//grey
 
-	//drawing colors in small window
+
+
+
+																///drawing colors in small window
 	colorPalette.draw(bckGrnd);
 	colorPalette.draw(colorType);
 	colorPalette.draw(transparentOption);
+	colorPalette.draw(nextOperation);
 
 	for (int i = 0; i < 3; i++)
 	{
@@ -239,15 +242,17 @@ GfxInfo Input::GraphicsInfo() {
 				colorPalette.close();
 
 			if (event.type == sf::Event::MouseButtonPressed) {
-				if (!fillColorSelected) {		//didnt choose the draw color yet
+				if (operation == 0) {		//didnt choose the draw color yet
 					if (event.mouseButton.y > 50) {		//clicked inside colors
-						choice.DrawClr = color[event.mouseButton.x / 100][(event.mouseButton.y - 50) / 100].getFillColor();
+						if (event.mouseButton.y < 350) {
+							choice.DrawClr = color[event.mouseButton.x / 100][(event.mouseButton.y - 50) / 100].getFillColor();
+						}
 
-						fillColorSelected = true;
+						operation++;
 
 						transparentOption.setString("Transparent");
-
 						colorType.setString("Fill Color");
+						nextOperation.setString("No change in Fill Color go to Border width.");
 
 						//drawing colors in small window again with change in name
 						colorPalette.clear();
@@ -255,6 +260,7 @@ GfxInfo Input::GraphicsInfo() {
 						colorPalette.draw(bckGrnd);
 						colorPalette.draw(colorType);
 						colorPalette.draw(transparentOption);
+						colorPalette.draw(nextOperation);
 
 						for (int i = 0; i < 3; i++)
 						{
@@ -267,26 +273,55 @@ GfxInfo Input::GraphicsInfo() {
 						/////////////////////////////////////////////////////////////
 					}
 				}
-				else {
-					if (event.mouseButton.y > 50) {		//clicked inside colors
-						choice.FillClr = color[event.mouseButton.x / 100][(event.mouseButton.y - 50) / 100].getFillColor();
+				else if (operation == 1) {
 
-						choice.isFilled = true;
-					}
-					else		//clicked outside colors and chose transparent
-					{
+					if (event.mouseButton.y < 50) {		//clicked inside colors
 						choice.isFilled = false;
 					}
-					colorPalette.close();
+					else if (event.mouseButton.y < 350)		//clicked outside colors and chose transparent
+					{
+						choice.FillClr = color[event.mouseButton.x / 100][(event.mouseButton.y - 50) / 100].getFillColor();
+						choice.isFilled = true;
+					}
+					operation++;
+
+					nextOperation.setString("No change in Border width.");
+					colorType.setString("Border Width");
+
+					//drawing colors in small window again with change in name
+					colorPalette.clear();
+
+					colorPalette.draw(bckGrnd);
+					colorPalette.draw(colorType);
+					colorPalette.draw(nextOperation);
+
+					transparentOption.setFillColor(sf::Color::Black);
+					transparentOption.setCharacterSize(40);
+
+					for (int i = 0; i < 7; i++)
+					{
+						transparentOption.setString(to_string(i + 1));
+						transparentOption.setPosition(0, i * 40 + 45);
+						colorPalette.draw(transparentOption);
+					}
+					colorPalette.display();
+					/////////////////////////////////////////////////////////////
+
+				}
+				else {
+
+					if (event.mouseButton.y > 45 && event.mouseButton.y < 325)		//clicked outside colors and chose transparent
+					{
+						choice.BorderWdth = (event.mouseButton.y - 45) / 40 + 1;
+						colorPalette.close();
+					}
+					else if (event.mouseButton.y > 325)
+						colorPalette.close();
 				}
 			}
 
 		}
 	}
-
-
-	return choice;
-
 }
 
 Input::~Input()

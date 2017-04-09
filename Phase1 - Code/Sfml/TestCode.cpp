@@ -73,7 +73,7 @@ int main()
 	gfxInfo.FillClr = sf::Color::Green;//any color for filling
 	gfxInfo.isFilled = true;//Figure is filled
 
-	gfxInfo = pIn->GraphicsInfo();
+	pIn->GraphicsInfo(gfxInfo);
 	pOut->DrawRect(P1, P2, gfxInfo, false);
 
 
@@ -144,7 +144,7 @@ int main()
 	pIn->GetPointClicked(P2.x, P2.y);
 	pIn->GetPointClicked(P3.x, P3.y);
 
-	gfxInfo = pIn->GraphicsInfo();
+	pIn->GraphicsInfo(gfxInfo);
 
 	pOut->DrawTriangle(P1, P2, P3, gfxInfo, false);
 	///TODO: Add code to draw Triangle in all possible states
@@ -182,7 +182,7 @@ int main()
 	pOut->PrintMessage("Drawing a Circle ==> filled,  Click two points");
 	pIn->GetPointClicked(P1.x, P1.y);	//Wait for any click
 	pIn->GetPointClicked(P2.x, P2.y);	//Wait for any click
-	gfxInfo = pIn->GraphicsInfo();
+	pIn->GraphicsInfo(gfxInfo);
 	gfxInfo.isFilled = true;
 	pOut->DrawCirc(P1, P2, gfxInfo, false);
 

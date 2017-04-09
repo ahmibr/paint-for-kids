@@ -54,7 +54,12 @@ struct GfxInfo	//Graphical info of each figure (you may add more members)
 	sf::Color FillClr;	//Fill color of the figure
 	bool isFilled;	//Figure Filled or not
 	int BorderWdth;	//Width of figure borders
-
+	GfxInfo() {
+		DrawClr = sf::Color::Black;
+		FillClr = sf::Color::White;
+		isFilled = false;
+		BorderWdth = 2;
+	}
 };
 
 #endif

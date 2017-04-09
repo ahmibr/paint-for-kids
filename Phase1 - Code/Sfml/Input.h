@@ -23,7 +23,7 @@ public:
 
 	ActionType GetUserAction() const; //Read the user click and map to an action
 
-	GfxInfo Input::GraphicsInfo();		//added to return graphics
+	void GraphicsInfo(GfxInfo &choice);		//added to return graphics
 
 	~Input();
 };
