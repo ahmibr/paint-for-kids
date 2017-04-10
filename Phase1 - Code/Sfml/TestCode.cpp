@@ -277,7 +277,7 @@ int main()
 		case ROTATE:
 			pOut->PrintMessage("Action: Rotate, Click anywhere");
 			test2 = pIn->Rotate_wind();
-			pOut->PrintMessage("Resize is " + to_string(test2));
+			pOut->PrintMessage("Rotate is " + to_string(test2));
 			break;
 
 		case SAVE:
