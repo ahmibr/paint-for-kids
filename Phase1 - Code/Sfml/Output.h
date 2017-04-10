@@ -19,7 +19,6 @@ private:
 	sf::RectangleShape *toolbarLine;
 	sf::RectangleShape *windowBackGround;			//background rectangle
 	sf::RectangleShape *stbar;						//
-
 	sf::Texture MenuItemImages[DRAW_ITM_COUNT];		//
 	sf::Sprite MenuItemSprites[DRAW_ITM_COUNT];		//
 	sf::Texture MenuPlayImages[PLAY_ITM_COUNT];		//

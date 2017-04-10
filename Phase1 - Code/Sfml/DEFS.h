@@ -10,7 +10,6 @@ enum ActionType //The actions supported (you can add more if needed)
 	DRAW_TRI,		//Draw Triangle
 	DRAW_CIRC,		//Draw Circle
 	CHNG_DRAW_CLR,	//Change the drawing color
-	CHNG_FILL_CLR,	//Change the filling color
 	CHNG_BK_CLR,	//Change background color
 	DEL,			//Delete a figure(s)
 	MOVE,			//Move a figure(s)
@@ -32,7 +31,8 @@ enum ActionType //The actions supported (you can add more if needed)
 	///TODO: Add more action types (if needed)
 	UNDO,
 	REDO,
-	ZOOM,
+	ZOOM_IN,
+	ZOOM_OUT,
 	CUT,
 	COPY,
 	PASTE,

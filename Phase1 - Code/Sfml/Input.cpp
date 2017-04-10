@@ -46,7 +46,7 @@ string Input::GetSrting(Output *pO) const
 				if (Key == 13)	//ENTER key is pressed
 					return Label;
 				if (Key == 8)	//BackSpace is pressed
-					Label.resize( (Label.size() == 0) ? 0 : Label.size() - 1);
+					Label.resize((Label.size() == 0) ? 0 : Label.size() - 1);
 				else
 					Label += Key;
 				pO->PrintMessage(Label);
@@ -72,6 +72,31 @@ ActionType Input::GetUserAction() const
 				y = userEvent->mouseButton.y;
 				pressed = true;
 			}
+			if (userEvent->type == sf::Event::MouseWheelScrolled) {
+				if (userEvent->mouseWheelScroll.delta > 0) {
+					return ZOOM_IN;
+				}
+				else {
+					return ZOOM_OUT;
+				}
+			}
+			if (userEvent->type == sf::Event::KeyPressed) {
+				if (userEvent->key.code == sf::Keyboard::C && userEvent->key.control) {
+					return COPY;
+				}
+				if (userEvent->key.code == sf::Keyboard::X && userEvent->key.control) {
+					return CUT;
+				}
+				if (userEvent->key.code == sf::Keyboard::V && userEvent->key.control) {
+					return PASTE;
+				}
+				if (userEvent->key.code == sf::Keyboard::Z && userEvent->key.control) {
+					return UNDO;
+				}
+				if (userEvent->key.code == sf::Keyboard::Y && userEvent->key.control) {
+					return REDO;
+				}
+			}
 		}
 
 	}
@@ -94,7 +119,7 @@ ActionType Input::GetUserAction() const
 			case ITM_Tri: return DRAW_TRI;
 			case ITM_Line: return DRAW_LINE;
 			case ITM_Color: return CHNG_DRAW_CLR;
-			case ITM_Zoom: return ZOOM;
+			case ITM_BackGround: return CHNG_BK_CLR;
 			case ITM_Resize: return RESIZE;
 			case ITM_Rotate: return ROTATE;
 			case ITM_Save: return SAVE;
@@ -173,7 +198,7 @@ void Input::GraphicsInfo(GfxInfo &choice) {
 	sf::RectangleShape bckGrnd(sf::Vector2f(300, 400));		//background color
 	sf::RectangleShape color[3][3];
 
-	//bool fillColorSelected = false;
+
 
 	int operation = 0;
 
@@ -302,7 +327,7 @@ void Input::GraphicsInfo(GfxInfo &choice) {
 					for (int i = 0; i < 7; i++)
 					{
 						transparentOption.setString(to_string(i + 1));
-						transparentOption.setPosition(0, i * 40 + 45);
+						transparentOption.setPosition(150, i * 40 + 45);
 						colorPalette.draw(transparentOption);
 					}
 					colorPalette.display();
@@ -323,6 +348,111 @@ void Input::GraphicsInfo(GfxInfo &choice) {
 
 		}
 	}
+}
+
+float Input::Resize_wind()
+{
+	sf::RenderWindow New_window(sf::VideoMode(200, 50), "Resize ", sf::Style::Close);
+	sf::RectangleShape backgrnd(sf::Vector2f(200, 50));		//background color
+	backgrnd.setFillColor(UI.BkGrndColor);
+
+	sf::Font f;
+	f.loadFromFile("Resource Files\\Arial.ttf");
+
+	sf::Text multiply[4];
+	multiply[0].setString("x0.25");
+	multiply[1].setString("x0.5");
+	multiply[2].setString("x2");
+	multiply[3].setString("x4");
+
+	New_window.clear();
+	New_window.draw(backgrnd);
+
+	for (int i = 0; i < 4; i++)
+	{
+		multiply[i].setFillColor(sf::Color::Black);
+		multiply[i].setFont(f);
+		multiply[i].setCharacterSize(20);
+		multiply[i].setPosition(i * 55, 15);
+		New_window.draw(multiply[i]);
+	}
+	New_window.display();
+
+	while (New_window.isOpen())
+	{
+		// Process events
+		sf::Event event;
+		while (New_window.pollEvent(event))
+		{
+			// Close window: exit
+			if (event.type == sf::Event::Closed)
+				New_window.close();
+
+			if (event.type == sf::Event::MouseButtonPressed) {
+				if (event.mouseButton.x / 55 == 0)
+					return 0.25f;
+				if (event.mouseButton.x / 55 == 1)
+					return 0.5f;
+				if (event.mouseButton.x / 55 == 2)
+					return 2;
+				if (event.mouseButton.x / 55 == 3)
+					return 4;
+			}
+		}
+	}
+
+	return 1;
+
+}
+float Input::Rotate_wind()
+{
+	sf::RenderWindow New_window(sf::VideoMode(150, 50), "Rotate ", sf::Style::Close);
+	sf::RectangleShape backgrnd(sf::Vector2f(150, 50));		//background color
+	backgrnd.setFillColor(UI.BkGrndColor);
+
+	sf::Font f;
+	f.loadFromFile("Resource Files\\Arial.ttf");
+
+	sf::Text multiply[3];
+	multiply[0].setString("90");
+	multiply[1].setString("180");
+	multiply[2].setString("270");
+
+	New_window.clear();
+	New_window.draw(backgrnd);
+
+	for (int i = 0; i < 3; i++)
+	{
+		multiply[i].setFillColor(sf::Color::Black);
+		multiply[i].setFont(f);
+		multiply[i].setCharacterSize(20);
+		multiply[i].setPosition(i * 55, 15);
+		New_window.draw(multiply[i]);
+	}
+	New_window.display();
+
+	while (New_window.isOpen())
+	{
+		// Process events
+		sf::Event event;
+		while (New_window.pollEvent(event))
+		{
+			// Close window: exit
+			if (event.type == sf::Event::Closed)
+				New_window.close();
+
+			if (event.type == sf::Event::MouseButtonPressed) {
+				if (event.mouseButton.x / 55 == 0)
+					return 90;
+				if (event.mouseButton.x / 55 == 1)
+					return 180;
+				if (event.mouseButton.x / 55 == 2)
+					return 270;
+			}
+		}
+	}
+
+	return 0;
 }
 
 Input::~Input()

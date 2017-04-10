@@ -48,7 +48,7 @@ int main()
 	pIn->GetPointClicked(P1.x, P1.y);
 	pIn->GetPointClicked(P2.x, P2.y);
 
-	
+
 	gfxInfo.BorderWdth = 3;
 
 	gfxInfo.DrawClr = sf::Color::Black;	//any color for border
@@ -68,7 +68,7 @@ int main()
 	pOut->PrintMessage("Drawing a Rectangle ==> filled,  Click two points");
 	pIn->GetPointClicked(P1.x, P1.y);
 	pIn->GetPointClicked(P2.x, P2.y);
-	
+
 	/*
 	gfxInfo.BorderWdth = 4;
 	gfxInfo.DrawClr = sf::Color::Blue;	//any color for border
@@ -229,6 +229,7 @@ int main()
 	pOut->PrintMessage("TEST4: Testing Input ability to detect User Action, click anywhere");
 
 	ActionType ActType;
+	float test2;
 
 	///TODO:  
 	//You must add a case for each action (both Draw mode and Play mode actions)
@@ -255,16 +256,28 @@ int main()
 			pOut->PrintMessage("Action: Draw a Triangle , Click anywhere");
 			break;
 
-		case ZOOM:
-			pOut->PrintMessage("Action: Zoom , Click anywhere");
+		case CHNG_BK_CLR:
+			pOut->PrintMessage("Action: Change Background color , Click anywhere");
+			break;
+
+		case ZOOM_IN:
+			pOut->PrintMessage("Action: Zoom In, Click anywhere");
+			break;
+
+		case ZOOM_OUT:
+			pOut->PrintMessage("Action: Zoom Out, Click anywhere");
 			break;
 
 		case RESIZE:
 			pOut->PrintMessage("Action: Resize, Click anywhere");
+			test2 = pIn->Resize_wind();
+			pOut->PrintMessage("Resize is " + to_string(test2));
 			break;
 
 		case ROTATE:
 			pOut->PrintMessage("Action: Rotate, Click anywhere");
+			test2 = pIn->Rotate_wind();
+			pOut->PrintMessage("Resize is " + to_string(test2));
 			break;
 
 		case SAVE:
@@ -297,7 +310,7 @@ int main()
 			break;
 
 		case REDO:
-			pOut->PrintMessage("Action: REDO , Click anywhere");
+			pOut->PrintMessage("Action: Redo , Click anywhere");
 			break;
 
 		case CHNG_DRAW_CLR:
