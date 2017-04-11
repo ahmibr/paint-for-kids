@@ -49,7 +49,7 @@ Output::Output()
 	MenuItemImages[ITM_Tri].loadFromFile("images\\MenuItems\\Menu_Tri.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
 	MenuItemImages[ITM_Line].loadFromFile("images\\MenuItems\\Menu_Line.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
 	MenuItemImages[ITM_Color].loadFromFile("images\\MenuItems\\Menu_Color.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
-	MenuItemImages[ITM_BackGround].loadFromFile("images\\MenuItems\\Menu_Zoom.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
+	MenuItemImages[ITM_BackGround].loadFromFile("images\\MenuItems\\Menu_ChangeBackground.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
 	MenuItemImages[ITM_Resize].loadFromFile("images\\MenuItems\\Menu_Resize.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
 	MenuItemImages[ITM_Rotate].loadFromFile("images\\MenuItems\\Menu_Rotate.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));
 	MenuItemImages[ITM_Save].loadFromFile("images\\MenuItems\\Menu_Save.jpg", sf::IntRect(0, 0, UI.MenuItemWidth, UI.ToolBarHeight));

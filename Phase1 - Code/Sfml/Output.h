@@ -18,13 +18,13 @@ private:
 
 	sf::RectangleShape *toolbarLine;
 	sf::RectangleShape *windowBackGround;			//background rectangle
-	sf::RectangleShape *stbar;						//
-	sf::Texture MenuItemImages[DRAW_ITM_COUNT];		//
-	sf::Sprite MenuItemSprites[DRAW_ITM_COUNT];		//
-	sf::Texture MenuPlayImages[PLAY_ITM_COUNT];		//
-	sf::Sprite MenuPlaySprites[PLAY_ITM_COUNT];		//
+	sf::RectangleShape *stbar;						//statusbar rectangle
+	sf::Texture MenuItemImages[DRAW_ITM_COUNT];		//Menu items images
+	sf::Sprite MenuItemSprites[DRAW_ITM_COUNT];		//Menu items sprites
+	sf::Texture MenuPlayImages[PLAY_ITM_COUNT];		//Play items images
+	sf::Sprite MenuPlaySprites[PLAY_ITM_COUNT];		//Play items sprites
 
-	vector<sf::Drawable*> *drawnObjects;
+	vector<sf::Drawable*> *drawnObjects;	//vector to redraw shapes any new events
 
 	//////////////////////////////////////////////////////////////////////////////////
 
@@ -42,10 +42,10 @@ public:
 
 								// -- Figures Drawing functions
 	void DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected = false) const;  //Draw a rectangle
-	void DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected) const;
+	void DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected) const; //Draw a line
 	void DrawCirc(Point C, Point R, GfxInfo CircGfxInfo, bool selected) const;       //Draw a circle
-	void DrawTriangle(Point P1, Point P2, Point P3, GfxInfo TriangleGfxInfo, bool selected) const;
-																						  ///Make similar functions for drawing all other figures.
+	void DrawTriangle(Point P1, Point P2, Point P3, GfxInfo TriangleGfxInfo, bool selected) const; //Draw a triangle
+
 
 	void PrintMessage(string msg) const;	//Print a message on Status bar
 

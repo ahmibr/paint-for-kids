@@ -286,16 +286,18 @@ void Input::GraphicsInfo(GfxInfo &choice) {
 
 						transparentOption.setString("Transparent");
 						colorType.setString("Fill Color");
-						nextOperation.setString("No change in Fill Color go to Border width.");
-
+						nextOperation.setString("No change in Fill Color go to Border width.\nCurrent color is ");
+						currColor.setPosition(sf::Vector2f(110, 368));
+						currColor.setFillColor(choice.FillClr);
 						//drawing colors in small window again with change in name
 						colorPalette.clear();
 
+						
 						colorPalette.draw(bckGrnd);
 						colorPalette.draw(colorType);
 						colorPalette.draw(transparentOption);
 						colorPalette.draw(nextOperation);
-
+						colorPalette.draw(currColor);
 						for (int i = 0; i < 3; i++)
 						{
 							for (int j = 0; j < 3; j++)
@@ -319,7 +321,9 @@ void Input::GraphicsInfo(GfxInfo &choice) {
 					}
 					operation++;
 
-					nextOperation.setString("No change in Border width.");
+					string str("");
+					str += '0' + choice.BorderWdth;
+					nextOperation.setString("No change in Border width.\nCurrent width is " + str);
 					colorType.setString("Border Width");
 
 					//drawing colors in small window again with change in name
