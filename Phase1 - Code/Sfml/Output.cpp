@@ -168,6 +168,8 @@ void Output::CreatePlayToolBar() const
 void Output::ClearDrawArea() const
 {
 
+	windowBackGround->setFillColor(UI.BkGrndColor);
+
 	for (int i = 0; i < drawnObjects->size(); i++)
 	{
 		delete drawnObjects->at(i);
@@ -368,7 +370,7 @@ Output::~Output()
 	delete stbar;
 	delete windowBackGround;
 	delete pWind;
-	
+
 	for (int i = 0; i < drawnObjects->size(); i++)
 		delete drawnObjects->at(i);
 

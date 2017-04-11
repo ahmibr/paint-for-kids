@@ -24,7 +24,7 @@ public:
 	float Input::Resize_wind();
 	float Input::Rotate_wind();
 	ActionType GetUserAction() const; //Read the user click and map to an action
-
+	void BackgrndColor();
 	void GraphicsInfo(GfxInfo &choice);		//added to return graphics
 
 	~Input();

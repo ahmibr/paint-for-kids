@@ -198,12 +198,16 @@ void Input::GraphicsInfo(GfxInfo &choice) {
 	sf::RectangleShape bckGrnd(sf::Vector2f(300, 400));		//background color
 	sf::RectangleShape color[3][3];
 
+	sf::Font f;
+	f.loadFromFile("Resource Files\\Arial.ttf");
 
+	sf::RectangleShape currColor(sf::Vector2f(60,20));
+	
 
 	int operation = 0;
 
-	sf::Font f;
-	f.loadFromFile("Resource Files\\Arial.ttf");
+	
+	
 
 	sf::Text colorType("Draw Color", f, 20);
 	colorType.setFillColor(sf::Color::Black);
@@ -213,9 +217,12 @@ void Input::GraphicsInfo(GfxInfo &choice) {
 	transparentOption.setFillColor(sf::Color::Red);
 	transparentOption.setPosition(150, 15);
 
-	sf::Text nextOperation("No change in Draw Color go to Fill Color.", f, 15);
+	sf::Text nextOperation("No change in Draw Color go to Fill Color.\nCurrent color is ", f, 15);
 	nextOperation.setFillColor(sf::Color::Black);
 	nextOperation.setPosition(0, 350);
+	currColor.setPosition(sf::Vector2f(110, 368));
+	currColor.setFillColor(choice.DrawClr);
+	
 
 	bckGrnd.setFillColor(UI.BkGrndColor);
 
@@ -233,7 +240,7 @@ void Input::GraphicsInfo(GfxInfo &choice) {
 	color[2][0].setFillColor(sf::Color(0, 255, 0));		//green
 	color[0][1].setFillColor(sf::Color(255, 0, 0));		//red
 	color[1][1].setFillColor(sf::Color(0, 0, 255));		//blue
-	color[2][1].setFillColor(sf::Color(0, 255, 255));	//terquaz
+	color[2][1].setFillColor(sf::Color(0, 255, 127.5));	//terquaz
 	color[0][2].setFillColor(sf::Color(255, 255, 127.5));	//yellow
 	color[1][2].setFillColor(sf::Color(255, 127.5, 0));	//red + blue
 	color[2][2].setFillColor(sf::Color(127.5, 127.5, 127.5));	//grey
@@ -246,6 +253,7 @@ void Input::GraphicsInfo(GfxInfo &choice) {
 	colorPalette.draw(colorType);
 	colorPalette.draw(transparentOption);
 	colorPalette.draw(nextOperation);
+	colorPalette.draw(currColor);
 
 	for (int i = 0; i < 3; i++)
 	{
@@ -348,6 +356,58 @@ void Input::GraphicsInfo(GfxInfo &choice) {
 
 		}
 	}
+}
+
+void Input::BackgrndColor() {
+	sf::RenderWindow backgrndWindow(sf::VideoMode(400, 150), "Background Color", sf::Style::Close);
+	sf::RectangleShape backgrndColor(sf::Vector2f(400, 150));
+	backgrndColor.setFillColor(UI.BkGrndColor);
+	
+
+	sf::Font f;
+	f.loadFromFile("Resource Files\\Arial.ttf");
+
+	sf::Text title("Background Color", f, 45);
+	title.setFillColor(sf::Color::Black);
+
+	sf::RectangleShape Color[4];
+
+	Color[0].setFillColor(sf::Color(190, 190, 190));
+	Color[1].setFillColor(sf::Color(255, 250, 205));
+	Color[2].setFillColor(sf::Color(220, 220, 220));
+	Color[3].setFillColor(sf::Color(0, 200, 200));
+
+	backgrndWindow.clear();
+	backgrndWindow.draw(backgrndColor);
+	backgrndWindow.draw(title);
+
+	for (int i = 0; i < 4; i++)
+	{
+		Color[i].setSize(sf::Vector2f(100, 100));
+		Color[i].setPosition(i * 100, 50);
+		backgrndWindow.draw(Color[i]);
+	}
+	backgrndWindow.display();
+
+	while (backgrndWindow.isOpen())
+	{
+		// Process events
+		sf::Event event;
+		while (backgrndWindow.pollEvent(event))
+		{
+			// Close window: exit
+			if (event.type == sf::Event::Closed)
+				backgrndWindow.close();
+			if (event.type == sf::Event::MouseButtonPressed) {
+				if (event.mouseButton.y > 50) {
+					UI.BkGrndColor = Color[event.mouseButton.x / 100].getFillColor();
+
+					return;
+				}
+			}
+		}
+	}
+	
 }
 
 float Input::Resize_wind()

@@ -56,7 +56,7 @@ struct GfxInfo	//Graphical info of each figure (you may add more members)
 	GfxInfo() {
 		DrawClr = sf::Color::Black;
 		FillClr = sf::Color::White;
-		isFilled = false;
+		isFilled = true;
 		BorderWdth = 2;
 	}
 };

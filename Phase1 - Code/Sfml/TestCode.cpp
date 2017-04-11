@@ -43,24 +43,22 @@ int main()
 	pOut->PrintMessage("Drawing a Rectangle, filled/non-filled and Highlighted filled/non-filled,  Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
 
-								// 2.1.1 - Drawing non-filled rectangle
+	// 2.1.1 - Drawing non-filled rectangle
 	pOut->PrintMessage("Drawing a Rectangle ==> non-filled,  Click two points");
 	pIn->GetPointClicked(P1.x, P1.y);
 	pIn->GetPointClicked(P2.x, P2.y);
 
 
 	gfxInfo.BorderWdth = 3;
-
 	gfxInfo.DrawClr = sf::Color::Black;	//any color for border
 	gfxInfo.isFilled = false;	//Figure is NOT filled
-
-								//gfxInfo = pIn->GraphicsInfo();		//test
 
 	pOut->DrawRect(P1, P2, gfxInfo, false);
 
 	// 2.1.2 - Drawing highlighted non-filled rectangle
 	pOut->PrintMessage("Drawing a Rectangle ==> Highlighted non-filled, Click to Highlight");
 	pIn->GetPointClicked(x, y);	//Wait for any click
+
 	pOut->DrawRect(P1, P2, gfxInfo, true);
 
 
@@ -69,12 +67,7 @@ int main()
 	pIn->GetPointClicked(P1.x, P1.y);
 	pIn->GetPointClicked(P2.x, P2.y);
 
-	/*
-	gfxInfo.BorderWdth = 4;
-	gfxInfo.DrawClr = sf::Color::Blue;	//any color for border
-	gfxInfo.FillClr = sf::Color::Green;//any color for filling
-	gfxInfo.isFilled = true;//Figure is filled
-	*/
+
 	pIn->GraphicsInfo(gfxInfo);
 	pOut->DrawRect(P1, P2, gfxInfo, false);
 
@@ -95,9 +88,6 @@ int main()
 	/// ============== 
 	pOut->PrintMessage("Drawing a Line, normal and Highlighted, Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
-
-
-								///TODO: Add code to draw Line, Normal and Highlighted
 
 	pOut->PrintMessage("Press 2 points");
 	pIn->GetPointClicked(P1.x, P1.y);
@@ -130,7 +120,7 @@ int main()
 	pIn->GetPointClicked(P3.x, P3.y);
 	gfxInfo.BorderWdth = 3;
 
-	gfxInfo.DrawClr = sf::Color::Black;	//any color for border
+	//gfxInfo.DrawClr = sf::Color::Black;	//any color for border
 	gfxInfo.isFilled = false;	//Figure is NOT filled
 
 	pOut->DrawTriangle(P1, P2, P3, gfxInfo, false);
@@ -258,6 +248,8 @@ int main()
 
 		case CHNG_BK_CLR:
 			pOut->PrintMessage("Action: Change Background color , Click anywhere");
+			pIn->BackgrndColor();
+			pOut->ClearDrawArea();
 			break;
 
 		case ZOOM_IN:
@@ -315,6 +307,7 @@ int main()
 
 		case CHNG_DRAW_CLR:
 			pOut->PrintMessage("Action: Change color , Click anywhere");
+			pIn->GraphicsInfo(gfxInfo);
 			break;
 
 		case BRNG_FRNT:
