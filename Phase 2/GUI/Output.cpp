@@ -275,7 +275,7 @@ void Output::DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected) co
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-void Output::DrawCirc(Point C, Point R, GfxInfo CircGfxInfo, bool selected) const
+void Output::DrawCirc(Point C, float R, GfxInfo CircGfxInfo, bool selected) const
 {
 	sf::Color DrawingClr;
 	if (selected)
@@ -283,14 +283,13 @@ void Output::DrawCirc(Point C, Point R, GfxInfo CircGfxInfo, bool selected) cons
 	else
 		DrawingClr = CircGfxInfo.DrawClr;
 
-	float raduis = sqrt(pow(R.y - C.y, 2) + pow(R.x - C.x, 2));
 
-	sf::CircleShape *circ = new sf::CircleShape(raduis);
+	sf::CircleShape *circ = new sf::CircleShape(R);
 
 	circ->setPosition(sf::Vector2f(sf::Vector2f(abs(C.x), abs(C.y))));
 	circ->setOutlineColor(DrawingClr);
 	circ->setOutlineThickness(CircGfxInfo.BorderWdth);
-	circ->setOrigin(raduis, raduis);
+	circ->setOrigin(R, R);
 
 	if (CircGfxInfo.isFilled)
 	{

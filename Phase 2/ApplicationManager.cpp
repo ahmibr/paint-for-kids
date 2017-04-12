@@ -1,7 +1,8 @@
 #include "ApplicationManager.h"
 #include "Actions\AddRectAction.h"
-
-
+#include "Actions\AddLineAction.h"
+#include "Actions\AddCircleAction.h"
+#include "Actions\AddTriangleAction.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -38,8 +39,15 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 		case DRAW_LINE:
-			///create AddLineAction here
+			pAct = new AddLineAction(this);
+			break;
 
+		case DRAW_CIRC:
+			pAct = new AddCircleAction(this);
+			break;
+
+		case DRAW_TRI:
+			pAct = new AddTriangleAction(this);
 			break;
 
 		case EXIT:

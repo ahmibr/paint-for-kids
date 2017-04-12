@@ -43,7 +43,7 @@ public:
 								// -- Figures Drawing functions
 	void DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected = false) const;  //Draw a rectangle
 	void DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected) const; //Draw a line
-	void DrawCirc(Point C, Point R, GfxInfo CircGfxInfo, bool selected) const;       //Draw a circle
+	void DrawCirc(Point C, float R, GfxInfo CircGfxInfo, bool selected) const;       //Draw a circle
 	void DrawTriangle(Point P1, Point P2, Point P3, GfxInfo TriangleGfxInfo, bool selected) const; //Draw a triangle
 
 
