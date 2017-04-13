@@ -93,7 +93,7 @@ Output::Output()
 	pWind->setTitle("Paint for Kids - Programming Techniques Project");
 
 	//a vector to hold drawn objects on screen
-	drawnObjects = new vector<sf::Drawable*>;
+	drawnObjects = new vector<sf::Shape*>;
 
 	CreateDrawToolBar();
 	CreateStatusBar();
@@ -230,8 +230,12 @@ void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 	else
 		y = P2.y;
 
-	rect->setPosition(x, y);
+	int xLength = abs(P1.x - P2.x);
+	int yLength = abs(P1.y - P2.y);
+
+	rect->setPosition(x + xLength / 2, y + yLength / 2);
 	rect->setOutlineColor(DrawingClr);
+	rect->setOrigin(xLength / 2, yLength / 2);
 	rect->setOutlineThickness(RectGfxInfo.BorderWdth);
 
 	//Set Drawing color & width
@@ -302,6 +306,46 @@ void Output::DrawCirc(Point C, float R, GfxInfo CircGfxInfo, bool selected) cons
 
 	UpdateWindow();
 
+}
+
+void Output::ZoomIn() {
+	int size = drawnObjects->size();	//number of drawn objects
+
+	float displacementValue = 0;		//value of displacement in postions
+
+	if (size > 0) {
+		float scale = drawnObjects->at(0)->getScale().x; // scale of drawn objects
+		for (int i = 0; i < size; i++)
+		{
+			float xpos = (-UI.width / 2 + drawnObjects->at(i)->getPosition().x)* 1.1f;
+			float ypos = (-UI.height / 2 + drawnObjects->at(i)->getPosition().y)* 1.1f;
+			drawnObjects->at(i)->setPosition(xpos + UI.width / 2, ypos + UI.height / 2);
+			drawnObjects->at(i)->setScale(scale + 0.1f, scale + 0.1f); // adding scale by 0.1 for each time
+		}
+
+	}
+
+	UpdateWindow();
+}
+
+void Output::ZoomOut() {
+	int size = drawnObjects->size();	//number of drawn objects
+
+	float displacementValue = 0;		//value of displacement in postions
+
+	if (size > 0) {
+		float scale = drawnObjects->at(0)->getScale().x; // scale of drawn objects
+		for (int i = 0; i < size; i++)
+		{
+			float xpos = (-UI.width / 2 + drawnObjects->at(i)->getPosition().x)* 0.9f;
+			float ypos = (-UI.height / 2 + drawnObjects->at(i)->getPosition().y)* 0.9f;
+			drawnObjects->at(i)->setPosition(xpos + UI.width / 2, ypos + UI.height / 2);
+			drawnObjects->at(i)->setScale(scale - 0.1f, scale - 0.1f); // adding scale by 0.1 for each time
+		}
+
+	}
+
+	UpdateWindow();
 }
 
 void Output::DrawTriangle(Point P1, Point P2, Point P3, GfxInfo TriangleGfxInfo, bool selected) const {
