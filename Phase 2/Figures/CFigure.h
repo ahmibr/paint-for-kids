@@ -11,7 +11,7 @@ protected:
 	int ID;		//Each figure has an ID
 	bool Selected;	//true if the figure is selected.
 	GfxInfo FigGfxInfo;	//Figure graphis info
-	
+
 	/// Add more parameters if needed.
 
 public:
@@ -19,10 +19,11 @@ public:
 	void SetSelected(bool s);	//select/unselect the figure
 	bool IsSelected() const;	//check whether fig is selected
 
-	virtual void Draw(Output* pOut) const  = 0 ;		//Draw the figure
-	
+	virtual void Draw(Output* pOut) const = 0;		//Draw the figure
+
 	void ChngDrawClr(sf::Color Dclr);	//changes the figure's drawing color
 	void ChngFillClr(sf::Color Fclr);	//changes the figure's filling color
+	void ChngBrdrWidth(int width);		//changes the figure's border width
 
 	///The following functions should be supported by the figure class
 	///It should be overridden by each inherited figure
