@@ -10,6 +10,7 @@ private:
 	Point Corner2;
 public:
 	CRectangle(Point , Point, GfxInfo FigureGfxInfo );
+	CRectangle(const CRectangle&); //copy constructor
 	virtual void Draw(Output* pOut) const;
 	//virtual bool isClicked(int x, int y) const;
 };

@@ -10,6 +10,7 @@ private:
 	Point p2;
 public:
 	CLine(Point , Point, GfxInfo FigureGfxInfo );
+	CLine(const CLine&); //copy constructor
 	virtual void Draw(Output* pOut) const;
 };
 

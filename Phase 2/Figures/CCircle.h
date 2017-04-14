@@ -12,6 +12,7 @@ private:
 	//bool clickedOnBorder(int x, int y) const;//utility function to check if clicked on border of figure
 public:
 	CCircle(Point , Point, GfxInfo FigureGfxInfo );
+	CCircle(const CCircle&);//copy constructor
 	virtual void Draw(Output* pOut) const;
 	//virtual bool isClicked(int x, int y) const;//function to check if given point is related to the figure
 };

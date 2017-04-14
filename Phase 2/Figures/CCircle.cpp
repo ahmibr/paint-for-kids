@@ -6,7 +6,11 @@ CCircle::CCircle(Point center, Point radiusPoint,GfxInfo FigureGfxInfo):CFigure(
 	radius = sqrt(pow(radiusPoint.x - center.x, 2) + pow(radiusPoint.y - center.y, 2));
 	
 }
-	
+CCircle::CCircle(const CCircle& cpy):CFigure(cpy.FigGfxInfo) {
+	center = cpy.center;
+	radius = cpy.radius;
+	Selected = cpy.Selected;
+}
 
 void CCircle::Draw(Output* pOut) const
 {

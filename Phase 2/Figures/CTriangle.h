@@ -12,6 +12,7 @@ private:
 
 public:
 	CTriangle(Point , Point,Point,GfxInfo FigureGfxInfo);
+	CTriangle(const CTriangle&); //copy constructor
 	virtual void Draw(Output* pOut) const;
 };
 

@@ -6,6 +6,11 @@ CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo):CFigure(Figure
 	Corner2 = P2;
 }
 
+CRectangle::CRectangle(const CRectangle& cpy) :CFigure(cpy.FigGfxInfo){
+	Corner1 = cpy.Corner1;
+	Corner2 = cpy.Corner2;
+	Selected = cpy.Selected;
+}
 
 void CRectangle::Draw(Output* pOut) const
 {
