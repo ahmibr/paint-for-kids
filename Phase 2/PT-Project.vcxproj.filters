@@ -52,6 +52,13 @@
     <ClCompile Include="Actions\AddTriangleAction.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\ZoomIn.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\ZoomOut.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="CopyAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Figures\CFigure.h">
@@ -97,6 +104,13 @@
     <ClInclude Include="Actions\AddTriangleAction.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
+    <ClInclude Include="Actions\ZoomIn.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ZoomOut.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="CopyAction.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

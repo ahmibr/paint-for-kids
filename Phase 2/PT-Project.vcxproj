@@ -135,6 +135,9 @@
     <ClCompile Include="Actions\AddCircleAction.cpp" />
     <ClCompile Include="Actions\AddLineAction.cpp" />
     <ClCompile Include="Actions\AddTriangleAction.cpp" />
+    <ClCompile Include="Actions\ZoomIn.cpp" />
+    <ClCompile Include="Actions\ZoomOut.cpp" />
+    <ClCompile Include="CopyAction.cpp" />
     <ClCompile Include="Figures\CCircle.cpp" />
     <ClCompile Include="Figures\CFigure.cpp" />
     <ClCompile Include="Figures\Cline.cpp" />
@@ -150,6 +153,9 @@
     <ClInclude Include="Actions\AddCircleAction.h" />
     <ClInclude Include="Actions\AddLineAction.h" />
     <ClInclude Include="Actions\AddTriangleAction.h" />
+    <ClInclude Include="Actions\ZoomIn.h" />
+    <ClInclude Include="Actions\ZoomOut.h" />
+    <ClInclude Include="CopyAction.h" />
     <ClInclude Include="Figures\CCircle.h" />
     <ClInclude Include="Figures\CFigure.h" />
     <ClInclude Include="Figures\Cline.h" />
