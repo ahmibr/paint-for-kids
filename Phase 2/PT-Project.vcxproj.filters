@@ -58,7 +58,6 @@
     <ClCompile Include="Actions\ZoomOut.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
-    <ClCompile Include="CopyAction.cpp" />
     <ClCompile Include="Actions\ChangeFigColor.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
@@ -75,6 +74,9 @@
       <Filter>Action Classes</Filter>
     </ClCompile>
     <ClCompile Include="Actions\SwitchToPlayMode.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\CopyAction.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -128,7 +130,6 @@
     <ClInclude Include="Actions\ZoomOut.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
-    <ClInclude Include="CopyAction.h" />
     <ClInclude Include="Actions\ChangeFigColor.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
@@ -145,6 +146,9 @@
       <Filter>Action Classes</Filter>
     </ClInclude>
     <ClInclude Include="Actions\SwitchToPlayMode.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\CopyAction.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
   </ItemGroup>

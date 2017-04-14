@@ -13,7 +13,7 @@ void CCircle::Draw(Output* pOut) const
 	//Call Output::DrawRect to draw a rectangle on the screen	
 	pOut->DrawCirc(center, radius, FigGfxInfo, Selected);
 }
-
+/*
 bool CCircle::isClicked(int x, int y)const{
 
 	if (FigGfxInfo.isFilled) //if it's filled check inside and on border
@@ -21,7 +21,7 @@ bool CCircle::isClicked(int x, int y)const{
 
 
 	return 	clickedOnBorder(x, y); //it's not filled then check only on border
-}
+}*/
 /* ****************NOT ready yet*****************
 bool CCircle::clickedInside(int x, int y)const {
 

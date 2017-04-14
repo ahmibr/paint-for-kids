@@ -44,7 +44,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	//According to Action Type, create the corresponding action object
 	switch (ActType)
 	{
-		<< << << < HEAD
+		
 	case DRAW_RECT:
 		pAct = new AddRectAction(this);
 		break;
