@@ -3,9 +3,8 @@
 #include "Actions\AddLineAction.h"
 #include "Actions\AddCircleAction.h"
 #include "Actions\AddTriangleAction.h"
-#include "Actions\ZoomIn.h"
+#include "ZoomIn.h"
 #include "Actions\ZoomOut.h"
-#include "Actions\ChangeFigColor.h"
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -62,10 +61,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct = new ZoomOut(this);
 		break;
 
-	case CHNG_DRAW_CLR:
-		pAct = new ChangeFigColor(this);
-		break;
-
 	case EXIT:
 		///create ExitAction here
 
@@ -103,20 +98,6 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 	///Add your code here to search for a figure given a point x,y	
 
 	return NULL;
-}
-//////////////////////////////////////////////////////////////////////////////////
-CFigure *ApplicationManager::GetFigure(int index) const
-{
-	if (index < FigCount)
-		return FigList[index];
-
-	return NULL;
-}
-//////////////////////////////////////////////////////////////////////////////////
-//Returns number of figures
-int ApplicationManager::GetFigureCount() const
-{
-	return FigCount;
 }
 //==================================================================================//
 //							Interface Management Functions							//

@@ -204,12 +204,6 @@ int Output::getCrntPenWidth() const		//get current pen width
 {
 	return UI.PenWidth;
 }
-////////////////////////////////////////////////////////////////////////////
-
-bool Output::getCrntIsFilled() const		//get current is Filled
-{
-	return !(UI.FillColor == UI.nonFillColor);
-}
 
 //======================================================================================//
 //								Figures Drawing Functions								//

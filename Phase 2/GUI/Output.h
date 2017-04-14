@@ -54,7 +54,6 @@ public:
 	sf::Color getCrntDrawColor() const;	//get current drwawing color
 	sf::Color getCrntFillColor() const;	//get current filling color
 	int getCrntPenWidth() const;		//get current pen width
-	bool getCrntIsFilled() const;		//get current is filled status
 
 
 	~Output();

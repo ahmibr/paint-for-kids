@@ -6,17 +6,17 @@
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
 
-AddTriangleAction::AddTriangleAction(ApplicationManager * pApp) :Action(pApp)
+AddTriangleAction::AddTriangleAction(ApplicationManager * pApp):Action(pApp)
 {}
 
-void AddTriangleAction::ReadActionParameters()
-{
+void AddTriangleAction::ReadActionParameters() 
+{	
 	//Get a Pointer to the Input / Output Interfaces
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 
 	pOut->PrintMessage("New Triangle: Click at first point");
-
+	
 	//Read 1st corner and store in point P1
 	pIn->GetPointClicked(P1.x, P1.y);
 
@@ -30,25 +30,24 @@ void AddTriangleAction::ReadActionParameters()
 	//Read 3rd corner and store in point P3
 	pIn->GetPointClicked(P3.x, P3.y);
 
-	//TriangleGfxInfo.isFilled = false;	//default is not filled
+	TriangleGfxInfo.isFilled = false;	//default is not filled
 	//get drawing, filling colors and pen width from the interface
-	TriangleGfxInfo.DrawClr = pOut->getCrntDrawColor();
-	TriangleGfxInfo.FillClr = pOut->getCrntFillColor();
-	TriangleGfxInfo.BorderWdth = pOut->getCrntPenWidth();
-	TriangleGfxInfo.isFilled = pOut->getCrntIsFilled();
-
+/*	RectGfxInfo.DrawClr = pOut->getCrntDrawColor();
+	RectGfxInfo.FillClr = pOut->getCrntFillColor();
+	RectGfxInfo.BorderWdth = pOut->getCrntPenWidth();
+	*/
 	pOut->ClearStatusBar();
 
 }
 
 //Execute the action
-void AddTriangleAction::Execute()
+void AddTriangleAction::Execute() 
 {
 	//This action needs to read some parameters first
 	ReadActionParameters();
-
+	
 	//Create a triangle with the parameters read from the user
-	CTriangle *T = new CTriangle(P1, P2, P3, TriangleGfxInfo);
+	CTriangle *T=new CTriangle(P1, P2,P3,TriangleGfxInfo);
 
 	//Add the triangle to the list of figures
 	pManager->AddFigure(T);

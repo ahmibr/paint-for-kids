@@ -201,11 +201,13 @@ void Input::GraphicsInfo(GfxInfo &choice) {
 	sf::Font f;
 	f.loadFromFile("Resource Files\\Arial.ttf");
 
-	sf::RectangleShape currColor(sf::Vector2f(60, 20));
-	currColor.setOutlineColor(sf::Color::Black);
-	currColor.setOutlineThickness(2);
+	sf::RectangleShape currColor(sf::Vector2f(60,20));
+	
 
 	int operation = 0;
+
+	
+	
 
 	sf::Text colorType("Draw Color", f, 20);
 	colorType.setFillColor(sf::Color::Black);
@@ -220,7 +222,7 @@ void Input::GraphicsInfo(GfxInfo &choice) {
 	nextOperation.setPosition(0, 350);
 	currColor.setPosition(sf::Vector2f(110, 368));
 	currColor.setFillColor(choice.DrawClr);
-
+	
 
 	bckGrnd.setFillColor(UI.BkGrndColor);
 
@@ -290,7 +292,7 @@ void Input::GraphicsInfo(GfxInfo &choice) {
 						//drawing colors in small window again with change in name
 						colorPalette.clear();
 
-
+						
 						colorPalette.draw(bckGrnd);
 						colorPalette.draw(colorType);
 						colorPalette.draw(transparentOption);
@@ -311,7 +313,6 @@ void Input::GraphicsInfo(GfxInfo &choice) {
 
 					if (event.mouseButton.y < 50) {		//clicked inside colors
 						choice.isFilled = false;
-						choice.FillClr = UI.nonFillColor;
 					}
 					else if (event.mouseButton.y < 350)		//clicked outside colors and chose transparent
 					{
@@ -365,7 +366,7 @@ void Input::BackgrndColor() {
 	sf::RenderWindow backgrndWindow(sf::VideoMode(400, 150), "Background Color", sf::Style::Close);
 	sf::RectangleShape backgrndColor(sf::Vector2f(400, 150));
 	backgrndColor.setFillColor(UI.BkGrndColor);
-
+	
 
 	sf::Font f;
 	f.loadFromFile("Resource Files\\Arial.ttf");
@@ -410,7 +411,7 @@ void Input::BackgrndColor() {
 			}
 		}
 	}
-
+	
 }
 
 float Input::Resize_wind()
