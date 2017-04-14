@@ -6,6 +6,12 @@
 #include "Actions\ZoomIn.h"
 #include "Actions\ZoomOut.h"
 #include "Actions\ChangeFigColor.h"
+#include "Actions\ExitAction.h"
+#include"Actions\SwitchToPlayMode.h"
+#include"Actions\DeleteAction.h"
+#include"Actions\SwitchToDrawMode.h"
+#include"Actions\ResizeAction.h"
+
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -38,6 +44,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	//According to Action Type, create the corresponding action object
 	switch (ActType)
 	{
+		<< << << < HEAD
 	case DRAW_RECT:
 		pAct = new AddRectAction(this);
 		break;
@@ -66,13 +73,30 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct = new ChangeFigColor(this);
 		break;
 
+	case TO_PLAY:
+		pAct = new SwitchToPlayMode(this);
+		break;
+
+	case TO_DRAW:
+		pAct = new SwitchToDrawMode(this);
+		break;
+
+	case DEL:
+		pAct = new DeleteAction(this);
+		break;
+
+	case RESIZE:
+		pAct = new ResizeAction(this);
+		break;
+
 	case EXIT:
 		///create ExitAction here
-
+		pAct = new ExitAction(this);
 		break;
 
 	case STATUS:	//a click on the status bar ==> no action
 		return;
+
 	}
 
 	//Execute the created action
@@ -125,7 +149,6 @@ int ApplicationManager::GetFigureCount() const
 //Draw all figures on the user interface
 void ApplicationManager::UpdateInterface() const
 {
-	pOut->ClearDrawArea();
 	for (int i = 0; i < FigCount; i++)
 		FigList[i]->Draw(pOut);		//Call Draw function (virtual member fn)
 }
