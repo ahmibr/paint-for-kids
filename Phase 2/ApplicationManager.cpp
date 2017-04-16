@@ -13,7 +13,7 @@
 #include"Actions\ResizeAction.h"
 #include "Actions\CopyAction.h"
 #include "Actions\PasteAction.h"
-
+#include "Actions\CutAction.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -90,6 +90,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	
 	case COPY:
 		pAct = new CopyAction(this);
+		break;
+
+	case CUT:
+		pAct = new CutAction(this);
 		break;
 
 	case PASTE:
