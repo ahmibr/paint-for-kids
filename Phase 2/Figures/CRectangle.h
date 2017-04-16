@@ -11,7 +11,10 @@ private:
 public:
 	CRectangle(Point , Point, GfxInfo FigureGfxInfo );
 	CRectangle(const CRectangle&); //copy constructor
+	virtual CFigure* copyClone(); //a clone to apply polymorphism on copy construtors
 	virtual void Draw(Output* pOut) const;
+	virtual void Move(int dx, int dy);//move shape by dx and dy
+	virtual Point getPoint() const;		//get point to do some calculations
 	//virtual bool isClicked(int x, int y) const;
 };
 

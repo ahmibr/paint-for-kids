@@ -1,23 +1,14 @@
-/*#ifndef ADD_RECT_ACTION_H
-#define ADD_RECT_ACTION_H
-
+#ifndef COPYACTION_H
+#define COPYACTION_H
 #include "Action.h"
+#include "../DataManager.h"
 
-//Add Rectangle Action class
-class AddRectAction: public Action
+class CopyAction:public Action,public DataManager
 {
-private:
-	Point P1, P2; //Rectangle Corners
-	GfxInfo RectGfxInfo;
 public:
-	AddRectAction(ApplicationManager *pApp);
-
-	//Reads rectangle parameters
-	virtual void ReadActionParameters();
-	
-	//Add rectangle to the ApplicationManager
+	CopyAction(ApplicationManager *pApp);
 	virtual void Execute() ;
-	
+	virtual void ReadActionParameters();
 };
 
-#endif*/
+#endif

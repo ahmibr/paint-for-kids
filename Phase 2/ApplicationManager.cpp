@@ -11,7 +11,8 @@
 #include"Actions\DeleteAction.h"
 #include"Actions\SwitchToDrawMode.h"
 #include"Actions\ResizeAction.h"
-
+#include "Actions\CopyAction.h"
+#include "Actions\PasteAction.h"
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -19,9 +20,7 @@ ApplicationManager::ApplicationManager()
 	//Create Input and output
 	pOut = new Output;
 	pIn = pOut->CreateInput();
-
 	FigCount = 0;
-
 	//Create an array of figure pointers and set them to NULL		
 	for (int i = 0; i < MaxFigCount; i++)
 		FigList[i] = NULL;
@@ -44,7 +43,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	//According to Action Type, create the corresponding action object
 	switch (ActType)
 	{
-		
+
 	case DRAW_RECT:
 		pAct = new AddRectAction(this);
 		break;
@@ -88,6 +87,14 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case RESIZE:
 		pAct = new ResizeAction(this);
 		break;
+	
+	case COPY:
+		pAct = new CopyAction(this);
+		break;
+
+	case PASTE:
+		pAct = new PasteAction(this);
+		break;
 
 	case EXIT:
 		///create ExitAction here
@@ -116,6 +123,32 @@ void ApplicationManager::AddFigure(CFigure* pFig)
 {
 	if (FigCount < MaxFigCount)
 		FigList[FigCount++] = pFig;
+}
+////////////////////////////////////////////////////////////////////////////////////
+void ApplicationManager::removeFigure(int ID) {
+	bool found = false;
+	for (int i = 0; i < FigCount; i++)
+	{
+		if (FigList[i] && FigList[i]->getID() == ID)
+		{
+			found = true;
+			delete FigList[i];
+			FigList[i] = NULL;
+			break;
+		}
+	}
+	if (found)
+	{
+		fixFigList();
+		FigCount--;
+	}
+
+}
+////////////////////////////////////////////////////////////////////////////////////
+void ApplicationManager::fixFigList() {
+	for (int i = 0; i < FigCount - 1; i++)
+		if (FigList[i] == NULL)
+			swap(FigList[i], FigList[i + 1]);
 }
 ////////////////////////////////////////////////////////////////////////////////////
 CFigure *ApplicationManager::GetFigure(int x, int y) const
@@ -149,6 +182,7 @@ int ApplicationManager::GetFigureCount() const
 //Draw all figures on the user interface
 void ApplicationManager::UpdateInterface() const
 {
+	pOut->ClearDrawArea();
 	for (int i = 0; i < FigCount; i++)
 		FigList[i]->Draw(pOut);		//Call Draw function (virtual member fn)
 }
@@ -171,5 +205,5 @@ ApplicationManager::~ApplicationManager()
 		delete FigList[i];
 	delete pIn;
 	delete pOut;
-
+	pData->destroyClipBoard(); //if the program is over and clipboard still has data
 }

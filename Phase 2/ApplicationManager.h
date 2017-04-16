@@ -5,7 +5,7 @@
 #include "Figures\CFigure.h"
 #include "GUI\input.h"
 #include "GUI\output.h"
-
+#include "DataManager.h"
 //Main class that manages everything in the application.
 class ApplicationManager
 {
@@ -14,11 +14,12 @@ class ApplicationManager
 private:
 	int FigCount;		//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
-
+	DataManager* pData; //pointer to data manager to clean up
 	//Pointers to Input and Output classes
 	Input *pIn;
 	Output *pOut;
 
+	void fixFigList(); //utility function to rearrange figurelist after deleting items
 public:
 	ApplicationManager();
 	~ApplicationManager();
@@ -30,6 +31,7 @@ public:
 
 	// -- Figures Management Functions
 	void AddFigure(CFigure* pFig); //Adds a new figure to the FigList
+	void removeFigure(int ID); //Remove figure by it's ID
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
 	int GetFigureCount() const; //Search for a figure given a point inside the figure
 	CFigure *GetFigure(int index) const; //Search for a figure given index of figure

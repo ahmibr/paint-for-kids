@@ -1,20 +1,25 @@
 #include "CCircle.h"
 
-CCircle::CCircle(Point center, Point radiusPoint,GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
+CCircle::CCircle(Point center, Point radiusPoint, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
-	this -> center = center;
+	this->center = center;
 	radius = sqrt(pow(radiusPoint.x - center.x, 2) + pow(radiusPoint.y - center.y, 2));
-	
+
 }
-CCircle::CCircle(const CCircle& cpy):CFigure(cpy.FigGfxInfo) {
+CCircle::CCircle(const CCircle& cpy) :CFigure(cpy.FigGfxInfo) {
 	center = cpy.center;
 	radius = cpy.radius;
 	Selected = cpy.Selected;
 }
 
+CFigure* CCircle::copyClone() {
+	return new CCircle(*this);	//make a new object and fill it with my data using copy constructor
+								//then return it
+}
+
 void CCircle::Draw(Output* pOut) const
 {
-	//Call Output::DrawRect to draw a rectangle on the screen	
+	//Call Output::DrawCirc to draw a Circle on the screen	
 	pOut->DrawCirc(center, radius, FigGfxInfo, Selected);
 }
 /*
@@ -48,3 +53,12 @@ bool CCircle::clickedOnBorder(int x, int y)const {
 }
 
 */
+
+void CCircle::Move(int dx, int dy) {
+	center.x += dx;	//change x by dx
+	center.y += dy;	//change y by dy
+}
+
+Point CCircle::getPoint() const{
+	return center;
+}

@@ -6,6 +6,7 @@
 
 DeleteAction::DeleteAction(ApplicationManager *pApp) :Action(pApp)
 {
+	confirm = false;
 }
 
 void DeleteAction::ReadActionParameters()
@@ -14,32 +15,34 @@ void DeleteAction::ReadActionParameters()
 	Input* pIn = pManager->GetInput();
 
 	bool selected = false;
-	pOut->PrintMessage("Delete: Are you sure you want to delete? y or n");
-	pIn->GetSrting(pOut) ;
-
-	/*if(selectFiguresAction()!=NULL)
-	{
-		selected = true;
-		pOut->PrintMessage("Delete: Are you sure you want to delete? y or n");
-		if (pIn->GetSrting(pOut) == "y")
-		{
-			for (int i = 0; i < selectedFigCount; i++)
-			{
-				delete pFig[i] ;
-				pFig[i] = NULL
-			}
-		}
-	}
-	else pOut->PrintMessage("You should select at least one figure to delete");
-	*/
-	
-	pOut->ClearStatusBar();
+	pOut->PrintMessage("Delete: Are you sure you want to delete? Y or N");
+	string choice = pIn->GetSrting(pOut);
+	if (choice == "y" || choice == "Y")
+		confirm = true;
+	else
+		pOut->ClearStatusBar();
 }
-
 void DeleteAction::Execute()
 {
 	//need only to read action parameters
 	ReadActionParameters();
+	Output* pOut = pManager->GetOutput();
+	if (confirm) {
+		bool selected = false;
+		for (int i = 0; i < pManager->GetFigureCount(); i++)
+		{
+			CFigure *curr = pManager->GetFigure(i);
+			if (curr->IsSelected()) {
+				selected = true;
+				pManager->removeFigure(curr->getID());
+				i--;
+			}
+		}
+		if (!selected)
+			pOut->PrintMessage("You should select at least one figure to delete");
+		else
+			pOut->PrintMessage("Deletion is done.");
+	}
 }
 
 

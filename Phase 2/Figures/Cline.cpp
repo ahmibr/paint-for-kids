@@ -11,8 +11,24 @@ CLine::CLine(const CLine& cpy): CFigure(cpy.FigGfxInfo) {
 	Selected = cpy.Selected;
 }
 
+CFigure* CLine::copyClone() {
+
+	return new CLine(*this);	//make a new object and fill it with my data using copy constructor
+								//then return it
+}
 void CLine::Draw(Output* pOut) const
 {
-	//Call Output::DrawRect to draw a rectangle on the screen	
+	//Call Output::DrawLine to draw a line on the screen	
 	pOut->DrawLine(p1, p2, FigGfxInfo, Selected);
+}
+
+void CLine::Move(int dx, int dy) {
+	p1.x += dx;
+	p1.y += dy;
+	p2.x += dx;
+	p2.y += dy;
+}
+
+Point CLine::getPoint() const {
+	return p1;
 }

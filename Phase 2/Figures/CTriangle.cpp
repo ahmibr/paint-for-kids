@@ -14,8 +14,27 @@ CTriangle::CTriangle(const CTriangle& cpy) :CFigure(cpy.FigGfxInfo) {
 	p3 = cpy.p3;
 	Selected = cpy.Selected;
 }
+
+CFigure* CTriangle::copyClone() {
+	return new CTriangle(*this);	//make a new object and fill it with my data using copy constructor
+									//then return it
+}
+
 void CTriangle::Draw(Output* pOut) const
 {
-	//Call Output::DrawRect to draw a rectangle on the screen	
+	//Call Output::DrawTriangle to draw a triangle on the screen	
 	pOut->DrawTriangle(p1, p2,p3, FigGfxInfo, Selected);
+}
+
+void CTriangle::Move(int dx, int dy) {
+	p1.x += dx;
+	p1.y += dy;
+	p2.x += dx;
+	p2.y += dy;
+	p3.x += dx;
+	p3.y += dy;
+}
+
+Point CTriangle::getPoint() const {
+	return p1;
 }
