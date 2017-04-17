@@ -518,6 +518,14 @@ float Input::Rotate_wind()
 	return 0;
 }
 
+int Input::GetXmousePos() const {
+	return userEvent->mouseButton.x;
+}
+
+int Input::GetYmousePos() const {
+	return userEvent->mouseButton.y;
+}
+
 Input::~Input()
 {
 }

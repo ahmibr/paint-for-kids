@@ -22,8 +22,12 @@ void CutAction::Execute()
 	{
 		CFigure* curr = pManager->GetFigure(i);
 		if (curr->IsSelected()) { //if current figure is selected
+			if (!selected && getSize())	//if we found a selected element 
+										//and clipBoard is not empty, then overlap happened
+				destroyClipBoard();		//destroy the old clipBoard
+
 			selected = true;
-			CFigure* added = curr -> copyClone(); //get a copy of the current figure
+			CFigure* added = curr->copyClone(); //get a copy of the current figure
 			addToClipBoard(added); //add to to clipboard
 			pManager->removeFigure(curr->getID()); //remove the figure from figlist(cut operation)
 			i--; //reduce counter because we deleted an element

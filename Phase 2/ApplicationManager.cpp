@@ -14,6 +14,7 @@
 #include "Actions\CopyAction.h"
 #include "Actions\PasteAction.h"
 #include "Actions\CutAction.h"
+#include "Actions\SelectAction.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -87,7 +88,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case RESIZE:
 		pAct = new ResizeAction(this);
 		break;
-	
+
 	case COPY:
 		pAct = new CopyAction(this);
 		break;
@@ -101,8 +102,11 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 
 	case EXIT:
-		///create ExitAction here
 		pAct = new ExitAction(this);
+		break;
+
+	case DRAWING_AREA:
+		pAct = new SelectAction(this);
 		break;
 
 	case STATUS:	//a click on the status bar ==> no action
@@ -157,13 +161,12 @@ void ApplicationManager::fixFigList() {
 ////////////////////////////////////////////////////////////////////////////////////
 CFigure *ApplicationManager::GetFigure(int x, int y) const
 {
-	//If a figure is found return a pointer to it.
-	//if this point (x,y) does not belong to any figure return NULL
+	//traverse from the end, because last drawed is on top
+	for (int i = FigCount - 1; i >= 0; i--)
+		if (FigList[i]->isClicked(x, y))
+			return FigList[i];
 
-
-	///Add your code here to search for a figure given a point x,y	
-
-	return NULL;
+	return NULL; //didn't find any
 }
 //////////////////////////////////////////////////////////////////////////////////
 CFigure *ApplicationManager::GetFigure(int index) const
@@ -189,6 +192,7 @@ void ApplicationManager::UpdateInterface() const
 	pOut->ClearDrawArea();
 	for (int i = 0; i < FigCount; i++)
 		FigList[i]->Draw(pOut);		//Call Draw function (virtual member fn)
+	pOut->UpdateWindow();
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the input

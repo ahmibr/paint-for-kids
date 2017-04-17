@@ -8,7 +8,7 @@ class Output	//The application manager should have a pointer to this class
 private:
 
 	//private update window for sfml
-	void UpdateWindow() const;
+	
 
 	//Added by us ------- CHOSEN AS POINTERS BECAUSE THEY ARE USED IN CONST FUNCTIONS
 	sf::RenderWindow* pWind;	//Pointer to the Graphics Window
@@ -35,7 +35,7 @@ public:
 	void CreateDrawToolBar() const;	//creates Draw mode toolbar & menu
 	void CreatePlayToolBar() const;	//creates Play mode toolbar & menu
 	void CreateStatusBar() const;	//create the status bar
-
+	void UpdateWindow() const;
 	Input* CreateInput() const; //creates a pointer to the Input object	
 	void ClearStatusBar() const;	//Clears the status bar
 	void ClearDrawArea() const;	//Clears the drawing area

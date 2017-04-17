@@ -176,7 +176,7 @@ void Output::ClearDrawArea() const
 	}
 	drawnObjects->clear();
 
-	UpdateWindow();
+	//UpdateWindow();
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -255,7 +255,7 @@ void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 
 	drawnObjects->push_back(rect);
 
-	UpdateWindow();
+//	UpdateWindow();
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -266,7 +266,7 @@ void Output::DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected) co
 	if (selected)
 		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
 	else
-		DrawingClr = LineGfxInfo.FillClr;
+		DrawingClr = LineGfxInfo.DrawClr;
 
 	sf::RectangleShape *line = new sf::RectangleShape(sf::Vector2f(sqrt(pow(P1.x - P2.x, 2) + pow(P1.y - P2.y, 2)), LineGfxInfo.BorderWdth));
 
@@ -280,7 +280,7 @@ void Output::DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected) co
 
 	drawnObjects->push_back(line);
 
-	UpdateWindow();
+//	UpdateWindow();
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -310,7 +310,7 @@ void Output::DrawCirc(Point C, float R, GfxInfo CircGfxInfo, bool selected) cons
 
 	drawnObjects->push_back(circ);
 
-	UpdateWindow();
+	//UpdateWindow();
 
 }
 
@@ -378,7 +378,7 @@ void Output::DrawTriangle(Point P1, Point P2, Point P3, GfxInfo TriangleGfxInfo,
 
 	drawnObjects->push_back(triangle);
 
-	UpdateWindow();
+	//UpdateWindow();
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 void Output::UpdateWindow() const {

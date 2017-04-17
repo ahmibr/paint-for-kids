@@ -23,6 +23,8 @@ public:
 	string GetSrting(Output* pO) const;	 //Returns a string entered by the user
 	float Input::Resize_wind();
 	float Input::Rotate_wind();
+	int GetXmousePos() const;
+	int GetYmousePos() const;
 	ActionType GetUserAction() const; //Read the user click and map to an action
 	void BackgrndColor();
 	void GraphicsInfo(GfxInfo &choice);		//added to return graphics

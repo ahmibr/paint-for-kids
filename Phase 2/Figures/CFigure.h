@@ -12,7 +12,8 @@ protected:
 	static int count;
 	bool Selected;	//true if the figure is selected.
 	GfxInfo FigGfxInfo;	//Figure graphis info
-
+	virtual bool clickedInside(int x, int y) const = 0;
+	virtual bool clickedOnBorder(int x, int y) const = 0;
 	/// Add more parameters if needed.
 
 public:
@@ -20,7 +21,7 @@ public:
 	virtual CFigure* copyClone() = 0; //a clone to apply polymorphism on copy construtors
 	void SetSelected(bool s);	//select/unselect the figure
 	bool IsSelected() const;	//check whether fig is selected
-	//virtual bool isClicked(int x, int y) const = 0; //function to check if given point is related to the figure
+	virtual bool isClicked(int x, int y) const = 0; //function to check if given point is related to the figure
 	virtual void Draw(Output* pOut) const = 0;		//Draw the figure
 	int getID(); //get ID
 	void ChngDrawClr(sf::Color Dclr);	//changes the figure's drawing color

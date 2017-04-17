@@ -142,6 +142,7 @@
     <ClCompile Include="Actions\ExitAction.cpp" />
     <ClCompile Include="Actions\PasteAction.cpp" />
     <ClCompile Include="Actions\ResizeAction.cpp" />
+    <ClCompile Include="Actions\SelectAction.cpp" />
     <ClCompile Include="Actions\SwitchToDrawMode.cpp" />
     <ClCompile Include="Actions\SwitchToPlayMode.cpp" />
     <ClCompile Include="Actions\ZoomIn.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="Actions\ExitAction.h" />
     <ClInclude Include="Actions\PasteAction.h" />
     <ClInclude Include="Actions\ResizeAction.h" />
+    <ClInclude Include="Actions\SelectAction.h" />
     <ClInclude Include="Actions\SwitchToDrawMode.h" />
     <ClInclude Include="Actions\SwitchToPlayMode.h" />
     <ClInclude Include="Actions\ZoomIn.h" />
