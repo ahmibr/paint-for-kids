@@ -28,6 +28,7 @@ public:
 	void ChngFillClr(sf::Color Fclr);	//changes the figure's filling color
 	void ChngBrdrWidth(int width);		//changes the figure's border width
 	virtual Point getPoint() const = 0;		//get point to do some calculations
+	virtual string printInfo() const = 0; //print info about selected item
 	///The following functions should be supported by the figure class
 	///It should be overridden by each inherited figure
 

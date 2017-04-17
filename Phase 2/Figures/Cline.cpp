@@ -53,3 +53,15 @@ bool CLine::clickedOnBorder(int x, int y) const
 	//Empty function, just for Polymorphism
 	return true;
 }
+
+string CLine::printInfo() const
+{
+	string data;
+	data += "Line: ID(" + to_string(ID)+")"; //ID
+	data += " ";
+	data += "Starting point (" + to_string(p1.x) + "," + to_string(p1.y) + ")"; //starting point
+	data += " ";
+	data += "Ending point (" + to_string(p2.x) + "," + to_string(p2.y) + ")"; //ending point
+	
+	return data; //return info about figure to be printed
+}

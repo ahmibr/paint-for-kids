@@ -9,6 +9,7 @@ class SelectAction: public Action
 	CFigure* pFigure;
 	int x;
 	int y;
+	int numSelected;
 public:
 	SelectAction(ApplicationManager *pApp);
 

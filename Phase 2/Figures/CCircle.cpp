@@ -50,3 +50,17 @@ void CCircle::Move(int dx, int dy) {
 Point CCircle::getPoint() const {
 	return center;
 }
+
+string CCircle::printInfo()const {
+
+	string data;
+	data += "Circle: ID(" + to_string(ID) + ")"; //ID
+	data += " ";
+	data += "Center (" + to_string(center.x) + "," + to_string(center.y) + ")"; //center point
+	data += " ";
+	data += "Radius = " + to_string(radius); //radius
+	data += " ";
+	data += "Area = " + to_string(acos(-1)*radius*radius); //area
+	
+	return data; //return info about figure to be printed
+}

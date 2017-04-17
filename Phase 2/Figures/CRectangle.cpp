@@ -72,3 +72,23 @@ bool CRectangle::clickedOnBorder(int x, int y) const {
 
 	return top || bot || right || left;
 }
+
+
+string CRectangle::printInfo() const
+{
+	string data;
+	data += "Rectangle: ID(" + to_string(ID) + ")"; //ID
+	data += " ";
+	data += "Corner1 (" + to_string(Corner1.x) + "," + to_string(Corner1.y) + ")"; //starting point
+	data += " ";
+	data += "Corner2 (" + to_string(Corner2.x) + "," + to_string(Corner2.y) + ")"; //ending point
+	data += " ";
+	int Hight = abs(Corner1.y - Corner2.y);
+	data += "Hight = " + to_string(Hight);
+	data += " ";
+	int Width = abs(Corner1.x - Corner2.x);
+	data += "Width = " + to_string(Width);
+	data += " ";
+	data += "Area = " + to_string(Width*Hight);
+	return data; //return info about figure to be printed
+}

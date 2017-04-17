@@ -18,6 +18,7 @@ public:
 	virtual void Move(int dx, int dy);//move shape by dx and dy
 	virtual Point getPoint() const;		//get point to do some calculations
 	virtual bool isClicked(int x, int y) const;
+	virtual string printInfo() const;
 };
 
 #endif
