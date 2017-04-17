@@ -18,14 +18,17 @@ void AddCircleAction::ReadActionParameters()
 
 	pOut->PrintMessage("New Circle: Click at center");
 
-	//Read 1st point and store in point P1
-	pIn->GetPointClicked(P1.x, P1.y);
+	do {
+		//Read 1st point and store in point P1
+		pIn->GetPointClicked(P1.x, P1.y);
+	} while (P1.y < UI.ToolBarHeight || P1.y > UI.height - UI.StatusBarHeight);//needed check not to draw on status bar or tool bar
 
 	pOut->PrintMessage("New Circle: Click at radius");
 
-	//Read 2nd point and store in point P2
-	pIn->GetPointClicked(P2.x, P2.y);
-
+	do {
+		//Read 2nd point and store in point P2
+		pIn->GetPointClicked(P2.x, P2.y);
+	} while (P2.y < UI.ToolBarHeight || P2.y > UI.height - UI.StatusBarHeight);//needed check not to draw on status bar or tool bar
 	//CircleGfxInfo.isFilled = false;	//default is not filled
 	//get drawing, filling colors and pen width from the interface
 
