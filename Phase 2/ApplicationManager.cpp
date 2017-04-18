@@ -16,6 +16,7 @@
 #include "Actions\CutAction.h"
 #include "Actions\SelectAction.h"
 #include "Actions\SaveAction.h"
+#include "Actions\MoveByDrag.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -93,6 +94,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case SAVE:
 		pAct = new SaveAction(this);
 		break;
+
 	case COPY:
 		pAct = new CopyAction(this);
 		break;
@@ -111,6 +113,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 	case DRAWING_AREA:
 		pAct = new SelectAction(this);
+		break;
+
+	case MOVE_DRAG:
+		pAct = new MoveByDrag(this);
 		break;
 
 	case STATUS:	//a click on the status bar ==> no action

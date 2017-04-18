@@ -38,6 +38,7 @@ enum ActionType //The actions supported (you can add more if needed)
 	COPY,
 	PASTE,
 
+	MOVE_DRAG,
 
 	PICK,			//PLAY MODE
 	FIND

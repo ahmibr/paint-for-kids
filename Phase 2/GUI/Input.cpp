@@ -96,6 +96,9 @@ ActionType Input::GetUserAction() const
 				if (userEvent->key.code == sf::Keyboard::Y && userEvent->key.control) {
 					return REDO;
 				}
+				if (userEvent->key.code == sf::Keyboard::D) {
+					return MOVE_DRAG;
+				}
 			}
 		}
 
@@ -524,6 +527,27 @@ int Input::GetXmousePos() const {
 
 int Input::GetYmousePos() const {
 	return userEvent->mouseButton.y;
+}
+
+//the function returns the value of xpos and ypos when the mouse is dragged - if the mouse is released
+//returns -1 for both x and y
+void Input::GetMouseMove(int &x, int &y) const {
+	while (true) {
+		while (pWind->pollEvent(*userEvent))
+		{
+			if (userEvent->type == sf::Event::MouseMoved) {
+				x = userEvent->mouseMove.x;
+				y = userEvent->mouseMove.y;
+				return;
+			}
+			if (userEvent->type == sf::Event::MouseButtonReleased) {
+				if (userEvent->key.code == sf::Mouse::Left) {
+					x = y = -1;
+					return;
+				}
+			}
+		}
+	}
 }
 
 Input::~Input()
