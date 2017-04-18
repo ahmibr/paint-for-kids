@@ -3,7 +3,7 @@
 
 #include "..\DEFS.h"
 #include "..\GUI\Output.h"
-
+#include<fstream>
 //Base class for all figures
 class CFigure
 {
@@ -39,7 +39,7 @@ public:
 	//virtual void Resize() = 0;	//Resize the figure
 	virtual void Move(int dx,int dy) = 0;		//Move the figure
 	
-	//virtual void Save(ofstream &OutFile) = 0;	//Save the figure parameters to the file
+	virtual void Save(ofstream &OutFile) = 0;	//Save the figure parameters to the file
 	//virtual void Load(ifstream &Infile) = 0;	//Load the figure parameters to the file
 
 	//virtual void PrintInfo(Output* pOut) = 0;	//print all figure info on the status bar

@@ -4,6 +4,7 @@
 #include "..\ApplicationManager.h"
 
 
+
 ExitAction::ExitAction(ApplicationManager *pApp) :Action(pApp)
 {
 }
@@ -16,7 +17,7 @@ void ExitAction::ReadActionParameters()
 	pOut->PrintMessage("Exit: Do you want to save ? Y or N");
 	string choice = pIn->GetSrting(pOut);
 	if (choice == "Y" || choice == "y")
-		pManager->ExecuteAction(SAVE);
+		pManager->ExecuteAction(SAVE); //execute save action before exit
 
 }
 

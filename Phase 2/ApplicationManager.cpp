@@ -7,14 +7,15 @@
 #include "Actions\ZoomOut.h"
 #include "Actions\ChangeFigColor.h"
 #include "Actions\ExitAction.h"
-#include"Actions\SwitchToPlayMode.h"
-#include"Actions\DeleteAction.h"
-#include"Actions\SwitchToDrawMode.h"
-#include"Actions\ResizeAction.h"
+#include "Actions\SwitchToPlayMode.h"
+#include "Actions\DeleteAction.h"
+#include "Actions\SwitchToDrawMode.h"
+#include "Actions\ResizeAction.h"
 #include "Actions\CopyAction.h"
 #include "Actions\PasteAction.h"
 #include "Actions\CutAction.h"
 #include "Actions\SelectAction.h"
+#include "Actions\SaveAction.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -89,6 +90,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct = new ResizeAction(this);
 		break;
 
+	case SAVE:
+		pAct = new SaveAction(this);
+		break;
 	case COPY:
 		pAct = new CopyAction(this);
 		break;

@@ -64,3 +64,50 @@ string CCircle::printInfo()const {
 	
 	return data; //return info about figure to be printed
 }
+
+void CCircle::Save(ofstream & OutFile)
+{
+	OutFile << "Circle  ";
+	OutFile << ID << "  ";
+	OutFile << center.x << "  ";
+	OutFile << center.y << "  ";
+	OutFile << radius << "  ";
+	if (operator==(FigGfxInfo.DrawClr, sf::Color(0, 0, 0)))
+		OutFile << "Black  ";
+	else if (operator==(FigGfxInfo.DrawClr, sf::Color(255, 255, 255)))
+		OutFile << "White  ";
+	else if (operator==(FigGfxInfo.DrawClr, sf::Color(0, 255, 0)))
+		OutFile << "Green  ";
+	else if (operator==(FigGfxInfo.DrawClr, sf::Color(255, 0, 0)))
+		OutFile << "Red  ";
+	else if (operator==(FigGfxInfo.DrawClr, sf::Color(0, 0, 255)))
+		OutFile << "Blue  ";
+	else if (operator==(FigGfxInfo.DrawClr, sf::Color(0, 255, 127.5)))
+		OutFile << "Turquoise  ";
+	else if (operator==(FigGfxInfo.DrawClr, sf::Color(255, 255, 127.5)))
+		OutFile << "Yellow  ";
+	else if (operator==(FigGfxInfo.DrawClr, sf::Color(255, 127.5, 0)))
+		OutFile << "Orange  ";
+	else
+		OutFile << "Grey  ";
+	if (!FigGfxInfo.isFilled)
+		OutFile << "NO_Fill  ";
+	else if (operator==(FigGfxInfo.FillClr, sf::Color(0, 0, 0)))
+		OutFile << "Black  ";
+	else if (operator==(FigGfxInfo.FillClr, sf::Color(255, 255, 255)))
+		OutFile << "White  ";
+	else if (operator==(FigGfxInfo.FillClr, sf::Color(0, 255, 0)))
+		OutFile << "Green  ";
+	else if (operator==(FigGfxInfo.FillClr, sf::Color(255, 0, 0)))
+		OutFile << "Red  ";
+	else if (operator==(FigGfxInfo.FillClr, sf::Color(0, 0, 255)))
+		OutFile << "Blue  ";
+	else if (operator==(FigGfxInfo.FillClr, sf::Color(0, 255, 127.5)))
+		OutFile << "Turquoise  ";
+	else if (operator==(FigGfxInfo.FillClr, sf::Color(255, 255, 127.5)))
+		OutFile << "Yellow  ";
+	else if (operator==(FigGfxInfo.FillClr, sf::Color(255, 127.5, 0)))
+		OutFile << "Orange  ";
+	else
+		OutFile << "Grey  ";
+}

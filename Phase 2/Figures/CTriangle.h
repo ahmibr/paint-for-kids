@@ -21,6 +21,7 @@ public:
 	virtual Point getPoint() const;		//get point to do some calculations
 	virtual bool isClicked(int x, int y) const;
 	virtual string printInfo() const;
+	virtual void Save(ofstream &OutFile); //Save Triangle parameters to the file
 };
 
 #endif
