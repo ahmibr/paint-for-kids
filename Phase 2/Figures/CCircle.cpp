@@ -2,10 +2,15 @@
 
 CCircle::CCircle(Point center, Point radiusPoint, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
-	this->center = center;
-	radius = sqrt(pow(radiusPoint.x - center.x, 2) + pow(radiusPoint.y - center.y, 2));
-
+	setPoints(center, radiusPoint);
 }
+
+void CCircle::setPoints(Point _center, Point _radiusPoint)
+{
+	center = _center;
+	radius = sqrt(pow(_radiusPoint.x - _center.x, 2) + pow(_radiusPoint.y - _center.y, 2));
+}
+
 CCircle::CCircle(const CCircle& cpy) :CFigure(cpy.FigGfxInfo) {
 	center = cpy.center;
 	radius = cpy.radius;
@@ -23,6 +28,10 @@ void CCircle::Draw(Output* pOut) const
 	pOut->DrawCirc(center, radius, FigGfxInfo, Selected);
 }
 
+bool CCircle::isClicked(int x, int y)const {
+	return clickedInside(x, y) || clickedOnBorder(x, y);
+}
+
 bool CCircle::clickedInside(int x, int y)const {
 
 	//if the length made from center to x,y is less than the radius
@@ -38,9 +47,6 @@ bool CCircle::clickedOnBorder(int x, int y)const {
 	return fabs( sqrt(pow(x - center.x, 2) + pow(y - center.y, 2)) - radius) <= FigGfxInfo.BorderWdth;
 }
 
-bool CCircle::isClicked(int x, int y)const {
-	return clickedInside(x, y) || clickedOnBorder(x, y);
-}
 
 void CCircle::Move(int dx, int dy) {
 	center.x += dx;	//change x by dx
@@ -51,6 +57,7 @@ Point CCircle::getPoint() const {
 	return center;
 }
 
+
 string CCircle::printInfo()const {
 
 	string data;
@@ -60,8 +67,7 @@ string CCircle::printInfo()const {
 	data += " ";
 	data += "Radius = " + to_string(radius); //radius
 	data += " ";
-	data += "Area = " + to_string(acos(-1)*radius*radius); //area
-	
+	data += "Area = " + to_string(acos(-1)*radius*radius); //area PI*R*R
 	return data; //return info about figure to be printed
 }
 

@@ -6,10 +6,12 @@
 class CLine : public CFigure
 {
 private:
-	Point p1;	
-	Point p2;
+	Point p1;//left point
+	Point p2;//right point
+	float length;//length of the line
 	virtual bool clickedInside(int x, int y) const;//utility function to check if clicked inside figure
 	virtual bool clickedOnBorder(int x, int y) const;//utility function to check if clicked on border of figure
+	void updateInfo();//utility function to recalculate length after assigning points
 public:
 	CLine(Point , Point, GfxInfo FigureGfxInfo );
 	CLine(const CLine&); //copy constructor
@@ -17,6 +19,7 @@ public:
 	virtual void Draw(Output* pOut) const;
 	virtual void Move(int dx, int dy);//move shape by dx and dy
 	virtual Point getPoint() const;		//get point to do some calculations
+	void setPoints(Point, Point);//function to manage assigning points
 	virtual bool isClicked(int x, int y) const;//function to check if given point is related to the figure
 	virtual string printInfo() const;
 	virtual void Save(ofstream &OutFile); //Save Line parameters to the file

@@ -15,8 +15,9 @@ public:
 	CCircle(const CCircle&);//copy constructor
 	virtual CFigure* copyClone(); //a clone to apply polymorphism on copy construtors
 	virtual void Draw(Output* pOut) const;
-	virtual void Move(int dx, int y);
+	virtual void Move(int dx, int y);	//move shape by dx and dy
 	virtual Point getPoint() const;		//get point to do some calculations
+	void setPoints(Point center,Point radiusPoint);//function to manage assigning points
 	virtual bool isClicked(int x, int y) const;//function to check if given point is related to the figure
 	virtual string printInfo() const;
 	virtual void Save(ofstream &OutFile); //Save Circle parameters to the file

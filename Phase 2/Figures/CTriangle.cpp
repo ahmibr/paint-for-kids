@@ -4,16 +4,28 @@
 
 CTriangle::CTriangle(Point P1, Point P2, Point P3, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
-	p1 = P1;
-	p2 = P2;
-	p3 = P3;
+	setPoints(P1, P2, P3);
+}
 
+void CTriangle::setPoints(Point _p1, Point _p2, Point _p3)
+{
+	p1 = _p1;
+	p2 = _p2;
+	p3 = _p3;
+	updateInfo();
+}
+
+void CTriangle::updateInfo()
+{
+	lengthP1P2 = sqrt(pow(p1.x - p2.x, 2) + pow(p1.y - p2.y, 2));
+
+	lengthP1P3 = sqrt(pow(p1.x - p3.x, 2) + pow(p1.y - p3.y, 2));
+
+	lengthP2P3 = sqrt(pow(p2.x - p3.x, 2) + pow(p2.y - p3.y, 2));
 }
 
 CTriangle::CTriangle(const CTriangle& cpy) :CFigure(cpy.FigGfxInfo) {
-	p1 = cpy.p1;
-	p2 = cpy.p2;
-	p3 = cpy.p3;
+	setPoints(cpy.p1, cpy.p2, cpy.p3);
 	Selected = cpy.Selected;
 }
 
@@ -62,13 +74,6 @@ bool CTriangle::clickedOnBorder(int x, int y) const
 {
 	//check all lengthes of triangle, and check all lengthes made from x,y
 	//to P1,P2,P3, if one is equal, then it's on border
-
-	//p1-->p2
-	float lengthP1P2 = sqrt(pow(p1.x - p2.x, 2) + pow(p1.y - p2.y, 2));
-	//p1-->p3
-	float lengthP1P3 = sqrt(pow(p1.x - p3.x, 2) + pow(p1.y - p3.y, 2));
-	//p2-->p3
-	float lengthP2P3 = sqrt(pow(p2.x - p3.x, 2) + pow(p2.y - p3.y, 2));
 
 	//length from x,y to p1
 	float lengthXp1 = sqrt(pow(p1.x - x, 2) + pow(p1.y - y, 2));

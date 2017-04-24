@@ -8,12 +8,16 @@ class CRectangle : public CFigure
 private:
 	Point Corner1;	//upper left
 	Point Corner2;	//lower right
+	float length; //vertical length
+	float width;	//horizontal width
 	virtual bool clickedInside(int x, int y) const;//utility function to check if clicked inside figure
 	virtual bool clickedOnBorder(int x, int y) const;//utility function to check if clicked on border of figure
+	void updateInfo();//utility function to recalculate length and width after assigning points
 public:
 	CRectangle(Point , Point, GfxInfo FigureGfxInfo );
 	CRectangle(const CRectangle&); //copy constructor
 	virtual CFigure* copyClone(); //a clone to apply polymorphism on copy construtors
+	void setPoints(Point, Point);//function to manage assigning points
 	virtual void Draw(Output* pOut) const;
 	virtual void Move(int dx, int dy);//move shape by dx and dy
 	virtual Point getPoint() const;		//get point to do some calculations

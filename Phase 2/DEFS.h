@@ -47,6 +47,8 @@ enum ActionType //The actions supported (you can add more if needed)
 struct Point	//To be used for figures points
 {
 	int x, y;
+	Point() { x = 0, y = 0; }
+	Point(int _x, int _y) :x(_x), y(_y) {}
 };
 
 struct GfxInfo	//Graphical info of each figure (you may add more members)

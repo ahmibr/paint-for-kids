@@ -2,15 +2,29 @@
 
 CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
-	Corner1 = P1;
-	Corner2 = P2;
-	if (Corner2.x <= Corner1.x && Corner2.y <= Corner1.y)
-		swap(Corner1, Corner2);	//to make sure Corner 1 is upper left
+	setPoints(P1, P2);
+}
+
+void CRectangle::setPoints(Point P1, Point P2) {
+	if (P2.x <= P1.x && P2.y <= P1.y) //in case pressed bottom right then top left
+		Corner1 = P2, Corner2 = P1;
+	else if (P1.x <= P2.x&&P1.y >= P2.y) //in case pressed bottom left then top right
+		Corner1 = Point(P1.x, P2.y), Corner2 = Point(P2.x, P1.y);
+	else if (P2.x <= P1.x&&P2.y >= P1.y) //in case pressed top right then bottom left
+		Corner1 = Point(P2.x, P1.y), Corner2 = Point(P1.x, P2.y);
+	else //normal case (top left then right bottom)
+		Corner1 = P1, Corner2 = P2;
+	updateInfo();
+}
+
+void CRectangle::updateInfo()
+{
+	length = Corner2.y - Corner1.y;
+	width = Corner2.x - Corner1.x;
 }
 
 CRectangle::CRectangle(const CRectangle& cpy) :CFigure(cpy.FigGfxInfo) {
-	Corner1 = cpy.Corner1;
-	Corner2 = cpy.Corner2;
+	setPoints(cpy.Corner1, cpy.Corner2);
 	Selected = cpy.Selected;
 }
 
@@ -50,25 +64,22 @@ bool CRectangle::clickedInside(int x, int y) const {
 
 bool CRectangle::clickedOnBorder(int x, int y) const {
 
-	float lengthWide = sqrt(pow(Corner1.x - Corner2.x, 2));
-	float lengthSide = sqrt(pow(Corner1.y - Corner2.y, 2));
-	
 	//Top Line
 	float checktop1 = sqrt(pow(Corner1.x - x, 2) + pow(Corner1.y - y, 2));
 	float checktop2 = sqrt(pow(Corner2.x - x, 2) + pow(Corner1.y - y, 2));
-	bool top = fabs(lengthWide - checktop1 - checktop2) <= FigGfxInfo.BorderWdth / 15.0; //error percentage
+	bool top = fabs(width - checktop1 - checktop2) <= FigGfxInfo.BorderWdth / 15.0; //error percentage
 	//Right Line
 	float checkright1 = sqrt(pow(Corner2.x - x, 2) + pow(Corner1.y - y, 2));
 	float checkright2 = sqrt(pow(Corner2.x - x, 2) + pow(Corner2.y - y, 2));
-	bool right = fabs(lengthSide - checkright1 - checkright2) <= FigGfxInfo.BorderWdth / 15.0;
+	bool right = fabs(length - checkright1 - checkright2) <= FigGfxInfo.BorderWdth / 15.0;
 	//Bottom Line
 	float checkbot1 = sqrt(pow(Corner1.x - x, 2) + pow(Corner2.y - y, 2));
 	float checkbot2 = sqrt(pow(Corner2.x - x, 2) + pow(Corner2.y - y, 2));
-	bool bot = fabs(lengthWide - checkbot1 - checkbot2) <= FigGfxInfo.BorderWdth / 15.0;
+	bool bot = fabs(width - checkbot1 - checkbot2) <= FigGfxInfo.BorderWdth / 15.0;
 	//Left Line
 	float checkleft1 = sqrt(pow(Corner1.x - x, 2) + pow(Corner1.y - y, 2));
 	float checkleft2 = sqrt(pow(Corner1.x - x, 2) + pow(Corner2.y - y, 2));
-	bool left = fabs(lengthSide - checkleft1 - checkleft2) <= FigGfxInfo.BorderWdth / 15.0;
+	bool left = fabs(length - checkleft1 - checkleft2) <= FigGfxInfo.BorderWdth / 15.0;
 
 	return top || bot || right || left;
 }
@@ -83,13 +94,11 @@ string CRectangle::printInfo() const
 	data += " ";
 	data += "Corner2 (" + to_string(Corner2.x) + "," + to_string(Corner2.y) + ")"; //ending point
 	data += " ";
-	int Hight = abs(Corner1.y - Corner2.y);
-	data += "Hight = " + to_string(Hight);
+	data += "Hight = " + to_string(length);
 	data += " ";
-	int Width = abs(Corner1.x - Corner2.x);
-	data += "Width = " + to_string(Width);
+	data += "Width = " + to_string(width);
 	data += " ";
-	data += "Area = " + to_string(Width*Hight);
+	data += "Area = " + to_string(length*width);
 	return data; //return info about figure to be printed
 }
 
