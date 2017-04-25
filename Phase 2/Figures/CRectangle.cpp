@@ -110,6 +110,7 @@ void CRectangle::Save(ofstream & OutFile)
 	OutFile << Corner1.y << "  ";
 	OutFile << Corner2.x << "  ";
 	OutFile << Corner2.y << "  ";
+	OutFile << FigGfxInfo.BorderWdth << "  ";
 	if (operator==(FigGfxInfo.DrawClr, sf::Color(0, 0, 0)))
 		OutFile << "Black  ";
 	else if (operator==(FigGfxInfo.DrawClr, sf::Color(255, 255, 255)))
@@ -128,6 +129,7 @@ void CRectangle::Save(ofstream & OutFile)
 		OutFile << "Orange  ";
 	else
 		OutFile << "Grey  ";
+
 	if (!FigGfxInfo.isFilled)
 		OutFile << "NO_Fill  ";
 	else if (operator==(FigGfxInfo.FillClr, sf::Color(0, 0, 0)))

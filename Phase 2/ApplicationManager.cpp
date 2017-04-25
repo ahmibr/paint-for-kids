@@ -17,6 +17,7 @@
 #include "Actions\SelectAction.h"
 #include "Actions\SaveAction.h"
 #include "Actions\MoveByDrag.h"
+#include "Actions\LoadAction.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -93,6 +94,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 	case SAVE:
 		pAct = new SaveAction(this);
+		break;
+
+	case LOAD:
+		pAct = new LoadAction(this);
 		break;
 
 	case COPY:
@@ -185,6 +190,13 @@ CFigure *ApplicationManager::GetFigure(int index) const
 		return FigList[index];
 
 	return NULL;
+}
+void ApplicationManager::restartApp()
+{
+	for (int i = 0; i < FigCount; i++)
+		delete FigList[i];
+	FigCount = 0;
+	pData->destroyClipBoard();
 }
 //////////////////////////////////////////////////////////////////////////////////
 //Returns number of figures

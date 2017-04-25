@@ -88,6 +88,7 @@ void CLine::Save(ofstream & OutFile)
 	OutFile << p1.y << "  ";
 	OutFile << p2.x << "  ";
 	OutFile << p2.y << "  ";
+	OutFile << FigGfxInfo.BorderWdth << "  ";
 	if (operator==(FigGfxInfo.DrawClr, sf::Color(0, 0, 0)))
 		OutFile << "Black  ";
 	else if (operator==(FigGfxInfo.DrawClr, sf::Color(255, 255, 255)))

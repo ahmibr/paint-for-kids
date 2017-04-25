@@ -78,6 +78,7 @@ void CCircle::Save(ofstream & OutFile)
 	OutFile << center.x << "  ";
 	OutFile << center.y << "  ";
 	OutFile << radius << "  ";
+	OutFile << FigGfxInfo.BorderWdth << "  ";
 	if (operator==(FigGfxInfo.DrawClr, sf::Color(0, 0, 0)))
 		OutFile << "Black  ";
 	else if (operator==(FigGfxInfo.DrawClr, sf::Color(255, 255, 255)))

@@ -35,7 +35,7 @@ public:
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
 	int GetFigureCount() const; //Search for a figure given a point inside the figure
 	CFigure *GetFigure(int index) const; //Search for a figure given index of figure
-
+	void restartApp(); //delete figures before loading new graph
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output

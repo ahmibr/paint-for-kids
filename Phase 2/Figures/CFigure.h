@@ -24,6 +24,7 @@ public:
 	virtual bool isClicked(int x, int y) const = 0; //function to check if given point is related to the figure
 	virtual void Draw(Output* pOut) const = 0;		//Draw the figure
 	int getID(); //get ID
+	void setID(int); //force set ID (Caution: Do it only in Load, otherwise it'll break uniqness of ID)
 	void ChngDrawClr(sf::Color Dclr);	//changes the figure's drawing color
 	void ChngFillClr(sf::Color Fclr);	//changes the figure's filling color
 	void ChngBrdrWidth(int width);		//changes the figure's border width
