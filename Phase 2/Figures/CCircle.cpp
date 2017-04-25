@@ -1,14 +1,15 @@
 #include "CCircle.h"
 
-CCircle::CCircle(Point center, Point radiusPoint, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
+CCircle::CCircle(Point center, float radius, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
-	setPoints(center, radiusPoint);
+	this->center = center;
+	this->radius = radius;
 }
 
-void CCircle::setPoints(Point _center, Point _radiusPoint)
+void CCircle::setRadius(float radius)
 {
-	center = _center;
-	radius = sqrt(pow(_radiusPoint.x - _center.x, 2) + pow(_radiusPoint.y - _center.y, 2));
+	if (radius > 0)
+		this->radius = radius;
 }
 
 CCircle::CCircle(const CCircle& cpy) :CFigure(cpy.FigGfxInfo) {

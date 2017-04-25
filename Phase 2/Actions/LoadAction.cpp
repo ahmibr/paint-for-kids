@@ -116,11 +116,9 @@ void LoadAction::Execute()
 				loadfile >> p1.x;
 				loadfile >> p1.y;
 				loadfile >> r;
-				p2.x = p1.x - r;
-				p2.y = p1.y;
 				loadfile >> gfx.BorderWdth;
 				readColors(gfx, false);
-				currentFigure = new CCircle(p1, p2, gfx);
+				currentFigure = new CCircle(p1,r, gfx);
 				currentFigure->setID(ID);
 				pManager->AddFigure(currentFigure);
 			}

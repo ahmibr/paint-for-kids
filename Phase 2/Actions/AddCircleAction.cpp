@@ -47,10 +47,10 @@ void AddCircleAction::Execute()
 {
 	//This action needs to read some parameters first
 	ReadActionParameters();
-
+	float radius = sqrt(pow(P1.x - P2.x, 2) + pow(P1.y - P2.y, 2));
 	//Create a rectangle with the parameters read from the user
-	CCircle *C = new CCircle(P1, P2, CircleGfxInfo);
+	CCircle *C = new CCircle(P1, radius, CircleGfxInfo);
 
-	//Add the rectangle to the list of figures
+	//Add the circle to the list of figures
 	pManager->AddFigure(C);
 }
