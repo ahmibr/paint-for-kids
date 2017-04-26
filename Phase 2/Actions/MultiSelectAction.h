@@ -1,16 +1,17 @@
-#ifndef SELECT_ACTION_H
-#define SELECT_ACTION_H
+#ifndef MULTI_SELECT_ACTION_H
+#define MULTI_SELECT_ACTION_H
 
 #include "Action.h"
 #include "..\Figures\CFigure.h"
 //Add Circle Action class
-class SelectAction: public Action
+class MultiSelectAction: public Action
 {
 	CFigure* pFigure;
 	int x;
 	int y;
+	int numSelected;
 public:
-	SelectAction(ApplicationManager *pApp);
+	MultiSelectAction(ApplicationManager *pApp);
 
 	//Reads circle parameters
 	virtual void ReadActionParameters();

@@ -67,11 +67,18 @@ ActionType Input::GetUserAction() const
 			// Close window: exit
 			if (userEvent->type == sf::Event::Closed)
 				pWind->close();
-			if (userEvent->type == sf::Event::MouseButtonPressed) {
-				x = userEvent->mouseButton.x;	//Wait for mouse click
-				y = userEvent->mouseButton.y;
-				pressed = true;
+
+			if (userEvent->type == sf::Event::MouseButtonPressed) { //normal Actions
+				if (userEvent->key.code == sf::Mouse::Left) {
+					x = userEvent->mouseButton.x;	//Wait for mouse click
+					y = userEvent->mouseButton.y;
+					pressed = true;
+				}
 			}
+
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::LControl))
+				return MULTI_SELECT;
+
 			if (userEvent->type == sf::Event::MouseWheelScrolled) {
 				if (userEvent->mouseWheelScroll.delta > 0) {
 					return ZOOM_IN;
@@ -80,6 +87,7 @@ ActionType Input::GetUserAction() const
 					return ZOOM_OUT;
 				}
 			}
+
 			if (userEvent->type == sf::Event::KeyPressed) {
 				if (userEvent->key.code == sf::Keyboard::C && userEvent->key.control) {
 					return COPY;
@@ -145,7 +153,7 @@ ActionType Input::GetUserAction() const
 		//[2] User clicks on the drawing area
 		if (y >= UI.ToolBarHeight && y < UI.height - UI.StatusBarHeight)
 		{
-			return DRAWING_AREA;
+			return SELECT;
 		}
 
 		//[3] User clicks on the status bar

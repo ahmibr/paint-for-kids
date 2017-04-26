@@ -97,7 +97,7 @@ void SaveAction::ReadActionParameters()
 	Input* pIn = pManager->GetInput();
 	pOut->PrintMessage("Enter file name");
 	string fileName = pIn->GetSrting(pOut);
-	if (fileName.find(".txt") == -1)
+	if (fileName.rfind(".txt") != 4)
 		fileName += ".txt";
 	savefile.open(fileName, ios::out);
 }

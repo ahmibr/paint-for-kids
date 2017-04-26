@@ -103,6 +103,9 @@
     <ClCompile Include="Actions\LoadAction.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\MultiSelectAction.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Figures\CFigure.h">
@@ -194,6 +197,9 @@
       <Filter>Action Classes</Filter>
     </ClInclude>
     <ClInclude Include="Actions\LoadAction.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\MultiSelectAction.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
   </ItemGroup>

@@ -15,6 +15,7 @@
 #include "Actions\PasteAction.h"
 #include "Actions\CutAction.h"
 #include "Actions\SelectAction.h"
+#include "Actions\MultiSelectAction.h"
 #include "Actions\SaveAction.h"
 #include "Actions\MoveByDrag.h"
 #include "Actions\LoadAction.h"
@@ -116,8 +117,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct = new ExitAction(this);
 		break;
 
-	case DRAWING_AREA:
+	case SELECT:
 		pAct = new SelectAction(this);
+		break;
+	
+	case MULTI_SELECT:
+		pAct = new MultiSelectAction(this);
 		break;
 
 	case MOVE_DRAG:

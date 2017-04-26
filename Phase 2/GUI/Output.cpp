@@ -36,6 +36,7 @@ Output::Output()
 
 	//initailizing the line under toolbar
 	toolbarLine = new sf::RectangleShape((sf::Vector2f(UI.width, 3)));
+	toolbarBackGround = new sf::RectangleShape(sf::Vector2f(UI.width, UI.ToolBarHeight));
 
 	//initializing boxes of status bar | window background | Menu items
 	stbar = new sf::RectangleShape(sf::Vector2f(UI.width, UI.height));
@@ -74,6 +75,11 @@ Output::Output()
 	toolbarLine->setOutlineColor(sf::Color::Red);
 	toolbarLine->setFillColor(sf::Color::Red);
 	toolbarLine->setPosition(sf::Vector2f(0, UI.ToolBarHeight));
+
+	//Draw a line behind toolbar
+	toolbarBackGround->setOutlineColor(sf::Color::White);
+	toolbarBackGround->setFillColor(sf::Color::White);
+	toolbarBackGround->setPosition(sf::Vector2f(0,0));
 
 	for (int i = 0; i < DRAW_ITM_COUNT; i++)
 	{
@@ -255,7 +261,7 @@ void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 
 	drawnObjects->push_back(rect);
 
-//	UpdateWindow();
+	//	UpdateWindow();
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -280,7 +286,7 @@ void Output::DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected) co
 
 	drawnObjects->push_back(line);
 
-//	UpdateWindow();
+	//	UpdateWindow();
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -386,6 +392,8 @@ void Output::UpdateWindow() const {
 	pWind->clear();
 
 	pWind->draw(*windowBackGround);
+
+	pWind->draw(*toolbarBackGround);
 
 	for (int i = 0; i < drawnObjects->size(); i++)
 	{

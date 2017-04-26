@@ -14,8 +14,8 @@ private:
 	sf::RenderWindow* pWind;	//Pointer to the Graphics Window
 	sf::Text *statusMessage;		//message text
 	sf::Font messageFont;
-
-
+	
+	sf::RectangleShape *toolbarBackGround;
 	sf::RectangleShape *toolbarLine;
 	sf::RectangleShape *windowBackGround;			//background rectangle
 	sf::RectangleShape *stbar;						//statusbar rectangle

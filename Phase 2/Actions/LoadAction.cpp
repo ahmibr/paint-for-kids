@@ -164,7 +164,7 @@ void LoadAction::ReadActionParameters()
 	Input* pIn = pManager->GetInput();
 	pOut->PrintMessage("Load: Enter file name");
 	string fileName = pIn->GetSrting(pOut);
-	if (fileName.find(".txt") == -1)
+	if (fileName.rfind(".txt") != 4)
 		fileName += ".txt";
 	loadfile.open(fileName, ios::in);
 }
