@@ -14,8 +14,8 @@ protected:
 	GfxInfo FigGfxInfo;	//Figure graphis info
 	virtual bool clickedInside(int x, int y) const = 0;
 	virtual bool clickedOnBorder(int x, int y) const = 0;
-	/// Add more parameters if needed.
-
+	string checkDrawClr(); //a function to return Draw color as a word (e.g green, yellow ... etc )
+	string checkFillClr(); //a function to return Fill color as a word (e.g green, yellow ... etc )
 public:
 	CFigure(GfxInfo FigureGfxInfo);
 	virtual CFigure* copyClone() = 0; //a clone to apply polymorphism on copy construtors

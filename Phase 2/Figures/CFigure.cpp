@@ -1,6 +1,7 @@
 #include "CFigure.h"
 
 int CFigure::count = 0;
+
 CFigure::CFigure(GfxInfo FigureGfxInfo)
 {
 	ID = ++count;
@@ -51,3 +52,48 @@ void CFigure::ChngBrdrWidth(int width)
 	FigGfxInfo.BorderWdth = width;
 }
 
+string CFigure::checkDrawClr()
+{
+	if (FigGfxInfo.DrawClr == sf::Color(0, 0, 0))
+		return "Black";
+	else if (FigGfxInfo.DrawClr == sf::Color(255, 255, 255))
+		return "White";
+	else if (FigGfxInfo.DrawClr == sf::Color(0, 255, 0))
+		return "Green";
+	else if (FigGfxInfo.DrawClr == sf::Color(255, 0, 0))
+		return "Red";
+	else if (FigGfxInfo.DrawClr == sf::Color(0, 0, 255))
+		return "Blue";
+	else if (FigGfxInfo.DrawClr == sf::Color(0, 255, 127.5))
+		return "Turquoise";
+	else if (FigGfxInfo.DrawClr == sf::Color(255, 255, 127.5))
+		return "Yellow";
+	else if (FigGfxInfo.DrawClr == sf::Color(255, 127.5, 0))
+		return "Orange";
+	else
+		return "Grey";
+}
+
+string CFigure::checkFillClr()
+{
+	if (!FigGfxInfo.isFilled)
+		return "NO_Fill";
+	else if (FigGfxInfo.FillClr == sf::Color(0, 0, 0))
+		return "Black";
+	else if (FigGfxInfo.FillClr == sf::Color(255, 255, 255))
+		return "White";
+	else if (FigGfxInfo.FillClr == sf::Color(0, 255, 0))
+		return "Green";
+	else if (FigGfxInfo.FillClr == sf::Color(255, 0, 0))
+		return "Red";
+	else if (FigGfxInfo.FillClr == sf::Color(0, 0, 255))
+		return "Blue";
+	else if (FigGfxInfo.FillClr == sf::Color(0, 255, 127.5))
+		return "Turquoise";
+	else if (FigGfxInfo.FillClr == sf::Color(255, 255, 127.5))
+		return "Yellow";
+	else if (FigGfxInfo.FillClr == sf::Color(255, 127.5, 0))
+		return "Orange";
+	else
+		return "Grey";
+}

@@ -45,7 +45,7 @@ bool CCircle::clickedInside(int x, int y)const {
 bool CCircle::clickedOnBorder(int x, int y)const {
 	//same as clicked inside but,
 	//add availability of border width
-	return fabs( sqrt(pow(x - center.x, 2) + pow(y - center.y, 2)) - radius) <= FigGfxInfo.BorderWdth;
+	return fabs(sqrt(pow(x - center.x, 2) + pow(y - center.y, 2)) - radius) <= FigGfxInfo.BorderWdth;
 }
 
 
@@ -80,42 +80,6 @@ void CCircle::Save(ofstream & OutFile)
 	OutFile << center.y << "  ";
 	OutFile << radius << "  ";
 	OutFile << FigGfxInfo.BorderWdth << "  ";
-	if (operator==(FigGfxInfo.DrawClr, sf::Color(0, 0, 0)))
-		OutFile << "Black  ";
-	else if (operator==(FigGfxInfo.DrawClr, sf::Color(255, 255, 255)))
-		OutFile << "White  ";
-	else if (operator==(FigGfxInfo.DrawClr, sf::Color(0, 255, 0)))
-		OutFile << "Green  ";
-	else if (operator==(FigGfxInfo.DrawClr, sf::Color(255, 0, 0)))
-		OutFile << "Red  ";
-	else if (operator==(FigGfxInfo.DrawClr, sf::Color(0, 0, 255)))
-		OutFile << "Blue  ";
-	else if (operator==(FigGfxInfo.DrawClr, sf::Color(0, 255, 127.5)))
-		OutFile << "Turquoise  ";
-	else if (operator==(FigGfxInfo.DrawClr, sf::Color(255, 255, 127.5)))
-		OutFile << "Yellow  ";
-	else if (operator==(FigGfxInfo.DrawClr, sf::Color(255, 127.5, 0)))
-		OutFile << "Orange  ";
-	else
-		OutFile << "Grey  ";
-	if (!FigGfxInfo.isFilled)
-		OutFile << "NO_Fill  ";
-	else if (operator==(FigGfxInfo.FillClr, sf::Color(0, 0, 0)))
-		OutFile << "Black  ";
-	else if (operator==(FigGfxInfo.FillClr, sf::Color(255, 255, 255)))
-		OutFile << "White  ";
-	else if (operator==(FigGfxInfo.FillClr, sf::Color(0, 255, 0)))
-		OutFile << "Green  ";
-	else if (operator==(FigGfxInfo.FillClr, sf::Color(255, 0, 0)))
-		OutFile << "Red  ";
-	else if (operator==(FigGfxInfo.FillClr, sf::Color(0, 0, 255)))
-		OutFile << "Blue  ";
-	else if (operator==(FigGfxInfo.FillClr, sf::Color(0, 255, 127.5)))
-		OutFile << "Turquoise  ";
-	else if (operator==(FigGfxInfo.FillClr, sf::Color(255, 255, 127.5)))
-		OutFile << "Yellow  ";
-	else if (operator==(FigGfxInfo.FillClr, sf::Color(255, 127.5, 0)))
-		OutFile << "Orange  ";
-	else
-		OutFile << "Grey  ";
+	OutFile << checkDrawClr()<<"  ";
+	OutFile << checkFillClr()<<"  ";
 }

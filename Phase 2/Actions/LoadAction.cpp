@@ -28,9 +28,9 @@ void LoadAction::Execute()
 	string choice = pIn->GetSrting(pOut);
 	if (choice == "Y" || choice == "y")
 		pManager->ExecuteAction(SAVE);
-	pManager->restartApp();
 	ReadActionParameters();
 	if (loadfile.is_open()) {
+		pManager->restartApp();
 		string read;
 		//Loading Draw Color
 		loadfile >> read;
