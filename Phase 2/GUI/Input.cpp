@@ -66,7 +66,7 @@ ActionType Input::GetUserAction() const
 		{
 			// Close window: exit
 			if (userEvent->type == sf::Event::Closed)
-				pWind->close();
+				return EXIT;
 
 			if (userEvent->type == sf::Event::MouseButtonPressed) { //normal Actions
 				if (userEvent->key.code == sf::Mouse::Left) {
@@ -106,6 +106,9 @@ ActionType Input::GetUserAction() const
 				}
 				if (userEvent->key.code == sf::Keyboard::D) {
 					return MOVE_DRAG;
+				}
+				if (userEvent->key.code == sf::Keyboard::Delete) {
+					return DEL;
 				}
 			}
 		}
