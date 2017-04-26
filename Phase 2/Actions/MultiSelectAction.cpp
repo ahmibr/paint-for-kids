@@ -31,7 +31,7 @@ void MultiSelectAction::Execute()
 		for (int i = 0; i < pManager->GetFigureCount(); i++) //get current count of selected items
 		{
 			numSelected += pManager->GetFigure(i)->IsSelected();
-			if (numSelected == 1) //in case only one selected, if numselected increased it won't affect
+			if (numSelected == 1 && pManager->GetFigure(i)->IsSelected()) //if only one selected.if numselected increased than 1, it won't affect
 				pFigure = pManager->GetFigure(i);
 		}
 
