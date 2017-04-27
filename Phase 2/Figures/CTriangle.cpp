@@ -53,6 +53,16 @@ Point CTriangle::getPoint() const {
 	return p1;
 }
 
+float CTriangle::getArea() const
+{
+	return area(p1,p2,p3);
+}
+
+string CTriangle::getType() const
+{
+	return "Triangle";
+}
+
 bool CTriangle::isClicked(int x, int y) const
 {
 	return clickedInside(x, y) || clickedOnBorder(x, y);
@@ -109,7 +119,7 @@ string CTriangle::printInfo() const
 	data += " ";
 	data += "P3 (" + to_string(p3.x) + "," + to_string(p3.y) + ")"; //ending point
 	data += " ";
-	data += "Area = " + to_string(area(p1,p2,p3));
+	data += "Area = " + to_string(getArea());
 	return data; //return info about figure to be printed
 }
 
@@ -124,6 +134,6 @@ void CTriangle::Save(ofstream & OutFile)
 	OutFile << p3.x << "  ";
 	OutFile << p3.y << "  ";
 	OutFile << FigGfxInfo.BorderWdth << "  ";
-	OutFile << checkDrawClr() << "  ";
-	OutFile << checkFillClr() << "  ";
+	OutFile << getDrawClrName() << "  ";
+	OutFile << getFillClrName() << "  ";
 }

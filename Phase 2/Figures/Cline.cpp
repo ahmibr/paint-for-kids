@@ -49,6 +49,16 @@ Point CLine::getPoint() const {
 	return p1;
 }
 
+float CLine::getArea() const
+{
+	return length;
+}
+
+string CLine::getType() const
+{
+	return "Line";
+}
+
 bool CLine::isClicked(int x, int y) const {
 	return clickedInside(x, y);
 }
@@ -89,5 +99,5 @@ void CLine::Save(ofstream & OutFile)
 	OutFile << p2.x << "  ";
 	OutFile << p2.y << "  ";
 	OutFile << FigGfxInfo.BorderWdth << "  ";
-	OutFile << checkDrawClr()<<"  ";
+	OutFile << getDrawClrName()<<"  ";
 }

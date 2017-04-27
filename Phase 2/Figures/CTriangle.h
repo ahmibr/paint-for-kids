@@ -23,6 +23,8 @@ public:
 	virtual void Draw(Output* pOut) const;
 	virtual void Move(int dx, int dy);//move shape by dx and dy
 	virtual Point getPoint() const;		//get point to do some calculations
+	virtual float getArea() const;
+	virtual string getType() const;
 	void setPoints(Point, Point, Point);//function to manage assigning points
 	virtual bool isClicked(int x, int y) const;
 	virtual string printInfo() const;

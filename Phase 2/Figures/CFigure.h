@@ -14,9 +14,8 @@ protected:
 	GfxInfo FigGfxInfo;	//Figure graphis info
 	virtual bool clickedInside(int x, int y) const = 0;
 	virtual bool clickedOnBorder(int x, int y) const = 0;
-	string checkDrawClr(); //a function to return Draw color as a word (e.g green, yellow ... etc )
-	string checkFillClr(); //a function to return Fill color as a word (e.g green, yellow ... etc )
 public:
+	CFigure();
 	CFigure(GfxInfo FigureGfxInfo);
 	virtual CFigure* copyClone() = 0; //a clone to apply polymorphism on copy construtors
 	void SetSelected(bool s);	//select/unselect the figure
@@ -28,6 +27,10 @@ public:
 	void ChngDrawClr(sf::Color Dclr);	//changes the figure's drawing color
 	void ChngFillClr(sf::Color Fclr);	//changes the figure's filling color
 	void ChngBrdrWidth(int width);		//changes the figure's border width
+	string getDrawClrName() const; //a function to return Draw color as a word (e.g green, yellow ... etc )
+	string getFillClrName() const; //a function to return Fill color as a word (e.g green, yellow ... etc )
+	virtual float getArea() const = 0;
+	virtual string getType() const = 0;
 	virtual Point getPoint() const = 0;		//get point to do some calculations
 	virtual string printInfo() const = 0; //print info about selected item
 	///The following functions should be supported by the figure class

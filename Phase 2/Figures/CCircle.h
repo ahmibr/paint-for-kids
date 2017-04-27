@@ -17,6 +17,8 @@ public:
 	virtual void Draw(Output* pOut) const;
 	virtual void Move(int dx, int y);	//move shape by dx and dy
 	virtual Point getPoint() const;		//get point to do some calculations
+	virtual float getArea() const;
+	virtual string getType() const;
 	void setRadius(float);//function to set radius of circle
 	virtual bool isClicked(int x, int y) const;//function to check if given point is related to the figure
 	virtual string printInfo() const;

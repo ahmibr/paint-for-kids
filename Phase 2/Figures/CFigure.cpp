@@ -2,6 +2,12 @@
 
 int CFigure::count = 0;
 
+CFigure::CFigure()
+{
+	ID = ++count;
+	Selected = false;
+}
+
 CFigure::CFigure(GfxInfo FigureGfxInfo)
 {
 	ID = ++count;
@@ -52,7 +58,7 @@ void CFigure::ChngBrdrWidth(int width)
 	FigGfxInfo.BorderWdth = width;
 }
 
-string CFigure::checkDrawClr()
+string CFigure::getDrawClrName() const
 {
 	if (FigGfxInfo.DrawClr == sf::Color(0, 0, 0))
 		return "Black";
@@ -74,7 +80,7 @@ string CFigure::checkDrawClr()
 		return "Grey";
 }
 
-string CFigure::checkFillClr()
+string CFigure::getFillClrName() const
 {
 	if (!FigGfxInfo.isFilled)
 		return "NO_Fill";
@@ -97,3 +103,4 @@ string CFigure::checkFillClr()
 	else
 		return "Grey";
 }
+

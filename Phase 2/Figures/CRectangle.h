@@ -21,6 +21,8 @@ public:
 	virtual void Draw(Output* pOut) const;
 	virtual void Move(int dx, int dy);//move shape by dx and dy
 	virtual Point getPoint() const;		//get point to do some calculations
+	virtual float getArea() const;
+	virtual string getType() const;
 	virtual bool isClicked(int x, int y) const;
 	virtual string printInfo() const;
 	virtual void Save(ofstream &OutFile); //Save Rectangle parameters to the file

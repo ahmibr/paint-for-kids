@@ -302,7 +302,7 @@ void Output::DrawCirc(Point C, float R, GfxInfo CircGfxInfo, bool selected) cons
 
 	sf::CircleShape *circ = new sf::CircleShape(R);
 
-	circ->setPosition(sf::Vector2f(sf::Vector2f(abs(C.x), abs(C.y))));
+	circ->setPosition(sf::Vector2f(sf::Vector2f(C.x,C.y)));
 	circ->setOutlineColor(DrawingClr);
 	circ->setOutlineThickness(CircGfxInfo.BorderWdth);
 	circ->setOrigin(R, R);

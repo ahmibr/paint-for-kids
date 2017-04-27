@@ -58,6 +58,17 @@ Point CCircle::getPoint() const {
 	return center;
 }
 
+float CCircle::getArea() const
+{
+	//area PI*R*R
+	return acos(-1)*radius*radius;
+}
+
+string CCircle::getType() const
+{
+	return "Circle";
+}
+
 
 string CCircle::printInfo()const {
 
@@ -68,7 +79,7 @@ string CCircle::printInfo()const {
 	data += " ";
 	data += "Radius = " + to_string(radius); //radius
 	data += " ";
-	data += "Area = " + to_string(acos(-1)*radius*radius); //area PI*R*R
+	data += "Area = " + to_string(getArea());
 	return data; //return info about figure to be printed
 }
 
@@ -80,6 +91,7 @@ void CCircle::Save(ofstream & OutFile)
 	OutFile << center.y << "  ";
 	OutFile << radius << "  ";
 	OutFile << FigGfxInfo.BorderWdth << "  ";
-	OutFile << checkDrawClr()<<"  ";
-	OutFile << checkFillClr()<<"  ";
+	OutFile << getDrawClrName()<<"  ";
+	OutFile << getFillClrName()<<"  ";
 }
+

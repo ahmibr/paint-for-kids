@@ -192,7 +192,10 @@ void LoadAction::readColors(GfxInfo & GFX,bool isLine)
 	else
 		GFX.DrawClr = sf::Color(127.5, 127.5, 127.5);
 	if (isLine)
+	{
+		GFX.FillClr = GFX.DrawClr;
 		return;
+	}
 	loadfile >> color;
 	if (color == "Black")
 		GFX.FillClr = sf::Color(0, 0, 0);

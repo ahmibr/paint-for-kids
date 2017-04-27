@@ -51,6 +51,16 @@ Point CRectangle::getPoint() const {
 	return Corner1;
 }
 
+float CRectangle::getArea() const
+{
+	return length*width;
+}
+
+string CRectangle::getType() const
+{
+	return "Rectangle";
+}
+
 bool CRectangle::isClicked(int x, int y) const {
 	return clickedInside(x, y) || clickedOnBorder(x, y);
 }
@@ -98,7 +108,7 @@ string CRectangle::printInfo() const
 	data += " ";
 	data += "Width = " + to_string(width);
 	data += " ";
-	data += "Area = " + to_string(length*width);
+	data += "Area = " + to_string(getArea());
 	return data; //return info about figure to be printed
 }
 
@@ -111,6 +121,6 @@ void CRectangle::Save(ofstream & OutFile)
 	OutFile << Corner2.x << "  ";
 	OutFile << Corner2.y << "  ";
 	OutFile << FigGfxInfo.BorderWdth << "  ";
-	OutFile << checkDrawClr() << "  ";
-	OutFile << checkFillClr() << "  ";
+	OutFile << getDrawClrName() << "  ";
+	OutFile << getFillClrName() << "  ";
 }
