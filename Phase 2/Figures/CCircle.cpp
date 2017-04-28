@@ -54,6 +54,16 @@ void CCircle::Move(int dx, int dy) {
 	center.y += dy;	//change y by dy
 }
 
+void CCircle::Rotate(float rotate) {
+	//rotate circle by any angle will be as it is
+}
+
+void CCircle::Resize(float size) {
+	float r = radius;
+	r *= size;
+	setRadius(r);
+}
+
 Point CCircle::getPoint() const {
 	return center;
 }
@@ -91,7 +101,7 @@ void CCircle::Save(ofstream & OutFile)
 	OutFile << center.y << "  ";
 	OutFile << radius << "  ";
 	OutFile << FigGfxInfo.BorderWdth << "  ";
-	OutFile << getDrawClrName()<<"  ";
-	OutFile << getFillClrName()<<"  ";
+	OutFile << getDrawClrName() << "  ";
+	OutFile << getFillClrName() << "  ";
 }
 

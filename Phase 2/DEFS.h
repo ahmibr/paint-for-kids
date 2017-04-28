@@ -40,6 +40,8 @@ enum ActionType //The actions supported (you can add more if needed)
 	PASTE,
 
 	MOVE_DRAG,
+	RESIZE_DRAG,
+	ROTATE_DRAG,
 
 	PICK,			//PLAY MODE
 	FIND

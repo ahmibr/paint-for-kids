@@ -26,6 +26,7 @@ public:
 	int GetXmousePos() const;
 	int GetYmousePos() const;
 	void Input::GetMouseMove(int &x, int &y) const;
+	int selectPickType();
 	ActionType GetUserAction() const; //Read the user click and map to an action
 	void BackgrndColor();
 	void GraphicsInfo(GfxInfo &choice);		//added to return graphics

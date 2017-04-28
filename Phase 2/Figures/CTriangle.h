@@ -6,7 +6,7 @@
 class CTriangle : public CFigure
 {
 private:
-	Point p1; 
+	Point p1;
 	Point p2;
 	Point p3;
 	float lengthP1P2; //length from p1 to p2
@@ -17,11 +17,14 @@ private:
 	float area(Point, Point, Point) const; //utility function to calculate area
 	void updateInfo();//utility function to recalculate lengthes after assigning points
 public:
-	CTriangle(Point , Point,Point,GfxInfo FigureGfxInfo);
+	CTriangle(Point, Point, Point, GfxInfo FigureGfxInfo);
 	CTriangle(const CTriangle&); //copy constructor
 	virtual CFigure* copyClone(); //a clone to apply polymorphism on copy construtors
 	virtual void Draw(Output* pOut) const;
-	virtual void Move(int dx, int dy);//move shape by dx and dy
+	virtual void Move(int dx, int dy);
+	virtual void Rotate(float rotate);
+	virtual void Resize(float size);
+	//move shape by dx and dy
 	virtual Point getPoint() const;		//get point to do some calculations
 	virtual float getArea() const;
 	virtual string getType() const;

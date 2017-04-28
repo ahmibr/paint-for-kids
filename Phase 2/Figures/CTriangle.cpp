@@ -49,13 +49,75 @@ void CTriangle::Move(int dx, int dy) {
 	p3.y += dy;
 }
 
+void CTriangle::Rotate(float rotate) {
+
+	Point orgin;
+	Point point1, point2, point3;
+
+	orgin.x = (p2.x + p3.x) / 2;
+	orgin.x = (p1.x + orgin.x) / 2;
+	orgin.y = (p2.y + p3.y) / 2;
+	orgin.y = (p1.y + orgin.y) / 2;
+
+	float op1, op2, op3;
+	op1 = sqrt(pow(p1.x - orgin.x, 2) + pow(p1.y - orgin.y, 2));
+	op2 = sqrt(pow(p2.x - orgin.x, 2) + pow(p2.y - orgin.y, 2));
+	op3 = sqrt(pow(p3.x - orgin.x, 2) + pow(p3.y - orgin.y, 2));
+
+	float angl1 = atan2((p1.y - orgin.y), (p1.x - orgin.x)) + rotate * 22.0 * (7.0 / 180);
+	float angl2 = atan2((p2.y - orgin.y), (p2.x - orgin.x)) + rotate * 22.0 * (7.0 / 180);
+	float angl3 = atan2((p3.y - orgin.y), (p3.x - orgin.x)) + rotate * 22.0 * (7.0 / 180);
+
+	point1.x = ceil(orgin.x + op1*cos(angl1));
+	point1.y = ceil(orgin.y + op1*sin(angl1));
+	point2.x = ceil(orgin.x + op2*cos(angl2));
+	point2.y = ceil(orgin.y + op2*sin(angl2));
+	point3.x = ceil(orgin.x + op3*cos(angl3));
+	point3.y = ceil(orgin.y + op3*sin(angl3));
+
+	setPoints(point1, point2, point3);
+
+}
+
+void CTriangle::Resize(float size) {
+
+	Point orgin;
+	Point point1, point2, point3;
+
+	orgin.x = ((p1.x + p2.x + p3.x) / 3);
+	orgin.y = ((p1.y + p2.y + p3.y) / 3);
+
+	float op1, op2, op3;
+	op1 = sqrt(pow(p1.x - orgin.x, 2) + pow(p1.y - orgin.y, 2));
+	op2 = sqrt(pow(p2.x - orgin.x, 2) + pow(p2.y - orgin.y, 2));
+	op3 = sqrt(pow(p3.x - orgin.x, 2) + pow(p3.y - orgin.y, 2));
+
+	float angl1 = atan2((p1.y - orgin.y), (p1.x - orgin.x));
+	float angl2 = atan2((p2.y - orgin.y), (p2.x - orgin.x));
+	float angl3 = atan2((p3.y - orgin.y), (p3.x - orgin.x));
+
+	op1 *= size;
+	op2 *= size;
+	op3 *= size;
+
+	point1.x = orgin.x + op1*cos(angl1);
+	point1.y = orgin.y + op1*sin(angl1);
+	point2.x = orgin.x + op2*cos(angl2);
+	point2.y = orgin.y + op2*sin(angl2);
+	point3.x = orgin.x + op3*cos(angl3);
+	point3.y = orgin.y + op3*sin(angl3);
+
+	setPoints(point1, point2, point3);
+
+}
+
 Point CTriangle::getPoint() const {
 	return p1;
 }
 
 float CTriangle::getArea() const
 {
-	return area(p1,p2,p3);
+	return area(p1, p2, p3);
 }
 
 string CTriangle::getType() const

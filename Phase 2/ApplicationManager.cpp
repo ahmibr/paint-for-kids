@@ -19,6 +19,11 @@
 #include "Actions\SaveAction.h"
 #include "Actions\MoveByDrag.h"
 #include "Actions\LoadAction.h"
+#include "Actions\RotateAction.h"
+#include "Actions\ChangeBkgroundClr.h"
+#include "Actions\ResizeByDrag.h"
+#include "Actions\RotateByDrag.h"
+#include "Actions\PickHide.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -120,13 +125,33 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case SELECT:
 		pAct = new SelectAction(this);
 		break;
-	
+
 	case MULTI_SELECT:
 		pAct = new MultiSelectAction(this);
 		break;
 
 	case MOVE_DRAG:
 		pAct = new MoveByDrag(this);
+		break;
+
+	case ROTATE:
+		pAct = new RotateAction(this);
+		break;
+
+	case CHNG_BK_CLR:
+		pAct = new ChangeBkgroundClr(this);
+		break;
+
+	case RESIZE_DRAG:
+		pAct = new ResizeByDrag(this);
+		break;
+
+	case ROTATE_DRAG:
+		pAct = new RotateByDrag(this);
+		break;
+
+	case PICK:
+		pAct = new PickHide(this);
 		break;
 
 	case STATUS:	//a click on the status bar ==> no action

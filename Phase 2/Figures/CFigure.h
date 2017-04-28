@@ -37,12 +37,10 @@ public:
 	///It should be overridden by each inherited figure
 
 	///Decide the parameters that you should pass to each function	
+	virtual void Rotate(float rotate) = 0;	//Rotate the figure
+	virtual void Resize(float size) = 0;	//Resize the figure
+	virtual void Move(int dx, int dy) = 0;		//Move the figure
 
-
-	//virtual void Rotate() = 0;	//Rotate the figure
-	//virtual void Resize() = 0;	//Resize the figure
-	virtual void Move(int dx,int dy) = 0;		//Move the figure
-	
 	virtual void Save(ofstream &OutFile) = 0;	//Save the figure parameters to the file
 	//virtual void Load(ifstream &Infile) = 0;	//Load the figure parameters to the file
 

@@ -16,6 +16,8 @@ public:
 	virtual CFigure* copyClone(); //a clone to apply polymorphism on copy construtors
 	virtual void Draw(Output* pOut) const;
 	virtual void Move(int dx, int y);	//move shape by dx and dy
+	virtual void Rotate(float rotate);
+	virtual void Resize(float size);
 	virtual Point getPoint() const;		//get point to do some calculations
 	virtual float getArea() const;
 	virtual string getType() const;

@@ -3,55 +3,56 @@
 #include "..\GUI\Output.h"
 #include "..\ApplicationManager.h"
 
-class cFigures{};
+class cFigures {};
 ResizeAction::ResizeAction(ApplicationManager *pApp) :Action(pApp)
 {
+	selected = false;
 }
 
 void ResizeAction::ReadActionParameters()
 {
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
-
-
-	//include selectedFigureAction, get array of selectedfigures
-	//if(selectedFiugures!=NULL)
+	for (int i = 0; i < pManager->GetFigureCount(); i++)
+	{
+		CFigure *curr = pManager->GetFigure(i);
+		if (curr->IsSelected()) {
+			selected = true;
+			break;
+		}
+	}
+	if (!selected)
+		pOut->PrintMessage("You should select at least one figure");
+	else
+	{
 		pOut->PrintMessage("Resize: choose for the new dimensions of selected figures");
-		float Resize = pIn->Resize_wind();
-		pOut->PrintMessage("Resize figure by " + to_string(Resize));
-		/*for (int i = 0; i < selectedFigCount; i++)
-		{
-			if (dynamic_cast<CCircle*>(pFig[i]) )
-				pFig[i]-> radius *=Resize; 
+	}
 
-		    else if (dynamic_cast<CRectangle*>(pFig[i]))
-			{
-				pFig[i]->length *=Resize;     //added length & width to rect class
-				pFig[i]->width *=Resize;
-			}
-			else if (dynamic_cast<CTriangle*>(pFig[i]))
-			{
-				pFig[i]->side1 *=Resize;
-				pFig[i]->side2 *=Resize;     //added 3 sides of triangle
-				pFig[i]->side3 *=Resize;
-			}
-			else if (dynamic_cast<Cline*>(pFig[i]))
-			{
-				pFig[i]->length *=Resize;   //added length of line
-			}
-
-		
-		}*/
-	
-	//else pOut->PrintMessage("You should select at least one figure to Resize");
- 
-		//pOut->ClearStatusBar();
 }
 
 void ResizeAction::Execute()
 {
+	Input* pIn = pManager->GetInput();
+	Output* pOut = pManager->GetOutput();
+
 	ReadActionParameters();
-	//pFig[i]->draw();    loop to draw rsized figures
+	if (selected)
+	{
+		float size = pIn->Resize_wind();
+		pOut->PrintMessage("Resize figure by " + to_string(size));
+
+		for (int i = 0; i < pManager->GetFigureCount(); i++)
+		{
+			CFigure *curr = pManager->GetFigure(i);
+			if (curr->IsSelected()) {
+
+				curr->Resize(size);
+				curr->Draw(pOut);    // to draw resized figures
+			}
+		}
+	}
+	//pOut->ClearStatusBar();
+
 }
 
 

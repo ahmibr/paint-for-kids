@@ -47,6 +47,60 @@ void CRectangle::Move(int dx, int dy) {
 	Corner2.y += dy;
 }
 
+void CRectangle::Resize(float size)
+{
+
+	float tempL = length * size;
+	float tempW = width * size;
+
+	Point p1 = Corner1, p2 = Corner2;
+	if (tempL < length)
+	{
+		p1.x += (width*0.5 - tempW*0.5);
+		p1.y += (length*0.5 - tempL*0.5);
+		p2.x -= (width*0.5 - tempW*0.5);
+		p2.y -= (length *0.5 - tempL*0.5);
+
+	}
+	else if (tempL > length)
+	{
+		p1.x -= fabs((width*0.5 - tempW*0.5));
+		p1.y -= fabs((length*0.5 - tempL*0.5));
+		p2.x += fabs((width*0.5 - tempW*0.5));
+		p2.y += fabs((length *0.5 - tempL*0.5));
+
+	}
+	setPoints(p1, p2);
+
+}
+
+void CRectangle::Rotate(float rotate)
+{
+	float temp = fabs((length - width) / 2);
+	Point p1 = Corner1, p2 = Corner2;
+
+	if (rotate == 90 || rotate == 270)
+	{
+		if (length < width)
+		{
+			p1.x += temp;
+			p1.y -= temp;
+			p2.x -= temp;
+			p2.y += temp;
+		}
+		else {
+			p1.x -= temp;
+			p1.y += temp;
+			p2.x += temp;
+			p2.y -= temp;
+		}
+	}
+	else if (rotate == 180)
+	{
+
+	}
+	setPoints(p1, p2);
+}
 Point CRectangle::getPoint() const {
 	return Corner1;
 }

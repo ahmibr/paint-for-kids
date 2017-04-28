@@ -110,6 +110,12 @@ ActionType Input::GetUserAction() const
 				if (userEvent->key.code == sf::Keyboard::Delete) {
 					return DEL;
 				}
+				if (userEvent->key.code == sf::Keyboard::S) {
+					return RESIZE_DRAG;
+				}
+				if (userEvent->key.code == sf::Keyboard::R) {
+					return ROTATE_DRAG;
+				}
 			}
 		}
 
@@ -559,6 +565,60 @@ void Input::GetMouseMove(int &x, int &y) const {
 			}
 		}
 	}
+}
+
+int Input::selectPickType()
+{
+	sf::RenderWindow New_window(sf::VideoMode(200, 350), "Pick ", sf::Style::Close);
+	sf::RectangleShape backgrnd(sf::Vector2f(200, 350));		//background color
+	backgrnd.setFillColor(UI.BkGrndColor);
+
+	sf::Font f;
+	f.loadFromFile("Resource Files\\Arial.ttf");
+
+	sf::Text Pick[4];
+	Pick[0].setString("By Type");
+	Pick[1].setString("By Color");
+	Pick[2].setString("By Type & Color");
+	Pick[3].setString("By Area");
+
+	New_window.clear();
+	New_window.draw(backgrnd);
+
+	for (int i = 0; i < 4; i++)
+	{
+		Pick[i].setFillColor(sf::Color::Black);
+		Pick[i].setFont(f);
+		Pick[i].setCharacterSize(20);
+		Pick[i].setPosition(0, i * 100);
+		New_window.draw(Pick[i]);
+	}
+	New_window.display();
+
+	while (New_window.isOpen())
+	{
+		// Process events
+		sf::Event event;
+		while (New_window.pollEvent(event))
+		{
+			// Close window: exit
+			if (event.type == sf::Event::Closed)
+				New_window.close();
+
+			if (event.type == sf::Event::MouseButtonPressed) {
+				if (event.mouseButton.y / 100 == 0)
+					return 1;
+				if (event.mouseButton.y / 100 == 1)
+					return 2;
+				if (event.mouseButton.y / 100 == 2)
+					return 3;
+				if (event.mouseButton.y / 100 == 3)
+					return 4;
+			}
+		}
+	}
+
+	return 0;
 }
 
 Input::~Input()
