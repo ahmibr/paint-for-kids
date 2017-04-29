@@ -26,11 +26,12 @@ CFigure* CCircle::copyClone() {
 void CCircle::Draw(Output* pOut) const
 {
 	//Call Output::DrawCirc to draw a Circle on the screen	
-	pOut->DrawCirc(center, radius, FigGfxInfo, Selected);
+	if (visible)
+		pOut->DrawCirc(center, radius, FigGfxInfo, Selected);
 }
 
 bool CCircle::isClicked(int x, int y)const {
-	return clickedInside(x, y) || clickedOnBorder(x, y);
+	return (clickedInside(x, y) || clickedOnBorder(x, y)) && visible;
 }
 
 bool CCircle::clickedInside(int x, int y)const {

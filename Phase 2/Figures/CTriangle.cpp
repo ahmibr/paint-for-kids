@@ -37,7 +37,8 @@ CFigure* CTriangle::copyClone() {
 void CTriangle::Draw(Output* pOut) const
 {
 	//Call Output::DrawTriangle to draw a triangle on the screen	
-	pOut->DrawTriangle(p1, p2, p3, FigGfxInfo, Selected);
+	if (visible)
+		pOut->DrawTriangle(p1, p2, p3, FigGfxInfo, Selected);
 }
 
 void CTriangle::Move(int dx, int dy) {
@@ -127,7 +128,7 @@ string CTriangle::getType() const
 
 bool CTriangle::isClicked(int x, int y) const
 {
-	return clickedInside(x, y) || clickedOnBorder(x, y);
+	return (clickedInside(x, y) || clickedOnBorder(x, y)) && visible;
 }
 
 bool CTriangle::clickedInside(int x, int y) const

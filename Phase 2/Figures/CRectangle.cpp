@@ -36,7 +36,8 @@ CFigure* CRectangle::copyClone() {
 void CRectangle::Draw(Output* pOut) const
 {
 	//Call Output::DrawRect to draw a rectangle on the screen
-	pOut->DrawRect(Corner1, Corner2, FigGfxInfo, Selected);
+	if (visible)
+		pOut->DrawRect(Corner1, Corner2, FigGfxInfo, Selected);
 }
 
 
@@ -116,7 +117,7 @@ string CRectangle::getType() const
 }
 
 bool CRectangle::isClicked(int x, int y) const {
-	return clickedInside(x, y) || clickedOnBorder(x, y);
+	return (clickedInside(x, y) || clickedOnBorder(x, y)) && visible;
 }
 
 bool CRectangle::clickedInside(int x, int y) const {

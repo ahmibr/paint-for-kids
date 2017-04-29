@@ -79,7 +79,7 @@ Output::Output()
 	//Draw a line behind toolbar
 	toolbarBackGround->setOutlineColor(sf::Color::White);
 	toolbarBackGround->setFillColor(sf::Color::White);
-	toolbarBackGround->setPosition(sf::Vector2f(0,0));
+	toolbarBackGround->setPosition(sf::Vector2f(0, 0));
 
 	for (int i = 0; i < DRAW_ITM_COUNT; i++)
 	{
@@ -302,7 +302,7 @@ void Output::DrawCirc(Point C, float R, GfxInfo CircGfxInfo, bool selected) cons
 
 	sf::CircleShape *circ = new sf::CircleShape(R);
 
-	circ->setPosition(sf::Vector2f(sf::Vector2f(C.x,C.y)));
+	circ->setPosition(sf::Vector2f(sf::Vector2f(C.x, C.y)));
 	circ->setOutlineColor(DrawingClr);
 	circ->setOutlineThickness(CircGfxInfo.BorderWdth);
 	circ->setOrigin(R, R);
@@ -393,12 +393,13 @@ void Output::UpdateWindow() const {
 
 	pWind->draw(*windowBackGround);
 
-	pWind->draw(*toolbarBackGround);
-
 	for (int i = 0; i < drawnObjects->size(); i++)
 	{
 		pWind->draw(*drawnObjects->at(i));
 	}
+
+	pWind->draw(*toolbarBackGround);
+
 	if (UI.InterfaceMode == MODE_DRAW)
 		for (int i = 0; i < DRAW_ITM_COUNT; i++)
 		{

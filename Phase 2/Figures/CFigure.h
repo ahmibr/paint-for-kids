@@ -14,6 +14,7 @@ protected:
 	GfxInfo FigGfxInfo;	//Figure graphis info
 	virtual bool clickedInside(int x, int y) const = 0;
 	virtual bool clickedOnBorder(int x, int y) const = 0;
+	bool visible;	//variable for play modes
 public:
 	CFigure();
 	CFigure(GfxInfo FigureGfxInfo);
@@ -29,6 +30,8 @@ public:
 	void ChngBrdrWidth(int width);		//changes the figure's border width
 	string getDrawClrName() const; //a function to return Draw color as a word (e.g green, yellow ... etc )
 	string getFillClrName() const; //a function to return Fill color as a word (e.g green, yellow ... etc )
+	void setVisible(bool visibilty);
+	bool isVisible();
 	virtual float getArea() const = 0;
 	virtual string getType() const = 0;
 	virtual Point getPoint() const = 0;		//get point to do some calculations

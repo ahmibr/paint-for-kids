@@ -35,7 +35,8 @@ CFigure* CLine::copyClone() {
 void CLine::Draw(Output* pOut) const
 {
 	//Call Output::DrawLine to draw a line on the screen	
-	pOut->DrawLine(p1, p2, FigGfxInfo, Selected);
+	if (visible)
+		pOut->DrawLine(p1, p2, FigGfxInfo, Selected);
 }
 
 void CLine::Move(int dx, int dy) {
@@ -125,7 +126,7 @@ string CLine::getType() const
 }
 
 bool CLine::isClicked(int x, int y) const {
-	return clickedInside(x, y);
+	return clickedInside(x, y) && visible;
 }
 
 bool CLine::clickedInside(int x, int y) const

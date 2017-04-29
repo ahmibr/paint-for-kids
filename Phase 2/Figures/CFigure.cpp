@@ -104,3 +104,12 @@ string CFigure::getFillClrName() const
 		return "Grey";
 }
 
+void CFigure::setVisible(bool visibilty)
+{
+	visible = visibilty;
+}
+
+bool CFigure::isVisible()
+{
+	return visible;
+}
