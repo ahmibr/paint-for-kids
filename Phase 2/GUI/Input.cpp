@@ -569,12 +569,19 @@ void Input::GetMouseMove(int &x, int &y) const {
 
 int Input::selectPickType()
 {
-	sf::RenderWindow New_window(sf::VideoMode(200, 350), "Pick ", sf::Style::Close);
-	sf::RectangleShape backgrnd(sf::Vector2f(200, 350));		//background color
+	sf::RenderWindow New_window(sf::VideoMode(300, 600), "Pick ", sf::Style::Close);
+	sf::RectangleShape backgrnd(sf::Vector2f(300, 600));		//background color
 	backgrnd.setFillColor(UI.BkGrndColor);
 
 	sf::Font f;
 	f.loadFromFile("Resource Files\\Arial.ttf");
+
+	sf::Texture image_types[4];
+	sf::Sprite sprite_types[4];
+	image_types[0].loadFromFile("images\\Play_By_Type.png");
+	image_types[1].loadFromFile("images\\Play_By_Color.png");
+	image_types[2].loadFromFile("images\\Play_By_TypeAndColor.png");
+	image_types[3].loadFromFile("images\\Play_By_Area.png");
 
 	sf::Text Pick[4];
 	Pick[0].setString("By Type");
@@ -590,8 +597,12 @@ int Input::selectPickType()
 		Pick[i].setFillColor(sf::Color::Black);
 		Pick[i].setFont(f);
 		Pick[i].setCharacterSize(20);
-		Pick[i].setPosition(0, i * 100);
+		Pick[i].setPosition(0, i * 150);
+		sprite_types[i].setTexture(image_types[i]);
+		sprite_types[i].setScale(0.5f, 0.5f);
+		sprite_types[i].setPosition(0, i * 150 + 25);
 		New_window.draw(Pick[i]);
+		New_window.draw(sprite_types[i]);
 	}
 	New_window.display();
 
@@ -606,13 +617,13 @@ int Input::selectPickType()
 				New_window.close();
 
 			if (event.type == sf::Event::MouseButtonPressed) {
-				if (event.mouseButton.y / 100 == 0)
+				if (event.mouseButton.y / 150 == 0)
 					return 1;
-				if (event.mouseButton.y / 100 == 1)
+				if (event.mouseButton.y / 150 == 1)
 					return 2;
-				if (event.mouseButton.y / 100 == 2)
+				if (event.mouseButton.y / 150 == 2)
 					return 3;
-				if (event.mouseButton.y / 100 == 3)
+				if (event.mouseButton.y / 150 == 3)
 					return 4;
 			}
 		}
