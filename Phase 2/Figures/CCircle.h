@@ -11,6 +11,7 @@ private:
 	virtual bool clickedInside(int x, int y) const;//utility function to check if clicked inside figure
 	virtual bool clickedOnBorder(int x, int y) const;//utility function to check if clicked on border of figure
 public:
+	CCircle();
 	CCircle(Point , float , GfxInfo FigureGfxInfo );
 	CCircle(const CCircle&);//copy constructor
 	virtual CFigure* copyClone(); //a clone to apply polymorphism on copy construtors
@@ -21,6 +22,7 @@ public:
 	virtual Point getPoint() const;		//get point to do some calculations
 	virtual float getArea() const;
 	virtual string getType() const;
+	virtual bool isOutOfBorder(int = 0, int = 0) const;
 	void setRadius(float);//function to set radius of circle
 	virtual bool isClicked(int x, int y) const;//function to check if given point is related to the figure
 	virtual string printInfo() const;

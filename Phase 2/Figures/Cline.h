@@ -13,6 +13,7 @@ private:
 	virtual bool clickedOnBorder(int x, int y) const;//utility function to check if clicked on border of figure
 	void updateInfo();//utility function to recalculate length after assigning points
 public:
+	CLine();
 	CLine(Point , Point, GfxInfo FigureGfxInfo );
 	CLine(const CLine&); //copy constructor
 	virtual CFigure* copyClone(); //a clone to apply polymorphism on copy construtors
@@ -24,6 +25,7 @@ public:
 	virtual Point getPoint() const;		//get point to do some calculations
 	virtual float getArea() const;
 	virtual string getType() const;
+	virtual bool isOutOfBorder(int = 0, int = 0) const;
 	void setPoints(Point, Point);//function to manage assigning points
 	virtual bool isClicked(int x, int y) const;//function to check if given point is related to the figure
 	virtual string printInfo() const;

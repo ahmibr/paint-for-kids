@@ -2,6 +2,11 @@
 
 int CFigure::count = 0;
 
+bool CFigure::OutOfBorder(Point p) const
+{
+	return p.x<0 || p.x>UI.width || p.y<UI.ToolBarHeight || p.y>UI.height - UI.StatusBarHeight;
+}
+
 CFigure::CFigure()
 {
 	ID = ++count;

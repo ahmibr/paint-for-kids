@@ -135,6 +135,7 @@
     <ClCompile Include="Actions\AddCircleAction.cpp" />
     <ClCompile Include="Actions\AddLineAction.cpp" />
     <ClCompile Include="Actions\AddTriangleAction.cpp" />
+    <ClCompile Include="Actions\ChangeBkgroundClr.cpp" />
     <ClCompile Include="Actions\ChangeFigColor.cpp" />
     <ClCompile Include="Actions\CopyAction.cpp" />
     <ClCompile Include="Actions\CutAction.cpp" />
@@ -144,7 +145,11 @@
     <ClCompile Include="Actions\MoveByDrag.cpp" />
     <ClCompile Include="Actions\MultiSelectAction.cpp" />
     <ClCompile Include="Actions\PasteAction.cpp" />
+    <ClCompile Include="Actions\PickHide.cpp" />
     <ClCompile Include="Actions\ResizeAction.cpp" />
+    <ClCompile Include="Actions\ResizeByDrag.cpp" />
+    <ClCompile Include="Actions\RotateAction.cpp" />
+    <ClCompile Include="Actions\RotateByDrag.cpp" />
     <ClCompile Include="Actions\SaveAction.cpp" />
     <ClCompile Include="Actions\SelectAction.cpp" />
     <ClCompile Include="Actions\SwitchToDrawMode.cpp" />
@@ -167,6 +172,7 @@
     <ClInclude Include="Actions\AddCircleAction.h" />
     <ClInclude Include="Actions\AddLineAction.h" />
     <ClInclude Include="Actions\AddTriangleAction.h" />
+    <ClInclude Include="Actions\ChangeBkgroundClr.h" />
     <ClInclude Include="Actions\ChangeFigColor.h" />
     <ClInclude Include="Actions\CopyAction.h" />
     <ClInclude Include="Actions\CutAction.h" />
@@ -176,7 +182,11 @@
     <ClInclude Include="Actions\MoveByDrag.h" />
     <ClInclude Include="Actions\MultiSelectAction.h" />
     <ClInclude Include="Actions\PasteAction.h" />
+    <ClInclude Include="Actions\PickHide.h" />
     <ClInclude Include="Actions\ResizeAction.h" />
+    <ClInclude Include="Actions\ResizeByDrag.h" />
+    <ClInclude Include="Actions\RotateAction.h" />
+    <ClInclude Include="Actions\RotateByDrag.h" />
     <ClInclude Include="Actions\SaveAction.h" />
     <ClInclude Include="Actions\SelectAction.h" />
     <ClInclude Include="Actions\SwitchToDrawMode.h" />

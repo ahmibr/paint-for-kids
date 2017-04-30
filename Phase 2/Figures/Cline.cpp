@@ -2,6 +2,10 @@
 
 
 
+CLine::CLine()
+{
+}
+
 CLine::CLine(Point P1, Point P2, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	setPoints(P1, P2);
@@ -123,6 +127,11 @@ float CLine::getArea() const
 string CLine::getType() const
 {
 	return "Line";
+}
+
+bool CLine::isOutOfBorder(int dx, int dy) const
+{
+	return OutOfBorder(Point(p1.x + dx, p1.y + dy)) || OutOfBorder(Point(p2.x + dx, p2.y + dy));
 }
 
 bool CLine::isClicked(int x, int y) const {

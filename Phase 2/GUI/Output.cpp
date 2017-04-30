@@ -420,7 +420,11 @@ void Output::UpdateWindow() const {
 	pWind->display();
 }
 
+
 //////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 Output::~Output()
 {
 	delete statusMessage;

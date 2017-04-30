@@ -48,9 +48,24 @@ void AddCircleAction::Execute()
 	//This action needs to read some parameters first
 	ReadActionParameters();
 	float radius = sqrt(pow(P1.x - P2.x, 2) + pow(P1.y - P2.y, 2));
-	//Create a rectangle with the parameters read from the user
+	Output* pOut = pManager->GetOutput();
+	bool checkRange = isOutOfBorder(Point(P1.x + radius, P1.y));
+	checkRange = checkRange || isOutOfBorder(Point(P1.x - radius, P1.y));
+	checkRange = checkRange || isOutOfBorder(Point(P1.x, P1.y + radius));
+	checkRange = checkRange || isOutOfBorder(Point(P1.x, P1.y - radius));
+	if (checkRange)
+	{
+		pOut->PrintMessage("Error! Out of border");
+		return;
+	}
+	//Create a circle with the parameters read from the user
 	CCircle *C = new CCircle(P1, radius, CircleGfxInfo);
 
 	//Add the circle to the list of figures
 	pManager->AddFigure(C);
+}
+
+bool AddCircleAction::isOutOfBorder(Point p) const
+{
+	return p.x<0 || p.x>UI.width || p.y<UI.ToolBarHeight || p.y>UI.height - UI.StatusBarHeight;
 }

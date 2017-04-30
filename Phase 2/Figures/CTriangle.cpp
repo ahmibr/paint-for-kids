@@ -2,6 +2,10 @@
 
 
 
+CTriangle::CTriangle()
+{
+}
+
 CTriangle::CTriangle(Point P1, Point P2, Point P3, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	setPoints(P1, P2, P3);
@@ -113,7 +117,12 @@ void CTriangle::Resize(float size) {
 }
 
 Point CTriangle::getPoint() const {
-	return p1;
+	if (p1.x <= p2.x&&p1.x <= p3.x)
+		return p1;
+	else if (p2.x <= p1.x&&p2.x <= p3.x)
+		return p2;
+	else
+		return p3;
 }
 
 float CTriangle::getArea() const
@@ -124,6 +133,12 @@ float CTriangle::getArea() const
 string CTriangle::getType() const
 {
 	return "Triangle";
+}
+
+bool CTriangle::isOutOfBorder(int dx, int dy) const
+{
+	return OutOfBorder(Point(p1.x + dx, p1.y + dy)) || OutOfBorder(Point(p2.x + dx, p2.y + dy))
+		|| OutOfBorder(Point(p3.x + dx, p3.y + dy));
 }
 
 bool CTriangle::isClicked(int x, int y) const

@@ -9,6 +9,7 @@ class AddCircleAction: public Action
 private:
 	Point P1, P2; //Circle points
 	GfxInfo CircleGfxInfo;
+	bool AddCircleAction::isOutOfBorder(Point p) const;
 public:
 	AddCircleAction(ApplicationManager *pApp);
 

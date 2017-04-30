@@ -14,6 +14,7 @@ private:
 	virtual bool clickedOnBorder(int x, int y) const;//utility function to check if clicked on border of figure
 	void updateInfo();//utility function to recalculate length and width after assigning points
 public:
+	CRectangle();
 	CRectangle(Point , Point, GfxInfo FigureGfxInfo );
 	CRectangle(const CRectangle&); //copy constructor
 	virtual CFigure* copyClone(); //a clone to apply polymorphism on copy construtors
@@ -26,6 +27,7 @@ public:
 	virtual Point getPoint() const;		//get point to do some calculations
 	virtual float getArea() const;
 	virtual string getType() const;
+	virtual bool isOutOfBorder(int = 0, int = 0) const;
 	virtual bool isClicked(int x, int y) const;
 	virtual string printInfo() const;
 	virtual void Save(ofstream &OutFile); //Save Rectangle parameters to the file

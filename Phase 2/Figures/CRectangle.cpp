@@ -1,5 +1,9 @@
 #include "CRectangle.h"
 
+CRectangle::CRectangle()
+{
+}
+
 CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	setPoints(P1, P2);
@@ -114,6 +118,11 @@ float CRectangle::getArea() const
 string CRectangle::getType() const
 {
 	return "Rectangle";
+}
+
+bool CRectangle::isOutOfBorder(int dx, int dy) const
+{
+	return OutOfBorder(Point(Corner1.x + dx, Corner1.y + dy)) || OutOfBorder(Point(Corner2.x + dx, Corner2.y + dy));
 }
 
 bool CRectangle::isClicked(int x, int y) const {

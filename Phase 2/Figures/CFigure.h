@@ -14,6 +14,7 @@ protected:
 	GfxInfo FigGfxInfo;	//Figure graphis info
 	virtual bool clickedInside(int x, int y) const = 0;
 	virtual bool clickedOnBorder(int x, int y) const = 0;
+	bool OutOfBorder(Point) const;//utillity function to check if point is out of border
 	bool visible;	//variable for play modes
 public:
 	CFigure();
@@ -32,6 +33,7 @@ public:
 	string getFillClrName() const; //a function to return Fill color as a word (e.g green, yellow ... etc )
 	void setVisible(bool visibilty);
 	bool isVisible();
+	virtual bool isOutOfBorder(int = 0, int = 0) const = 0; //check if figure will get out of border after moving. default is zero
 	virtual float getArea() const = 0;
 	virtual string getType() const = 0;
 	virtual Point getPoint() const = 0;		//get point to do some calculations

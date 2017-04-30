@@ -17,17 +17,18 @@ private:
 	float area(Point, Point, Point) const; //utility function to calculate area
 	void updateInfo();//utility function to recalculate lengthes after assigning points
 public:
+	CTriangle();
 	CTriangle(Point, Point, Point, GfxInfo FigureGfxInfo);
 	CTriangle(const CTriangle&); //copy constructor
 	virtual CFigure* copyClone(); //a clone to apply polymorphism on copy construtors
 	virtual void Draw(Output* pOut) const;
-	virtual void Move(int dx, int dy);
+	virtual void Move(int dx, int dy);//move shape by dx and dy
 	virtual void Rotate(float rotate);
 	virtual void Resize(float size);
-	//move shape by dx and dy
 	virtual Point getPoint() const;		//get point to do some calculations
 	virtual float getArea() const;
 	virtual string getType() const;
+	virtual bool isOutOfBorder(int = 0, int = 0) const;
 	void setPoints(Point, Point, Point);//function to manage assigning points
 	virtual bool isClicked(int x, int y) const;
 	virtual string printInfo() const;

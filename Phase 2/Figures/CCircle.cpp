@@ -1,5 +1,9 @@
 #include "CCircle.h"
 
+CCircle::CCircle()
+{
+}
+
 CCircle::CCircle(Point center, float radius, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	this->center = center;
@@ -78,6 +82,15 @@ float CCircle::getArea() const
 string CCircle::getType() const
 {
 	return "Circle";
+}
+
+bool CCircle::isOutOfBorder(int dx, int dy) const
+{
+	bool checkRange = OutOfBorder(Point(center.x + radius + dx, center.y + dy));
+	checkRange = checkRange || OutOfBorder(Point(center.x - radius + dx, center.y + dy));
+	checkRange = checkRange || OutOfBorder(Point(center.x + dx, center.y + radius + dy));
+	checkRange = checkRange || OutOfBorder(Point(center.x + dx, center.y - radius + dy));
+	return checkRange;
 }
 
 
