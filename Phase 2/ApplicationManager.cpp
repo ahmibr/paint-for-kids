@@ -267,3 +267,48 @@ ApplicationManager::~ApplicationManager()
 	delete pOut;
 	pData->destroyClipBoard(); //if the program is over and clipboard still has data
 }
+
+//Changes the color of selected objects if no selected figures return false
+bool ApplicationManager::ChangeSelectedColor(GfxInfo selectedColor)
+{
+	bool foundSelected = false;
+	for (int i = 0; i < FigCount; i++)//changing the colors of selected objects
+	{//if none found assign the flag found selectd to false
+		CFigure *curr = FigList[i];
+		if (curr->IsSelected()) {
+			foundSelected = true;
+			curr->ChngDrawClr(selectedColor.DrawClr);
+			curr->ChngFillClr(selectedColor.FillClr);
+			curr->ChngBrdrWidth(selectedColor.BorderWdth);
+		}
+	}
+	return foundSelected;
+}
+
+void ApplicationManager::SelectAllFigures() {
+	for (int i = 0; i < FigCount; i++)
+	{
+		FigList[i]->SetSelected(true);
+	}
+}
+
+void ApplicationManager::DeSelectAllFigures() {
+	for (int i = 0; i < FigCount; i++)
+	{
+		FigList[i]->SetSelected(false);
+	}
+}
+
+void ApplicationManager::ShowAllFigures() {
+	for (int i = 0; i < FigCount; i++)
+	{
+		FigList[i]->setVisible(true);
+	}
+}
+
+void ApplicationManager::HideAllFigures() {
+	for (int i = 0; i < FigCount; i++)
+	{
+		FigList[i]->setVisible(false);
+	}
+}

@@ -118,7 +118,7 @@ void LoadAction::Execute()
 				loadfile >> r;
 				loadfile >> gfx.BorderWdth;
 				readColors(gfx, false);
-				currentFigure = new CCircle(p1,r, gfx);
+				currentFigure = new CCircle(p1, r, gfx);
 				currentFigure->setID(ID);
 				pManager->AddFigure(currentFigure);
 			}
@@ -166,10 +166,11 @@ void LoadAction::ReadActionParameters()
 	string fileName = pIn->GetSrting(pOut);
 	if (fileName.rfind(".txt") != 4)
 		fileName += ".txt";
+	pOut->SetWindowTitle(fileName);
 	loadfile.open(fileName, ios::in);
 }
 
-void LoadAction::readColors(GfxInfo & GFX,bool isLine)
+void LoadAction::readColors(GfxInfo & GFX, bool isLine)
 {
 	string color;
 	loadfile >> color;

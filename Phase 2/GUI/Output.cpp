@@ -42,6 +42,7 @@ Output::Output()
 	stbar = new sf::RectangleShape(sf::Vector2f(UI.width, UI.height));
 	windowBackGround = new sf::RectangleShape(sf::Vector2f(UI.width, UI.height));
 
+	fileName = "Untitled";
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	//initializing boxes of status bar | window background | Menu items
 
@@ -96,7 +97,7 @@ Output::Output()
 	//Create the output window
 	pWind = CreateWind(UI.width, UI.height, UI.wx, UI.wy);
 	//Change the title
-	pWind->setTitle("Paint for Kids - Programming Techniques Project");
+	pWind->setTitle(fileName + " ,Paint for Kids - Programming Techniques Project");
 
 	//a vector to hold drawn objects on screen
 	drawnObjects = new vector<sf::Shape*>;
@@ -118,7 +119,7 @@ Input* Output::CreateInput() const
 
 sf::RenderWindow* Output::CreateWind(int w, int h, int x, int y) const
 {
-	sf::RenderWindow* pW = new sf::RenderWindow(sf::VideoMode(w, h), "Paint for Kids - Programming Techniques Project", sf::Style::Close);
+	sf::RenderWindow* pW = new sf::RenderWindow(sf::VideoMode(w, h), fileName + " ,Paint for Kids - Programming Techniques Project", sf::Style::Close);
 	pW->setPosition(sf::Vector2i(x, y));
 
 	windowBackGround->setOutlineColor(UI.BkGrndColor);
@@ -386,6 +387,13 @@ void Output::DrawTriangle(Point P1, Point P2, Point P3, GfxInfo TriangleGfxInfo,
 
 	//UpdateWindow();
 }
+
+void Output::SetWindowTitle(string title) {
+	fileName = title;
+
+	pWind->setTitle(fileName + " ,Paint for Kids - Programming Techniques Project");
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////
 void Output::UpdateWindow() const {
 
@@ -419,6 +427,7 @@ void Output::UpdateWindow() const {
 
 	pWind->display();
 }
+
 
 
 //////////////////////////////////////////////////////////////////////////////////////////

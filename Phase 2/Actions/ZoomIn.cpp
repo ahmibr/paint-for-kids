@@ -4,6 +4,7 @@
 
 #include "..\GUI\Output.h"
 
+#include "SelectAction.h"
 
 ZoomIn::ZoomIn(ApplicationManager * pApp) :Action(pApp), maxNumberOfZooms(3)
 {

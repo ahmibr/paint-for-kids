@@ -8,13 +8,13 @@ class Output	//The application manager should have a pointer to this class
 private:
 
 	//private update window for sfml
-	
+
 
 	//Added by us ------- CHOSEN AS POINTERS BECAUSE THEY ARE USED IN CONST FUNCTIONS
 	sf::RenderWindow* pWind;	//Pointer to the Graphics Window
 	sf::Text *statusMessage;		//message text
 	sf::Font messageFont;
-	
+
 	sf::RectangleShape *toolbarBackGround;
 	sf::RectangleShape *toolbarLine;
 	sf::RectangleShape *windowBackGround;			//background rectangle
@@ -26,6 +26,7 @@ private:
 
 	vector<sf::Shape*> *drawnObjects;	//vector to redraw shapes any new events
 
+	string fileName;
 	//////////////////////////////////////////////////////////////////////////////////
 
 public:
@@ -39,7 +40,7 @@ public:
 	Input* CreateInput() const; //creates a pointer to the Input object	
 	void ClearStatusBar() const;	//Clears the status bar
 	void ClearDrawArea() const;	//Clears the drawing area
-	
+
 
 								// -- Figures Drawing functions
 	void DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected = false) const;  //Draw a rectangle
@@ -48,7 +49,7 @@ public:
 	void ZoomIn();
 	void ZoomOut();
 	void DrawTriangle(Point P1, Point P2, Point P3, GfxInfo TriangleGfxInfo, bool selected) const; //Draw a triangle
-
+	void SetWindowTitle(string title);
 
 	void PrintMessage(string msg) const;	//Print a message on Status bar
 

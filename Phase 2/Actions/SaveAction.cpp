@@ -99,5 +99,6 @@ void SaveAction::ReadActionParameters()
 	string fileName = pIn->GetSrting(pOut);
 	if (fileName.rfind(".txt") != 4)
 		fileName += ".txt";
+	pOut->SetWindowTitle(fileName);
 	savefile.open(fileName, ios::out);
 }

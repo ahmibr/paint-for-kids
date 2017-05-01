@@ -5,6 +5,7 @@
 
 class ChangeFigColor : public Action
 {
+	GfxInfo selectedColor;
 
 public:
 	ChangeFigColor(ApplicationManager *pApp);

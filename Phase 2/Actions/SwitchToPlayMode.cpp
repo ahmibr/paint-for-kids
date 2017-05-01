@@ -14,10 +14,10 @@ void SwitchToPlayMode::ReadActionParameters()
 	Input* pIn = pManager->GetInput();
 
 	pOut->PrintMessage("Switch to play mode ");
-	pOut->ClearDrawArea();                  //no clearing happens
+
+	pManager->DeSelectAllFigures();
+
 	pOut->CreatePlayToolBar();
-	
-	//pOut->ClearStatusBar();
 
 }
 

@@ -15,7 +15,9 @@ void SwitchToDrawMode::ReadActionParameters()
 
 	//load the original graph 
 	pOut->PrintMessage("Switch to Draw mode ");
-	pOut->ClearDrawArea();
+
+	pManager->ShowAllFigures();
+
 	pOut->CreateDrawToolBar();
 	//pOut->ClearStatusBar();
 

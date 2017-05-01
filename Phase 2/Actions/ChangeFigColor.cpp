@@ -18,35 +18,29 @@ ChangeFigColor::~ChangeFigColor()
 //Execute the action
 void ChangeFigColor::Execute()
 {
+	ReadActionParameters();
+
+	bool foundSelected = pManager->ChangeSelectedColor(selectedColor);
+
+	//if none found selected change the color of coming drawing colors
+	if (!foundSelected) {
+		UI.PenWidth = selectedColor.BorderWdth;
+		UI.FillColor = selectedColor.FillClr;
+		UI.DrawColor = selectedColor.DrawClr;
+	}
+}
+
+void ChangeFigColor::ReadActionParameters()
+{
 	Output* pOut = pManager->GetOutput();
 
 	Input* pIn = pManager->GetInput();
-
-	GfxInfo selectedColor;
 
 	selectedColor.BorderWdth = pOut->getCrntPenWidth();
 	selectedColor.FillClr = pOut->getCrntFillColor();
 	selectedColor.DrawClr = pOut->getCrntDrawColor();
 	selectedColor.isFilled = pOut->getCrntIsFilled();
 
+	//previously written function that shows paleete and change the colors of upcoming
 	pIn->GraphicsInfo(selectedColor);
-
-	UI.PenWidth = selectedColor.BorderWdth;
-	UI.FillColor = selectedColor.FillClr;
-	UI.DrawColor = selectedColor.DrawClr;
-
-	for (int i = 0; i < pManager->GetFigureCount(); i++)
-	{
-		CFigure *curr = pManager->GetFigure(i);
-		if (curr->IsSelected()) {
-			curr->ChngDrawClr(UI.DrawColor);
-			curr->ChngFillClr(UI.FillColor);
-			curr->ChngBrdrWidth(UI.PenWidth);
-		}
-	}
-}
-
-void ChangeFigColor::ReadActionParameters()
-{
-	//empty because not needed here
 }

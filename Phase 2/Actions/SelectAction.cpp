@@ -24,10 +24,7 @@ void SelectAction::Execute()
 	ReadActionParameters();
 	Output* pOut = pManager->GetOutput();
 
-	//had to loop, because some actions (Delete, Cut, Paste)
-	//interupts with number of selected items
-	for (int i = 0; i < pManager->GetFigureCount(); i++) //get current count of selected items
-		pManager->GetFigure(i)->SetSelected(false);
+	pManager->DeSelectAllFigures();
 
 	if (pFigure) { //if he clicked on a figure, not an empty area
 		pFigure->SetSelected(!(pFigure->IsSelected())); //toggle the state of figure
