@@ -129,6 +129,11 @@ string CLine::getType() const
 	return "Line";
 }
 
+string CLine::getFillClrName() const
+{
+	return getDrawClrName();
+}
+
 bool CLine::isOutOfBorder(int dx, int dy) const
 {
 	return OutOfBorder(Point(p1.x + dx, p1.y + dy)) || OutOfBorder(Point(p2.x + dx, p2.y + dy));

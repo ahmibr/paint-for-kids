@@ -29,8 +29,8 @@ public:
 	void ChngDrawClr(sf::Color Dclr);	//changes the figure's drawing color
 	void ChngFillClr(sf::Color Fclr);	//changes the figure's filling color
 	void ChngBrdrWidth(int width);		//changes the figure's border width
-	string getDrawClrName() const; //a function to return Draw color as a word (e.g green, yellow ... etc )
-	string getFillClrName() const; //a function to return Fill color as a word (e.g green, yellow ... etc )
+	string getDrawClrName() const; //a function to return Draw color as a word (e.g Green, Yellow ... etc )
+	virtual string getFillClrName() const; //a function to return Fill color as a word (e.g Green, Yellow ... etc )
 	void setVisible(bool visibilty);
 	bool isVisible();
 	virtual bool isOutOfBorder(int = 0, int = 0) const = 0; //check if figure will get out of border after moving. default is zero

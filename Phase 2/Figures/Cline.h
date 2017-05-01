@@ -25,6 +25,7 @@ public:
 	virtual Point getPoint() const;		//get point to do some calculations
 	virtual float getArea() const;
 	virtual string getType() const;
+	virtual string getFillClrName() const; //overrided from base, as line doesn't have fill color
 	virtual bool isOutOfBorder(int = 0, int = 0) const;
 	void setPoints(Point, Point);//function to manage assigning points
 	virtual bool isClicked(int x, int y) const;//function to check if given point is related to the figure

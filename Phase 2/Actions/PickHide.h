@@ -4,14 +4,15 @@
 //Pick & Hide Action class
 class PickHide : public Action
 {
-	int vCount, invCount, PickType, x, y;
+	int vCount, invCount, PickType, x, y, figures, pickedFigures;
 	string str;
-	bool byType();
-	bool byColor();
-	bool byType_Color();
-	bool byArea();
+	void byType();
+	void byColor();
+	void byType_Color();
+	void byArea();
 	CFigure* current;
 	CFigure* choosenFig;
+	CFigure* fig;
 public:
 	PickHide(ApplicationManager *pApp);
 
