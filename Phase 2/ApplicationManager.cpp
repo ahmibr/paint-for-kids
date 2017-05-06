@@ -366,12 +366,15 @@ void ApplicationManager::RandomizePositionsRight(CFigure** figures) {
 
 //scales the figures to full the screen
 void ApplicationManager::RestoreFromHalf() {
+	int maxID = 0;
 	for (int i = 0; i < FigCount; i++)
 	{
 		FigList[i]->setTempCord();
+		if (FigList[i]->getID() > maxID)
+			maxID = FigList[i]->getID();
 	}
 	if (FigCount > 0) {
-		CFigure::setCount(ceil(CFigure::getCount() / 2));
+		CFigure::setCount(maxID);
 	}
 }
 

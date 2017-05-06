@@ -1,10 +1,11 @@
 Blue  Green  Beige  
-8
+9
 Rectangle  1  57  116  270  286  3  Blue  Green  
 Circle  2  1231  95  72.8011  7  Red  Yellow  
 Triangle  3  344  150  568  260  526  407  7  Red  Yellow  
 Line  4  187  361  586  608  7  Black  
 Rectangle  5  639  169  765  267  7  Orange  White  
 Rectangle  6  689  342  1066  628  7  Black  NO_Fill  
-Circle  8  131  557  72.8011  6  Blue  Turquoise  
-Circle  11  989  193  69.6348  7  Red  Grey  
+Circle  8  131  557  72.8011  6  Blue  NO_Fill  
+Circle  11  989  193  69.6348  7  Red  NO_Fill  
+Line  12  779  306  1054  280  3  Blue  
