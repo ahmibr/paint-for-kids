@@ -25,7 +25,9 @@ public:
 	virtual bool isClicked(int x, int y) const = 0; //function to check if given point is related to the figure
 	virtual void Draw(Output* pOut) const = 0;		//Draw the figure
 	int getID(); //get ID
-	void setID(int); //force set ID (Caution: Do it only in Load, otherwise it'll break uniqness of ID)
+	void setID(int); //force set ID (Caution:- may break uniqness of ID)
+	static void setCount(int); //force set count (Caution:- may break uniqness of ID)
+	static int getCount(); //returns number of instances made
 	void ChngDrawClr(sf::Color Dclr);	//changes the figure's drawing color
 	void ChngFillClr(sf::Color Fclr);	//changes the figure's filling color
 	void ChngBrdrWidth(int width);		//changes the figure's border width
@@ -45,6 +47,14 @@ public:
 	virtual void Rotate(float rotate) = 0;	//Rotate the figure
 	virtual void Resize(float size) = 0;	//Resize the figure
 	virtual void Move(int dx, int dy) = 0;		//Move the figure
+
+	virtual int getOriginXpos() = 0;		//return the xops
+	virtual int getOriginYpos() = 0;		//return the yops
+	virtual int getWidth() = 0;		//return the yops of
+	virtual int getHeight() = 0;		//return the yops of
+
+	virtual void setCurrCordTemp() = 0;		//sets current position temperorly
+	virtual void setTempCord() = 0;		//set the temperoly position saved to position
 
 	virtual void Save(ofstream &OutFile) = 0;	//Save the figure parameters to the file
 	//virtual void Load(ifstream &Infile) = 0;	//Load the figure parameters to the file

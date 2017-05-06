@@ -185,7 +185,7 @@ ActionType Input::GetUserAction() const
 			switch (ClickedItemOrder)
 			{
 			case ITM_Pick: return PICK;
-			case ITM_Find: return FIND;
+			case ITM_Find: return SCRAMBLE_FIND;
 			case ITM_Draw: return TO_DRAW;
 			case ITM_EXIT2: return EXIT;
 

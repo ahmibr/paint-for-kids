@@ -4,6 +4,9 @@
 
 CTriangle::CTriangle()
 {
+	lengthP1P2 = 0;
+	lengthP1P3 = 0;
+	lengthP2P3 = 0;
 }
 
 CTriangle::CTriangle(Point P1, Point P2, Point P3, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
@@ -89,8 +92,13 @@ void CTriangle::Resize(float size) {
 	Point orgin;
 	Point point1, point2, point3;
 
-	orgin.x = ((p1.x + p2.x + p3.x) / 3);
-	orgin.y = ((p1.y + p2.y + p3.y) / 3);
+	//orgin.x = ((p1.x + p2.x + p3.x) / 3);
+	//orgin.y = ((p1.y + p2.y + p3.y) / 3);
+
+	orgin.x = (p2.x + p3.x) / 2;
+	orgin.x = (p1.x + orgin.x) / 2;
+	orgin.y = (p2.y + p3.y) / 2;
+	orgin.y = (p1.y + orgin.y) / 2;
 
 	float op1, op2, op3;
 	op1 = sqrt(pow(p1.x - orgin.x, 2) + pow(p1.y - orgin.y, 2));
@@ -214,4 +222,55 @@ void CTriangle::Save(ofstream & OutFile)
 	OutFile << FigGfxInfo.BorderWdth << "  ";
 	OutFile << getDrawClrName() << "  ";
 	OutFile << getFillClrName() << "  ";
+}
+
+int CTriangle::getOriginXpos() {
+	int orginx = (p2.x + p3.x) / 2;
+	orginx = (p1.x + orginx) / 2;
+	return orginx - 1;
+}
+
+int CTriangle::getOriginYpos() {
+	int orginy = (p2.y + p3.y) / 2;
+	orginy = (p1.y + orginy) / 2;
+	return orginy - 1;
+}
+
+int CTriangle::getHeight() {
+
+	int max, min;
+
+	max = p1.y;
+	if (max < p2.y)max = p2.y;
+	if (max < p3.y)max = p3.y;
+
+	min = p1.y;
+	if (min < p2.y)max = p2.y;
+	if (min < p3.y)max = p3.y;
+
+	return max - min;
+}
+
+int CTriangle::getWidth() {
+	int max, min;
+
+	max = p1.x;
+	if (max < p2.x)max = p2.x;
+	if (max < p3.x)max = p3.x;
+
+	min = p1.x;
+	if (min < p2.x)max = p2.x;
+	if (min < p3.x)max = p3.x;
+
+	return max - min;
+}
+
+void CTriangle::setCurrCordTemp() {
+	tempP1 = p1;
+	tempP2 = p2;
+	tempP3 = p3;
+}
+
+void CTriangle::setTempCord() {
+	setPoints(tempP1, tempP2, tempP3);
 }

@@ -44,7 +44,7 @@ enum ActionType //The actions supported (you can add more if needed)
 	ROTATE_DRAG,
 
 	PICK,			//PLAY MODE
-	FIND
+	SCRAMBLE_FIND
 };
 
 struct Point	//To be used for figures points

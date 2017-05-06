@@ -2,6 +2,7 @@
 
 CCircle::CCircle()
 {
+	radius = 0;
 }
 
 CCircle::CCircle(Point center, float radius, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
@@ -119,3 +120,28 @@ void CCircle::Save(ofstream & OutFile)
 	OutFile << getFillClrName() << "  ";
 }
 
+int CCircle::getOriginXpos() {
+	return center.x;
+}
+
+int CCircle::getOriginYpos() {
+	return center.y;
+}
+
+int CCircle::getHeight() {
+	return radius * 2;
+}
+
+int CCircle::getWidth() {
+	return radius * 2;
+}
+
+void CCircle::setCurrCordTemp() {
+	tempCenter = center;
+	tempRaduis = radius;
+}
+
+void CCircle::setTempCord() {
+	center = tempCenter;
+	radius = tempRaduis;
+}

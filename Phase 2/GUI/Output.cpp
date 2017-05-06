@@ -320,7 +320,7 @@ void Output::DrawCirc(Point C, float R, GfxInfo CircGfxInfo, bool selected) cons
 	//UpdateWindow();
 
 }
-
+//Zoom in by 10% every time called
 void Output::ZoomIn() {
 	int size = drawnObjects->size();	//number of drawn objects
 
@@ -341,6 +341,7 @@ void Output::ZoomIn() {
 	UpdateWindow();
 }
 
+//Zoom out by 10% every time called
 void Output::ZoomOut() {
 	int size = drawnObjects->size();	//number of drawn objects
 

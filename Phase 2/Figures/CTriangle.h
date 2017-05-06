@@ -16,6 +16,7 @@ private:
 	virtual bool clickedOnBorder(int x, int y) const;//utility function to check if clicked on border of figure
 	float area(Point, Point, Point) const; //utility function to calculate area
 	void updateInfo();//utility function to recalculate lengthes after assigning points
+	Point tempP1, tempP2, tempP3;
 public:
 	CTriangle();
 	CTriangle(Point, Point, Point, GfxInfo FigureGfxInfo);
@@ -33,6 +34,12 @@ public:
 	virtual bool isClicked(int x, int y) const;
 	virtual string printInfo() const;
 	virtual void Save(ofstream &OutFile); //Save Triangle parameters to the file
+	int getOriginXpos();
+	int getOriginYpos();
+	int getHeight();
+	int getWidth();
+	void setCurrCordTemp();
+	void setTempCord();
 };
 
 #endif

@@ -6,6 +6,14 @@
 
 #include "SelectAction.h"
 
+void ZoomIn::UpdateFigures(Output * pOut) {
+	pManager->UpdateInterface();
+	for (int i = 0; i < numberOfZooms; i++)
+	{
+		pOut->ZoomIn();
+	}
+}
+
 ZoomIn::ZoomIn(ApplicationManager * pApp) :Action(pApp), maxNumberOfZooms(3)
 {
 	numberOfZooms = 0;
@@ -23,16 +31,32 @@ void ZoomIn::Execute()
 
 	Input* pIn = pManager->GetInput();
 
+	ActionType action = ZOOM_IN;
+
 	do {
-
-		pOut->PrintMessage("Zooming In, Click AnyWhere to Exit");
-
-		if (numberOfZooms < maxNumberOfZooms) {
-			pOut->ZoomIn();
-			numberOfZooms++;
+		if (action == CHNG_DRAW_CLR) {
+			pManager->ExecuteAction(action);
+			UpdateFigures(pOut);
+		}
+		else if (action == CHNG_BK_CLR) {
+			pManager->ExecuteAction(action);
+			UpdateFigures(pOut);
+		}
+		else if (action == ZOOM_IN) {
+			pOut->PrintMessage("Zooming In, Click AnyWhere to Exit");
+			if (numberOfZooms < maxNumberOfZooms) {
+				pOut->ZoomIn();
+				numberOfZooms++;
+			}
+		}
+		else
+		{
+			break;
 		}
 
-	} while (pIn->GetUserAction() == ZOOM_IN);
+		action = pIn->GetUserAction();
+
+	} while (true);
 
 	pOut->ClearStatusBar();
 }
@@ -41,3 +65,4 @@ void ZoomIn::ReadActionParameters()
 {
 	//empty because not needed here
 }
+

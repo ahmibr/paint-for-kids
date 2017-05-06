@@ -151,6 +151,7 @@
     <ClCompile Include="Actions\RotateAction.cpp" />
     <ClCompile Include="Actions\RotateByDrag.cpp" />
     <ClCompile Include="Actions\SaveAction.cpp" />
+    <ClCompile Include="Actions\ScrambleFind.cpp" />
     <ClCompile Include="Actions\SelectAction.cpp" />
     <ClCompile Include="Actions\SwitchToDrawMode.cpp" />
     <ClCompile Include="Actions\SwitchToPlayMode.cpp" />
@@ -188,6 +189,7 @@
     <ClInclude Include="Actions\RotateAction.h" />
     <ClInclude Include="Actions\RotateByDrag.h" />
     <ClInclude Include="Actions\SaveAction.h" />
+    <ClInclude Include="Actions\ScrambleFind.h" />
     <ClInclude Include="Actions\SelectAction.h" />
     <ClInclude Include="Actions\SwitchToDrawMode.h" />
     <ClInclude Include="Actions\SwitchToPlayMode.h" />

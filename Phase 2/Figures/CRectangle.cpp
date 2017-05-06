@@ -2,6 +2,8 @@
 
 CRectangle::CRectangle()
 {
+	length = 0;
+	width = 0;
 }
 
 CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
@@ -187,4 +189,29 @@ void CRectangle::Save(ofstream & OutFile)
 	OutFile << FigGfxInfo.BorderWdth << "  ";
 	OutFile << getDrawClrName() << "  ";
 	OutFile << getFillClrName() << "  ";
+}
+
+int CRectangle::getOriginXpos() {
+	return (Corner1.x + Corner2.x) / 2;
+}
+
+int CRectangle::getOriginYpos() {
+	return (Corner1.y + Corner2.y) / 2;
+}
+
+int CRectangle::getHeight() {
+	return abs(Corner1.y - Corner2.y);
+}
+
+int CRectangle::getWidth() {
+	return abs(Corner1.x - Corner2.x);
+}
+
+void CRectangle::setCurrCordTemp() {
+	tempCorner1 = Corner1;
+	tempCorner2 = Corner2;
+}
+
+void CRectangle::setTempCord() {
+	setPoints(tempCorner1, tempCorner2);
 }
