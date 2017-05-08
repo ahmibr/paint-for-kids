@@ -11,7 +11,6 @@ SwitchToDrawMode::SwitchToDrawMode(ApplicationManager *pApp) :Action(pApp)
 void SwitchToDrawMode::ReadActionParameters()
 {
 	Output* pOut = pManager->GetOutput();
-	Input* pIn = pManager->GetInput();
 
 	//load the original graph 
 	pOut->PrintMessage("Switch to Draw mode ");

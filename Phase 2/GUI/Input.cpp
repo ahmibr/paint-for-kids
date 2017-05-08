@@ -74,12 +74,15 @@ ActionType Input::GetUserAction() const
 					y = userEvent->mouseButton.y;
 					pressed = true;
 				}
+				else if (userEvent->key.code == sf::Mouse::Right && UI.InterfaceMode == MODE_DRAW) {
+					return POP_MENU;
+				}
 			}
 
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::LControl))
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) && UI.InterfaceMode == MODE_DRAW)
 				return MULTI_SELECT;
 
-			if (userEvent->type == sf::Event::MouseWheelScrolled) {
+			if (userEvent->type == sf::Event::MouseWheelScrolled && UI.InterfaceMode == MODE_DRAW) {
 				if (userEvent->mouseWheelScroll.delta > 0) {
 					return ZOOM_IN;
 				}
@@ -89,32 +92,37 @@ ActionType Input::GetUserAction() const
 			}
 
 			if (userEvent->type == sf::Event::KeyPressed) {
-				if (userEvent->key.code == sf::Keyboard::C && userEvent->key.control) {
-					return COPY;
-				}
-				if (userEvent->key.code == sf::Keyboard::X && userEvent->key.control) {
-					return CUT;
-				}
-				if (userEvent->key.code == sf::Keyboard::V && userEvent->key.control) {
-					return PASTE;
-				}
-				if (userEvent->key.code == sf::Keyboard::Z && userEvent->key.control) {
-					return UNDO;
-				}
-				if (userEvent->key.code == sf::Keyboard::Y && userEvent->key.control) {
-					return REDO;
-				}
-				if (userEvent->key.code == sf::Keyboard::D) {
-					return MOVE_DRAG;
-				}
-				if (userEvent->key.code == sf::Keyboard::Delete) {
-					return DEL;
-				}
-				if (userEvent->key.code == sf::Keyboard::S) {
-					return RESIZE_DRAG;
-				}
-				if (userEvent->key.code == sf::Keyboard::R) {
-					return ROTATE_DRAG;
+				if (UI.InterfaceMode == MODE_DRAW) {
+					if (UI.zoomFactor == 1) {
+						if (userEvent->key.code == sf::Keyboard::C && userEvent->key.control) {
+							return COPY;
+						}
+						if (userEvent->key.code == sf::Keyboard::X && userEvent->key.control) {
+							return CUT;
+						}
+						if (userEvent->key.code == sf::Keyboard::V && userEvent->key.control) {
+							return PASTE;
+						}
+					}
+
+					if (userEvent->key.code == sf::Keyboard::Z && userEvent->key.control) {
+						return UNDO;
+					}
+					if (userEvent->key.code == sf::Keyboard::Y && userEvent->key.control) {
+						return REDO;
+					}
+					if (userEvent->key.code == sf::Keyboard::D) {
+						return MOVE_DRAG;
+					}
+					if (userEvent->key.code == sf::Keyboard::Delete) {
+						return DEL;
+					}
+					if (userEvent->key.code == sf::Keyboard::S) {
+						return RESIZE_DRAG;
+					}
+					if (userEvent->key.code == sf::Keyboard::R) {
+						return ROTATE_DRAG;
+					}
 				}
 			}
 		}
@@ -134,19 +142,14 @@ ActionType Input::GetUserAction() const
 
 			switch (ClickedItemOrder)
 			{
-			case ITM_RECT: return DRAW_RECT;
-			case ITM_CIRC: return DRAW_CIRC;
-			case ITM_Tri: return DRAW_TRI;
-			case ITM_Line: return DRAW_LINE;
+
 			case ITM_Color: return CHNG_DRAW_CLR;
 			case ITM_BackGround: return CHNG_BK_CLR;
 			case ITM_Resize: return RESIZE;
 			case ITM_Rotate: return ROTATE;
 			case ITM_Save: return SAVE;
 			case ITM_Load: return LOAD;
-			case ITM_Cut: return CUT;
-			case ITM_Copy: return COPY;
-			case ITM_Paste: return PASTE;
+
 			case ITM_Front: return BRNG_FRNT;
 			case ITM_Back: return SEND_BACK;
 			case ITM_Del: return DEL;
@@ -154,8 +157,25 @@ ActionType Input::GetUserAction() const
 			case ITM_Redo: return REDO;
 			case ITM_Play: return TO_PLAY;
 			case ITM_EXIT: return EXIT;
+			}
 
-			default: return EMPTY;	//A click on empty place in desgin toolbar
+			if (UI.zoomFactor == 1) {
+				switch (ClickedItemOrder)
+				{
+
+				case ITM_RECT: return DRAW_RECT;
+				case ITM_CIRC: return DRAW_CIRC;
+				case ITM_Tri: return DRAW_TRI;
+				case ITM_Line: return DRAW_LINE;
+				case ITM_Cut: return CUT;
+				case ITM_Copy: return COPY;
+				case ITM_Paste: return PASTE;
+
+				default: return EMPTY;	//A click on empty place in desgin toolbar
+				}
+			}
+			else {
+				return ZOOM_NOT_SUPPORTED;
 			}
 		}
 

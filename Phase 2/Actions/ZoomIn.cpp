@@ -27,38 +27,28 @@ ZoomIn::~ZoomIn()
 //Execute the action
 void ZoomIn::Execute()
 {
+	if (UI.zoomFactor <= 1.3) {
+		UI.zoomFactor += 0.1;
+	}
+
 	Output* pOut = pManager->GetOutput();
 
-	Input* pIn = pManager->GetInput();
+	int size = 7;
+	int *UnSupportedActions = new int[size];
+	UnSupportedActions[0] = 0;
+	UnSupportedActions[1] = 1;
+	UnSupportedActions[2] = 2;
+	UnSupportedActions[3] = 3;
+	UnSupportedActions[4] = 10;
+	UnSupportedActions[5] = 11;
+	UnSupportedActions[6] = 12;
 
-	ActionType action = ZOOM_IN;
+	if (UI.zoomFactor != 1)
+		pOut->dimIcons(UnSupportedActions, size);
+	else
+		pOut->brightIcons(UnSupportedActions, size);
 
-	do {
-		if (action == CHNG_DRAW_CLR) {
-			pManager->ExecuteAction(action);
-			UpdateFigures(pOut);
-		}
-		else if (action == CHNG_BK_CLR) {
-			pManager->ExecuteAction(action);
-			UpdateFigures(pOut);
-		}
-		else if (action == ZOOM_IN) {
-			pOut->PrintMessage("Zooming In, Click AnyWhere to Exit");
-			if (numberOfZooms < maxNumberOfZooms) {
-				pOut->ZoomIn();
-				numberOfZooms++;
-			}
-		}
-		else
-		{
-			break;
-		}
-
-		action = pIn->GetUserAction();
-
-	} while (true);
-
-	pOut->ClearStatusBar();
+	delete[] UnSupportedActions;
 }
 
 void ZoomIn::ReadActionParameters()

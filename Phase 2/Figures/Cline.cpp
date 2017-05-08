@@ -39,9 +39,20 @@ CFigure* CLine::copyClone() {
 
 void CLine::Draw(Output* pOut) const
 {
+	Point drawingP1;
+	drawingP1.x = (-UI.width / 2 + p1.x)* UI.zoomFactor + UI.width / 2;
+	drawingP1.y = (-UI.height / 2 + p1.y)* UI.zoomFactor + UI.height / 2;
+
+	Point drawingP2;
+	drawingP2.x = (-UI.width / 2 + p2.x)* UI.zoomFactor + UI.width / 2;
+	drawingP2.y = (-UI.height / 2 + p2.y)* UI.zoomFactor + UI.height / 2;
+
+	GfxInfo drawingInfo = FigGfxInfo;
+	drawingInfo.BorderWdth *= UI.zoomFactor;
+
 	//Call Output::DrawLine to draw a line on the screen	
 	if (visible)
-		pOut->DrawLine(p1, p2, FigGfxInfo, Selected);
+		pOut->DrawLine(drawingP1, drawingP2, drawingInfo, Selected);
 }
 
 void CLine::Move(int dx, int dy) {

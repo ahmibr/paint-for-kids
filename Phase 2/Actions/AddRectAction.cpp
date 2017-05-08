@@ -35,6 +35,8 @@ void AddRectAction::ReadActionParameters()
 	RectGfxInfo.BorderWdth = pOut->getCrntPenWidth();
 	RectGfxInfo.isFilled = pOut->getCrntIsFilled();
 
+	pOut->PlayRectangleSound();
+
 	pOut->ClearStatusBar();
 
 }

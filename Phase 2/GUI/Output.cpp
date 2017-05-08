@@ -1,6 +1,7 @@
 #include "Output.h"
 #include <cmath>
 #include<SFML\Graphics.hpp>
+#include<SFML\Audio.hpp>
 
 #define PI acos(-1)
 Output::Output()
@@ -12,6 +13,9 @@ Output::Output()
 	UI.height = 720;
 	UI.wx = 5;
 	UI.wy = 5;
+
+	UI.PopMenuHeight = 5 * 50;
+	UI.PopMenuWidth = 150;
 
 	UI.StatusBarHeight = 50;
 	UI.ToolBarHeight = 50;
@@ -33,6 +37,19 @@ Output::Output()
 	statusMessage = new sf::Text("", messageFont, 20);
 	statusMessage->setFillColor(UI.MsgColor);
 	statusMessage->setPosition(sf::Vector2f(0, UI.height - UI.StatusBarHeight));
+
+
+
+	shapeBuffer[0].loadFromFile("SoundFiles//RectangleSound.wav");
+	shapeBuffer[1].loadFromFile("SoundFiles//CircleSound.wav");
+	shapeBuffer[2].loadFromFile("SoundFiles//TriangleSound.wav");
+	shapeBuffer[3].loadFromFile("SoundFiles//LineSound.wav");
+
+	for (int i = 0; i < 4; i++)
+	{
+		shapeSound[i].setBuffer(shapeBuffer[i]);
+	}
+
 
 	//initailizing the line under toolbar
 	toolbarLine = new sf::RectangleShape((sf::Vector2f(UI.width, 3)));
@@ -265,6 +282,10 @@ void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 	//	UpdateWindow();
 }
 
+void Output::PlayRectangleSound() {
+	shapeSound[0].play();
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 void Output::DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected) const
@@ -290,7 +311,37 @@ void Output::DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected) co
 	//	UpdateWindow();
 }
 
+void Output::PlayLineSound() {
+	shapeSound[3].play();
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////
+void Output::dimIcons(int *iconsIndex, int size) {
+	for (int i = 0; i < size; i++)
+	{
+		sf::Color col = MenuItemSprites[iconsIndex[i]].getColor();
+		col.a = 100;
+		MenuItemSprites[iconsIndex[i]].setColor(col);
+	}
+}
+
+void Output::brightIcons(int *iconsIndex, int size) {
+	for (int i = 0; i < size; i++)
+	{
+		sf::Color col = MenuItemSprites[iconsIndex[i]].getColor();
+		col.a = 255;
+		MenuItemSprites[iconsIndex[i]].setColor(col);
+	}
+}
+
+void Output::brightAllDrawIcons() {
+	for (int i = 0; i < DRAW_ITM_COUNT; i++)
+	{
+		sf::Color col = MenuItemSprites[i].getColor();
+		col.a = 255;
+		MenuItemSprites[i].setColor(col);
+	}
+}
 
 void Output::DrawCirc(Point C, float R, GfxInfo CircGfxInfo, bool selected) const
 {
@@ -320,6 +371,11 @@ void Output::DrawCirc(Point C, float R, GfxInfo CircGfxInfo, bool selected) cons
 	//UpdateWindow();
 
 }
+
+void Output::PlayCircleSound() {
+	shapeSound[1].play();
+}
+
 //Zoom in by 10% every time called
 void Output::ZoomIn() {
 	int size = drawnObjects->size();	//number of drawn objects
@@ -389,6 +445,10 @@ void Output::DrawTriangle(Point P1, Point P2, Point P3, GfxInfo TriangleGfxInfo,
 	//UpdateWindow();
 }
 
+void Output::PlayTriangleSound() {
+	shapeSound[2].play();
+}
+
 void Output::SetWindowTitle(string title) {
 	fileName = title;
 
@@ -429,11 +489,79 @@ void Output::UpdateWindow() const {
 	pWind->display();
 }
 
+//draw pop menu by taking the top left coner
+void Output::DrawPopMenu(int x, int y) {
 
+	sf::RectangleShape popMenu(sf::Vector2f(UI.PopMenuWidth, UI.PopMenuHeight));
+	popMenu.setFillColor(sf::Color::White);
+	popMenu.setPosition(sf::Vector2f(x, y));
+
+	sf::RectangleShape popMenuShadow(sf::Vector2f(UI.PopMenuWidth + 3, UI.PopMenuHeight + 3));
+	popMenuShadow.setFillColor(sf::Color::Black);
+	popMenuShadow.setPosition(sf::Vector2f(x, y));
+
+
+	sf::Text popMenuStrings[5];
+	popMenuStrings[0].setString("Delete");
+	popMenuStrings[1].setString("Copy");
+	popMenuStrings[2].setString("Cut");
+	popMenuStrings[3].setString("Paste");
+	popMenuStrings[4].setString("Rotate");
+
+	sf::Sprite popIcons[5];
+	popIcons[0] = MenuItemSprites[ITM_Del];
+	popIcons[1] = MenuItemSprites[ITM_Copy];
+	popIcons[2] = MenuItemSprites[ITM_Cut];
+	popIcons[3] = MenuItemSprites[ITM_Paste];
+	popIcons[4] = MenuItemSprites[ITM_Rotate];
+
+	pWind->clear();
+
+	pWind->draw(*windowBackGround);
+
+	for (int i = 0; i < drawnObjects->size(); i++)
+	{
+		pWind->draw(*drawnObjects->at(i));
+	}
+
+	pWind->draw(*toolbarBackGround);
+
+	if (UI.InterfaceMode == MODE_DRAW)
+		for (int i = 0; i < DRAW_ITM_COUNT; i++)
+		{
+			pWind->draw(MenuItemSprites[i]);
+		}
+	else
+		for (int i = 0; i < PLAY_ITM_COUNT; i++)
+		{
+			pWind->draw(MenuPlaySprites[i]);
+		}
+
+	pWind->draw(*toolbarLine);
+
+	pWind->draw(*stbar);
+
+	pWind->draw(*statusMessage);
+
+	pWind->draw(popMenuShadow);
+
+	pWind->draw(popMenu);
+
+	for (int i = 0; i < 5; i++)
+	{
+		popIcons[i].setPosition(x, i * 50 + y);
+		popMenuStrings[i].setPosition(x + 65, i * 50 + y + 7);
+		popMenuStrings[i].setFont(messageFont);
+		popMenuStrings[i].setFillColor(sf::Color::Black);
+		popMenuStrings[i].setCharacterSize(25);
+		pWind->draw(popIcons[i]);
+		pWind->draw(popMenuStrings[i]);
+	}
+
+	pWind->display();
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////
-
-
 
 Output::~Output()
 {

@@ -146,6 +146,7 @@
     <ClCompile Include="Actions\MultiSelectAction.cpp" />
     <ClCompile Include="Actions\PasteAction.cpp" />
     <ClCompile Include="Actions\PickHide.cpp" />
+    <ClCompile Include="Actions\PopMenu.cpp" />
     <ClCompile Include="Actions\ResizeAction.cpp" />
     <ClCompile Include="Actions\ResizeByDrag.cpp" />
     <ClCompile Include="Actions\RotateAction.cpp" />
@@ -184,6 +185,7 @@
     <ClInclude Include="Actions\MultiSelectAction.h" />
     <ClInclude Include="Actions\PasteAction.h" />
     <ClInclude Include="Actions\PickHide.h" />
+    <ClInclude Include="Actions\PopMenu.h" />
     <ClInclude Include="Actions\ResizeAction.h" />
     <ClInclude Include="Actions\ResizeByDrag.h" />
     <ClInclude Include="Actions\RotateAction.h" />

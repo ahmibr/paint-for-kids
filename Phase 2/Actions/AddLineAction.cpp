@@ -34,6 +34,8 @@ void AddLineAction::ReadActionParameters()
 	LineGfxInfo.FillClr = pOut->getCrntDrawColor();
 	LineGfxInfo.BorderWdth = pOut->getCrntPenWidth();
 
+	pOut->PlayLineSound();
+
 	pOut->ClearStatusBar();
 
 }

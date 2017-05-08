@@ -3,6 +3,7 @@
 #define OUPTUT_H
 #include "Input.h"
 #include <vector>
+#include<SFML\Audio.hpp>
 class Output	//The application manager should have a pointer to this class
 {
 private:
@@ -14,6 +15,13 @@ private:
 	sf::RenderWindow* pWind;	//Pointer to the Graphics Window
 	sf::Text *statusMessage;		//message text
 	sf::Font messageFont;
+
+	sf::SoundBuffer buffer;
+	sf::Sound sound;
+
+	sf::SoundBuffer shapeBuffer[4];
+	sf::Sound shapeSound[4];
+
 
 	sf::RectangleShape *toolbarBackGround;
 	sf::RectangleShape *toolbarLine;
@@ -37,6 +45,7 @@ public:
 	void CreatePlayToolBar() const;	//creates Play mode toolbar & menu
 	void CreateStatusBar() const;	//create the status bar
 	void UpdateWindow() const;
+	void DrawPopMenu(int x, int y);
 	Input* CreateInput() const; //creates a pointer to the Input object	
 	void ClearStatusBar() const;	//Clears the status bar
 	void ClearDrawArea() const;	//Clears the drawing area
@@ -44,11 +53,18 @@ public:
 
 								// -- Figures Drawing functions
 	void DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected = false) const;  //Draw a rectangle
+	void PlayRectangleSound();
 	void DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected) const; //Draw a line
+	void PlayLineSound();
+	void dimIcons(int *iconsIndex, int size);//dim specific icons
+	void brightIcons(int * iconsIndex, int size);
+	void brightAllDrawIcons();
 	void DrawCirc(Point C, float R, GfxInfo CircGfxInfo, bool selected) const;       //Draw a circle
+	void PlayCircleSound();
 	void ZoomIn();
 	void ZoomOut();
 	void DrawTriangle(Point P1, Point P2, Point P3, GfxInfo TriangleGfxInfo, bool selected) const; //Draw a triangle
+	void PlayTriangleSound();
 	void SetWindowTitle(string title);
 
 	void PrintMessage(string msg) const;	//Print a message on Status bar

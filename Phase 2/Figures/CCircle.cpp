@@ -30,9 +30,17 @@ CFigure* CCircle::copyClone() {
 
 void CCircle::Draw(Output* pOut) const
 {
+	Point drawingCenter;
+	drawingCenter.x = (-UI.width / 2 + center.x)* UI.zoomFactor + UI.width / 2;
+	drawingCenter.y = (-UI.height / 2 + center.y)* UI.zoomFactor + UI.height / 2;
+	float drawingRaduis = radius * UI.zoomFactor;
+
+	GfxInfo drawingInfo = FigGfxInfo;
+	drawingInfo.BorderWdth *= UI.zoomFactor;
+
 	//Call Output::DrawCirc to draw a Circle on the screen	
 	if (visible)
-		pOut->DrawCirc(center, radius, FigGfxInfo, Selected);
+		pOut->DrawCirc(drawingCenter, drawingRaduis, drawingInfo, Selected);
 }
 
 bool CCircle::isClicked(int x, int y)const {

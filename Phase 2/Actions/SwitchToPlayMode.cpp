@@ -11,11 +11,13 @@ SwitchToPlayMode::SwitchToPlayMode(ApplicationManager *pApp) :Action(pApp)
 void SwitchToPlayMode::ReadActionParameters()
 {
 	Output* pOut = pManager->GetOutput();
-	Input* pIn = pManager->GetInput();
 
 	pOut->PrintMessage("Switch to play mode ");
 
 	pManager->DeSelectAllFigures();
+
+	UI.zoomFactor = 1;
+	pOut->brightAllDrawIcons();
 
 	pOut->CreatePlayToolBar();
 

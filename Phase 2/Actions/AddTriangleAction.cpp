@@ -6,6 +6,8 @@
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
 
+#include<SFML\Audio.hpp>
+
 AddTriangleAction::AddTriangleAction(ApplicationManager * pApp) :Action(pApp)
 {}
 
@@ -44,6 +46,7 @@ void AddTriangleAction::ReadActionParameters()
 
 	pOut->ClearStatusBar();
 
+	pOut->PlayTriangleSound();
 }
 
 //Execute the action

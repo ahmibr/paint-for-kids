@@ -41,9 +41,20 @@ CFigure* CRectangle::copyClone() {
 
 void CRectangle::Draw(Output* pOut) const
 {
+	Point drawingCorner1;
+	drawingCorner1.x = (-UI.width / 2 + Corner1.x)* UI.zoomFactor + UI.width / 2;
+	drawingCorner1.y = (-UI.height / 2 + Corner1.y)* UI.zoomFactor + UI.height / 2;
+
+	Point drawingCorner2;
+	drawingCorner2.x = (-UI.width / 2 + Corner2.x)* UI.zoomFactor + UI.width / 2;
+	drawingCorner2.y = (-UI.height / 2 + Corner2.y)* UI.zoomFactor + UI.height / 2;
+
+	GfxInfo drawingInfo = FigGfxInfo;
+	drawingInfo.BorderWdth *= UI.zoomFactor;
+
 	//Call Output::DrawRect to draw a rectangle on the screen
 	if (visible)
-		pOut->DrawRect(Corner1, Corner2, FigGfxInfo, Selected);
+		pOut->DrawRect(drawingCorner1, drawingCorner2, drawingInfo, Selected);
 }
 
 

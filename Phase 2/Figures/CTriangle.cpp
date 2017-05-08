@@ -43,9 +43,24 @@ CFigure* CTriangle::copyClone() {
 
 void CTriangle::Draw(Output* pOut) const
 {
+	Point drawingP1;
+	drawingP1.x = (-UI.width / 2 + p1.x)* UI.zoomFactor + UI.width / 2;
+	drawingP1.y = (-UI.height / 2 + p1.y)* UI.zoomFactor + UI.height / 2;
+
+	Point drawingP2;
+	drawingP2.x = (-UI.width / 2 + p2.x)* UI.zoomFactor + UI.width / 2;
+	drawingP2.y = (-UI.height / 2 + p2.y)* UI.zoomFactor + UI.height / 2;
+
+	Point drawingP3;
+	drawingP3.x = (-UI.width / 2 + p3.x)* UI.zoomFactor + UI.width / 2;
+	drawingP3.y = (-UI.height / 2 + p3.y)* UI.zoomFactor + UI.height / 2;
+
+	GfxInfo drawingInfo = FigGfxInfo;
+	drawingInfo.BorderWdth *= UI.zoomFactor;
+
 	//Call Output::DrawTriangle to draw a triangle on the screen	
 	if (visible)
-		pOut->DrawTriangle(p1, p2, p3, FigGfxInfo, Selected);
+		pOut->DrawTriangle(drawingP1, drawingP2, drawingP3, drawingInfo, Selected);
 }
 
 void CTriangle::Move(int dx, int dy) {

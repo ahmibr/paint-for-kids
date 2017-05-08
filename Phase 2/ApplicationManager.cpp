@@ -25,6 +25,7 @@
 #include "Actions\RotateByDrag.h"
 #include "Actions\PickHide.h"
 #include "Actions\ScrambleFind.h"
+#include "Actions\PopMenu.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -159,6 +160,14 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct = new ScrambleFind(this);
 		break;
 
+	case ZOOM_NOT_SUPPORTED:
+		pOut->PrintMessage("Not supported while zoom");
+		break;
+
+	case POP_MENU:
+		pAct = new PopMenu(this);
+		break;
+
 	case STATUS:	//a click on the status bar ==> no action
 		return;
 
@@ -211,6 +220,10 @@ void ApplicationManager::fixFigList() {
 ////////////////////////////////////////////////////////////////////////////////////
 CFigure *ApplicationManager::GetFigure(int x, int y) const
 {
+
+	x = (-UI.width / 2 + x) / (UI.zoomFactor) + UI.width / 2;
+	y = (-UI.height / 2 + y) / (UI.zoomFactor) + UI.height / 2;
+
 	//traverse from the end, because last drawed is on top
 	for (int i = FigCount - 1; i >= 0; i--)
 		if (FigList[i]->isClicked(x, y))

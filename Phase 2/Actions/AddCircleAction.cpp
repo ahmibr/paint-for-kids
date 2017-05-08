@@ -37,6 +37,7 @@ void AddCircleAction::ReadActionParameters()
 	CircleGfxInfo.BorderWdth = pOut->getCrntPenWidth();
 	CircleGfxInfo.isFilled = pOut->getCrntIsFilled();
 
+	pOut->PlayCircleSound();
 
 	pOut->ClearStatusBar();
 

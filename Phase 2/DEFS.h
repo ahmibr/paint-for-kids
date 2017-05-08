@@ -43,6 +43,10 @@ enum ActionType //The actions supported (you can add more if needed)
 	RESIZE_DRAG,
 	ROTATE_DRAG,
 
+	POP_MENU,
+
+	ZOOM_NOT_SUPPORTED,
+
 	PICK,			//PLAY MODE
 	SCRAMBLE_FIND
 };
