@@ -26,9 +26,9 @@ void PopMenu::Execute()
 {
 	ActionType procedureAction;
 
-	procedureAction = SELECT;
+	/*procedureAction = SELECT;
 	pManager->ExecuteAction(procedureAction);
-	pManager->UpdateInterface();
+	pManager->UpdateInterface();*/
 
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
@@ -51,13 +51,22 @@ void PopMenu::Execute()
 		procedureAction = DEL;
 		break;
 	case 1:
-		procedureAction = COPY;
+		if (UI.zoomFactor == 1)
+			procedureAction = COPY;
+		else
+			procedureAction = EMPTY;
 		break;
 	case 2:
-		procedureAction = CUT;
+		if (UI.zoomFactor == 1)
+			procedureAction = CUT;
+		else
+			procedureAction = EMPTY;
 		break;
 	case 3:
-		procedureAction = PASTE;
+		if (UI.zoomFactor == 1)
+			procedureAction = PASTE;
+		else
+			procedureAction = EMPTY;
 		break;
 	case 4:
 		procedureAction = ROTATE;
@@ -69,7 +78,7 @@ void PopMenu::Execute()
 
 	pManager->ExecuteAction(procedureAction);
 
-	pManager->DeSelectAllFigures();
+	//pManager->DeSelectAllFigures();
 
 }
 

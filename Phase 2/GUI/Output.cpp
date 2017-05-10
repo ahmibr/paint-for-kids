@@ -489,6 +489,188 @@ void Output::UpdateWindow() const {
 	pWind->display();
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////
+void Output::DrawGuideCircle(Point center, float raduis) const {
+
+	pWind->clear();
+
+	pWind->draw(*windowBackGround);
+
+	for (int i = 0; i < drawnObjects->size(); i++)
+	{
+		pWind->draw(*drawnObjects->at(i));
+	}
+
+	pWind->draw(*toolbarBackGround);
+
+	if (UI.InterfaceMode == MODE_DRAW)
+		for (int i = 0; i < DRAW_ITM_COUNT; i++)
+		{
+			pWind->draw(MenuItemSprites[i]);
+		}
+	else
+		for (int i = 0; i < PLAY_ITM_COUNT; i++)
+		{
+			pWind->draw(MenuPlaySprites[i]);
+		}
+
+	sf::CircleShape example(raduis);
+	example.setPosition(center.x - raduis, center.y - raduis);
+	example.setFillColor(sf::Color::Transparent);
+	example.setOutlineColor(sf::Color::Black);
+	example.setOutlineThickness(2);
+	pWind->draw(example);
+
+	pWind->draw(*toolbarLine);
+
+	pWind->draw(*stbar);
+
+	pWind->draw(*statusMessage);
+
+	pWind->display();
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////
+void Output::DrawGuideTriangle(Point P1, Point P2, Point P3) const {
+
+	pWind->clear();
+
+	pWind->draw(*windowBackGround);
+
+	for (int i = 0; i < drawnObjects->size(); i++)
+	{
+		pWind->draw(*drawnObjects->at(i));
+	}
+
+	pWind->draw(*toolbarBackGround);
+
+	if (UI.InterfaceMode == MODE_DRAW)
+		for (int i = 0; i < DRAW_ITM_COUNT; i++)
+		{
+			pWind->draw(MenuItemSprites[i]);
+		}
+	else
+		for (int i = 0; i < PLAY_ITM_COUNT; i++)
+		{
+			pWind->draw(MenuPlaySprites[i]);
+		}
+
+	sf::ConvexShape example(3);
+	example.setPoint(0, sf::Vector2f(P1.x, P1.y));
+	example.setPoint(1, sf::Vector2f(P2.x, P2.y));
+	example.setPoint(2, sf::Vector2f(P3.x, P3.y));
+	example.setFillColor(sf::Color::Transparent);
+	example.setOutlineColor(sf::Color::Black);
+	example.setOutlineThickness(2);
+	pWind->draw(example);
+
+	pWind->draw(*toolbarLine);
+
+	pWind->draw(*stbar);
+
+	pWind->draw(*statusMessage);
+
+	pWind->display();
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////
+void Output::DrawGuideRectangle(Point P1, Point P2) const {
+
+	pWind->clear();
+
+	pWind->draw(*windowBackGround);
+
+	for (int i = 0; i < drawnObjects->size(); i++)
+	{
+		pWind->draw(*drawnObjects->at(i));
+	}
+
+	pWind->draw(*toolbarBackGround);
+
+	if (UI.InterfaceMode == MODE_DRAW)
+		for (int i = 0; i < DRAW_ITM_COUNT; i++)
+		{
+			pWind->draw(MenuItemSprites[i]);
+		}
+	else
+		for (int i = 0; i < PLAY_ITM_COUNT; i++)
+		{
+			pWind->draw(MenuPlaySprites[i]);
+		}
+
+	pWind->draw(*toolbarLine);
+
+	pWind->draw(*stbar);
+
+	pWind->draw(*statusMessage);
+
+	sf::RectangleShape example(sf::Vector2f(abs(P1.x - P2.x), abs(P1.y - P2.y)));
+	int x, y;
+
+	if (P1.x < P2.x)
+		x = P1.x;
+	else
+		x = P2.x;
+	if (P1.y < P2.y)
+		y = P1.y;
+	else
+		y = P2.y;
+
+	int xLength = abs(P1.x - P2.x);
+	int yLength = abs(P1.y - P2.y);
+	example.setPosition(x + xLength / 2, y + yLength / 2);
+	example.setOrigin(xLength / 2, yLength / 2);
+	example.setFillColor(sf::Color::Transparent);
+	example.setOutlineColor(sf::Color::Black);
+	example.setOutlineThickness(2);
+	pWind->draw(example);
+
+	pWind->display();
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////
+void Output::DrawGuideLine(Point P1, Point P2) const {
+
+	pWind->clear();
+
+	pWind->draw(*windowBackGround);
+
+	for (int i = 0; i < drawnObjects->size(); i++)
+	{
+		pWind->draw(*drawnObjects->at(i));
+	}
+
+	pWind->draw(*toolbarBackGround);
+
+	if (UI.InterfaceMode == MODE_DRAW)
+		for (int i = 0; i < DRAW_ITM_COUNT; i++)
+		{
+			pWind->draw(MenuItemSprites[i]);
+		}
+	else
+		for (int i = 0; i < PLAY_ITM_COUNT; i++)
+		{
+			pWind->draw(MenuPlaySprites[i]);
+		}
+
+	pWind->draw(*toolbarLine);
+
+	pWind->draw(*stbar);
+
+	pWind->draw(*statusMessage);
+
+	sf::RectangleShape example(sf::Vector2f(sqrt(pow(P1.x - P2.x, 2) + pow(P1.y - P2.y, 2)), 3));
+	if (P1.x > P2.x)
+		swap(P1, P2);
+	example.setPosition(sf::Vector2f(P2.x, P2.y));
+	example.rotate(180 * atan2(P1.y - P2.y, P1.x - P2.x) / PI);
+	example.setFillColor(sf::Color::Black);
+
+	pWind->draw(example);
+
+	pWind->display();
+}
+
 //draw pop menu by taking the top left coner
 void Output::DrawPopMenu(int x, int y) {
 

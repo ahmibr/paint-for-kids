@@ -45,6 +45,10 @@ public:
 	void CreatePlayToolBar() const;	//creates Play mode toolbar & menu
 	void CreateStatusBar() const;	//create the status bar
 	void UpdateWindow() const;
+	void DrawGuideCircle(Point center, float raduis) const;
+	void DrawGuideTriangle(Point p1, Point p2, Point p3) const;
+	void DrawGuideRectangle(Point P1, Point P2) const;
+	void DrawGuideLine(Point P1, Point P2) const;
 	void DrawPopMenu(int x, int y);
 	Input* CreateInput() const; //creates a pointer to the Input object	
 	void ClearStatusBar() const;	//Clears the status bar

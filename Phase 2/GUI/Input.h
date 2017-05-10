@@ -19,7 +19,9 @@ private:
 	sf::Event *userEvent;
 public:
 	Input(sf::RenderWindow *pW);		//Consturctor
-	void GetPointClicked(int &x, int &y) const;//Get coordinate where user clicks
+	void GetPointClicked(int &x, int &y) const;
+	bool GetMouseMoveNoHold(int & x, int & y) const;
+	//Get coordinate where user clicks
 	string GetSrting(Output* pO) const;	 //Returns a string entered by the user
 	float Input::Resize_wind();
 	float Input::Rotate_wind();

@@ -26,7 +26,27 @@ void Input::GetPointClicked(int &x, int &y) const
 		}
 
 	}
+}
 
+bool Input::GetMouseMoveNoHold(int &x, int &y) const
+{
+	while (true) {
+		while (pWind->pollEvent(*userEvent))
+		{
+			if (userEvent->type == sf::Event::MouseMoved) {
+				x = userEvent->mouseMove.x;
+				y = userEvent->mouseMove.y;
+				return false;
+			}
+			if (userEvent->type == sf::Event::MouseButtonPressed) {
+				if (userEvent->key.code == sf::Mouse::Left) {
+					x = userEvent->mouseButton.x;
+					y = userEvent->mouseButton.y;
+					return true;
+				}
+			}
+		}
+	}
 }
 
 string Input::GetSrting(Output *pO) const

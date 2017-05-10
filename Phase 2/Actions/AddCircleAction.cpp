@@ -25,10 +25,21 @@ void AddCircleAction::ReadActionParameters()
 
 	pOut->PrintMessage("New Circle: Click at radius");
 
-	do {
+	//Newly Added
+	int guideX, guideY;
+	while (!pIn->GetMouseMoveNoHold(guideX, guideY) || (guideY < UI.ToolBarHeight || guideY > UI.height - UI.StatusBarHeight)) {
+		float guideRadius = sqrt(pow(P1.x - guideX, 2) + pow(P1.y - guideY, 2));
+		pOut->DrawGuideCircle(P1, guideRadius);
+		//cout << guideX << " " << guideY << "///";
+	}
+	P2.x = guideX;
+	P2.y = guideY;
+	/////////////////////////////
+
+	/*do {
 		//Read 2nd point and store in point P2
 		pIn->GetPointClicked(P2.x, P2.y);
-	} while (P2.y < UI.ToolBarHeight || P2.y > UI.height - UI.StatusBarHeight);//needed check not to draw on status bar or tool bar
+	} while (P2.y < UI.ToolBarHeight || P2.y > UI.height - UI.StatusBarHeight);//needed check not to draw on status bar or tool bar*/
 	//CircleGfxInfo.isFilled = false;	//default is not filled
 	//get drawing, filling colors and pen width from the interface
 
@@ -36,8 +47,6 @@ void AddCircleAction::ReadActionParameters()
 	CircleGfxInfo.FillClr = pOut->getCrntFillColor();
 	CircleGfxInfo.BorderWdth = pOut->getCrntPenWidth();
 	CircleGfxInfo.isFilled = pOut->getCrntIsFilled();
-
-	pOut->PlayCircleSound();
 
 	pOut->ClearStatusBar();
 
@@ -64,6 +73,8 @@ void AddCircleAction::Execute()
 
 	//Add the circle to the list of figures
 	pManager->AddFigure(C);
+
+	pOut->PlayCircleSound();
 }
 
 bool AddCircleAction::isOutOfBorder(Point p) const
