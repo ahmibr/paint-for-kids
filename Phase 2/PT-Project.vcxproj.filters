@@ -121,6 +121,12 @@
     <ClCompile Include="Actions\PickHide.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\ScrambleFind.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\PopMenu.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Figures\CFigure.h">
@@ -230,6 +236,15 @@
       <Filter>Action Classes</Filter>
     </ClInclude>
     <ClInclude Include="Actions\PickHide.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ScrambleFind.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\PopMenu.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="AllActions.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
   </ItemGroup>

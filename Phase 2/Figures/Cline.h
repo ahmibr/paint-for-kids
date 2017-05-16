@@ -12,9 +12,10 @@ private:
 	virtual bool clickedInside(int x, int y) const;//utility function to check if clicked inside figure
 	virtual bool clickedOnBorder(int x, int y) const;//utility function to check if clicked on border of figure
 	void updateInfo();//utility function to recalculate length after assigning points
+	Point tempP1, tempP2;
 public:
 	CLine();
-	CLine(Point , Point, GfxInfo FigureGfxInfo );
+	CLine(Point, Point, GfxInfo FigureGfxInfo);
 	CLine(const CLine&); //copy constructor
 	virtual CFigure* copyClone(); //a clone to apply polymorphism on copy construtors
 	virtual void Draw(Output* pOut) const;
@@ -31,6 +32,12 @@ public:
 	virtual bool isClicked(int x, int y) const;//function to check if given point is related to the figure
 	virtual string printInfo() const;
 	virtual void Save(ofstream &OutFile); //Save Line parameters to the file
+	int getOriginXpos();
+	int getOriginYpos();
+	int getHeight();
+	int getWidth();
+	void setCurrCordTemp();
+	void setTempCord();
 };
 
 #endif

@@ -43,8 +43,12 @@ enum ActionType //The actions supported (you can add more if needed)
 	RESIZE_DRAG,
 	ROTATE_DRAG,
 
+	POP_MENU,
+
+	ZOOM_NOT_SUPPORTED,
+
 	PICK,			//PLAY MODE
-	FIND
+	SCRAMBLE_FIND
 };
 
 struct Point	//To be used for figures points

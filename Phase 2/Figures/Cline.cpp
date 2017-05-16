@@ -4,6 +4,7 @@
 
 CLine::CLine()
 {
+	length = 0;
 }
 
 CLine::CLine(Point P1, Point P2, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
@@ -38,9 +39,20 @@ CFigure* CLine::copyClone() {
 
 void CLine::Draw(Output* pOut) const
 {
+	Point drawingP1;
+	drawingP1.x = (-UI.width / 2 + p1.x)* UI.zoomFactor + UI.width / 2;
+	drawingP1.y = (-UI.height / 2 + p1.y)* UI.zoomFactor + UI.height / 2;
+
+	Point drawingP2;
+	drawingP2.x = (-UI.width / 2 + p2.x)* UI.zoomFactor + UI.width / 2;
+	drawingP2.y = (-UI.height / 2 + p2.y)* UI.zoomFactor + UI.height / 2;
+
+	GfxInfo drawingInfo = FigGfxInfo;
+	drawingInfo.BorderWdth *= UI.zoomFactor;
+
 	//Call Output::DrawLine to draw a line on the screen	
 	if (visible)
-		pOut->DrawLine(p1, p2, FigGfxInfo, Selected);
+		pOut->DrawLine(drawingP1, drawingP2, drawingInfo, Selected);
 }
 
 void CLine::Move(int dx, int dy) {
@@ -180,4 +192,29 @@ void CLine::Save(ofstream & OutFile)
 	OutFile << p2.y << "  ";
 	OutFile << FigGfxInfo.BorderWdth << "  ";
 	OutFile << getDrawClrName() << "  ";
+}
+
+int CLine::getOriginXpos() {
+	return (p1.x + p2.x) / 2;
+}
+
+int CLine::getOriginYpos() {
+	return (p1.y + p2.y) / 2;
+}
+
+int CLine::getHeight() {
+	return abs(p2.y - p1.y);
+}
+
+int CLine::getWidth() {
+	return abs(p2.x - p1.x);
+}
+
+void CLine::setCurrCordTemp() {
+	tempP1 = p1;
+	tempP2 = p2;
+}
+
+void CLine::setTempCord() {
+	setPoints(tempP1, tempP2);
 }

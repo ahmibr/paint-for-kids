@@ -32,6 +32,21 @@ void CFigure::setID(int _ID)
 			count = _ID; //avoid next collision
 		ID = _ID;
 	}
+	else //Error
+		ID = 0;
+}
+
+void CFigure::setCount(int cnt)
+{
+	if (cnt >= 0)
+		count = cnt;
+	else
+		count = 0;
+}
+
+int CFigure::getCount()
+{
+	return count;
 }
 
 void CFigure::SetSelected(bool s)

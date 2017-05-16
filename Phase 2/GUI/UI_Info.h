@@ -73,8 +73,11 @@ struct UI_Info	//User Interface Info.
 		wx, wy,			//Window starting coordinates
 		StatusBarHeight,	//Status Bar Height
 		ToolBarHeight,		//Tool Bar Height (distance from top of window to bottom line of toolbar)
-		MenuItemWidth;		//Width of each item in toolbar menu
-
+		MenuItemWidth,		//Width of each item in toolbar menu
+		PopMenuWidth, PopMenuHeight;	//Width of pop up menu
+	UI_Info() {
+		zoomFactor = 1;
+	}
 
 	sf::Color DrawColor;		//Drawing color
 	sf::Color FillColor;		//Filling color
@@ -86,6 +89,7 @@ struct UI_Info	//User Interface Info.
 	int PenWidth;			//width of the pen that draws shapes
 
 							/// Add more members if needed
+	float zoomFactor;
 
 }UI;	//create a global object UI
 

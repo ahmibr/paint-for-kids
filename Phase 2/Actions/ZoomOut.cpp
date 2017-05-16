@@ -18,22 +18,28 @@ ZoomOut::~ZoomOut()
 //Execute the action
 void ZoomOut::Execute()
 {
+	if (UI.zoomFactor >= 0.7) {
+		UI.zoomFactor -= 0.1;
+	}
+
 	Output* pOut = pManager->GetOutput();
 
-	Input* pIn = pManager->GetInput();
+	int size = 7;
+	int *UnSupportedActions = new int[size];
+	UnSupportedActions[0] = 0;
+	UnSupportedActions[1] = 1;
+	UnSupportedActions[2] = 2;
+	UnSupportedActions[3] = 3;
+	UnSupportedActions[4] = 10;
+	UnSupportedActions[5] = 11;
+	UnSupportedActions[6] = 12;
 
-	do {
+	if (UI.zoomFactor != 1)
+		pOut->dimIcons(UnSupportedActions, size);
+	else
+		pOut->brightIcons(UnSupportedActions, size);
 
-		pOut->PrintMessage("Zooming Out, Click AnyWhere to Exit");
-
-		if (numberOfZooms < maxNumberOfZooms) {
-			pOut->ZoomOut();
-			numberOfZooms++;
-		}
-
-	} while (pIn->GetUserAction() == ZOOM_OUT);
-
-	pOut->ClearStatusBar();
+	delete[] UnSupportedActions;
 }
 
 void ZoomOut::ReadActionParameters()

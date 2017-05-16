@@ -2,6 +2,8 @@
 
 CRectangle::CRectangle()
 {
+	length = 0;
+	width = 0;
 }
 
 CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
@@ -39,9 +41,20 @@ CFigure* CRectangle::copyClone() {
 
 void CRectangle::Draw(Output* pOut) const
 {
+	Point drawingCorner1;
+	drawingCorner1.x = (-UI.width / 2 + Corner1.x)* UI.zoomFactor + UI.width / 2;
+	drawingCorner1.y = (-UI.height / 2 + Corner1.y)* UI.zoomFactor + UI.height / 2;
+
+	Point drawingCorner2;
+	drawingCorner2.x = (-UI.width / 2 + Corner2.x)* UI.zoomFactor + UI.width / 2;
+	drawingCorner2.y = (-UI.height / 2 + Corner2.y)* UI.zoomFactor + UI.height / 2;
+
+	GfxInfo drawingInfo = FigGfxInfo;
+	drawingInfo.BorderWdth *= UI.zoomFactor;
+
 	//Call Output::DrawRect to draw a rectangle on the screen
 	if (visible)
-		pOut->DrawRect(Corner1, Corner2, FigGfxInfo, Selected);
+		pOut->DrawRect(drawingCorner1, drawingCorner2, drawingInfo, Selected);
 }
 
 
@@ -187,4 +200,29 @@ void CRectangle::Save(ofstream & OutFile)
 	OutFile << FigGfxInfo.BorderWdth << "  ";
 	OutFile << getDrawClrName() << "  ";
 	OutFile << getFillClrName() << "  ";
+}
+
+int CRectangle::getOriginXpos() {
+	return (Corner1.x + Corner2.x) / 2;
+}
+
+int CRectangle::getOriginYpos() {
+	return (Corner1.y + Corner2.y) / 2;
+}
+
+int CRectangle::getHeight() {
+	return abs(Corner1.y - Corner2.y);
+}
+
+int CRectangle::getWidth() {
+	return abs(Corner1.x - Corner2.x);
+}
+
+void CRectangle::setCurrCordTemp() {
+	tempCorner1 = Corner1;
+	tempCorner2 = Corner2;
+}
+
+void CRectangle::setTempCord() {
+	setPoints(tempCorner1, tempCorner2);
 }

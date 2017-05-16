@@ -14,6 +14,7 @@ class ApplicationManager
 private:
 	int FigCount;		//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
+	CFigure ** selectedList; //List of selected Figures
 	DataManager* pData; //pointer to data manager to clean up
 	//Pointers to Input and Output classes
 	Input *pIn;
@@ -30,6 +31,14 @@ public:
 	void DeSelectAllFigures();
 	void ShowAllFigures();
 	void HideAllFigures();
+	void ToLeftHalf();
+	void RandomizePositionsRight(CFigure ** figures);
+	void RestoreFromHalf();
+	void deleteFigureArray(CFigure ** figures);//delete figure array
+	CFigure ** createCopyOfFigures();//Create a copy of the figure array and return it
+	CFigure * getRandomFigure();//returns a random visible figure and select it
+
+	void UpdateInterface(CFigure ** figures) const;
 
 	// -- Action-Related Functions
 	//Reads the input command from the user and returns the corresponding action type
@@ -41,7 +50,11 @@ public:
 	void removeFigure(int ID); //Remove figure by it's ID
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
 	int GetFigureCount() const; //Search for a figure given a point inside the figure
-	CFigure *GetFigure(int index) const; //Search for a figure given index of figure
+	CFigure *GetFigure(int index) const;
+	CFigure * GetFigure(int x, int y, CFigure ** figures) const;
+	CFigure ** getSelectedList(int &size);
+	int getSelectedCount()const;
+	//Search for a figure given index of figure
 	void restartApp(); //delete figures before loading new graph
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
