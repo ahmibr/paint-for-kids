@@ -1,31 +1,5 @@
 #include "ApplicationManager.h"
-#include "Actions\AddRectAction.h"
-#include "Actions\AddLineAction.h"
-#include "Actions\AddCircleAction.h"
-#include "Actions\AddTriangleAction.h"
-#include "Actions\ZoomIn.h"
-#include "Actions\ZoomOut.h"
-#include "Actions\ChangeFigColor.h"
-#include "Actions\ExitAction.h"
-#include "Actions\SwitchToPlayMode.h"
-#include "Actions\DeleteAction.h"
-#include "Actions\SwitchToDrawMode.h"
-#include "Actions\ResizeAction.h"
-#include "Actions\CopyAction.h"
-#include "Actions\PasteAction.h"
-#include "Actions\CutAction.h"
-#include "Actions\SelectAction.h"
-#include "Actions\MultiSelectAction.h"
-#include "Actions\SaveAction.h"
-#include "Actions\MoveByDrag.h"
-#include "Actions\LoadAction.h"
-#include "Actions\RotateAction.h"
-#include "Actions\ChangeBkgroundClr.h"
-#include "Actions\ResizeByDrag.h"
-#include "Actions\RotateByDrag.h"
-#include "Actions\PickHide.h"
-#include "Actions\ScrambleFind.h"
-#include "Actions\PopMenu.h"
+#include "AllActions.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -36,6 +10,7 @@ ApplicationManager::ApplicationManager()
 	//Create an array of figure pointers and set them to NULL		
 	for (int i = 0; i < MaxFigCount; i++)
 		FigList[i] = NULL;
+	selectedList = NULL;
 }
 
 //==================================================================================//
@@ -249,6 +224,33 @@ CFigure *ApplicationManager::GetFigure(int x, int y, CFigure** figures) const
 
 	return NULL; //didn't find any
 }
+CFigure ** ApplicationManager::getSelectedList(int & size)
+{
+	size = 0;
+	if (selectedList) //if it has values before
+		delete[] selectedList;
+	selectedList = NULL;
+
+	size = getSelectedCount();
+
+	if (size)
+	{
+		selectedList = new CFigure*[size];
+		for (int i = 0, j = 0; i < FigCount; i++)
+			if (FigList[i]->IsSelected())
+				selectedList[j++] = FigList[i];
+	}
+	return selectedList;
+
+}
+int ApplicationManager::getSelectedCount() const
+{
+	int size = 0;
+	for (int i = 0; i < FigCount; i++) //count number of selected elements
+		if (FigList[i]->IsSelected())
+			size++;
+	return size;
+}
 void ApplicationManager::restartApp()
 {
 	for (int i = 0; i < FigCount; i++)
@@ -304,6 +306,8 @@ ApplicationManager::~ApplicationManager()
 		delete FigList[i];
 	delete pIn;
 	delete pOut;
+	if (selectedList)
+		delete[] selectedList;
 	pData->destroyClipBoard(); //if the program is over and clipboard still has data
 }
 

@@ -244,6 +244,9 @@
     <ClInclude Include="Actions\PopMenu.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
+    <ClInclude Include="AllActions.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

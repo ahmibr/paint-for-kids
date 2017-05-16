@@ -28,18 +28,24 @@ void MultiSelectAction::Execute()
 	if (pFigure) //if he clicked on a figure, not an empty area. Else doesn't do anything
 	{
 		pFigure->SetSelected(!(pFigure->IsSelected())); //toggle the state of figure
-		for (int i = 0; i < pManager->GetFigureCount(); i++) //get current count of selected items
-		{
-			numSelected += pManager->GetFigure(i)->IsSelected();
-			if (numSelected == 1 && pManager->GetFigure(i)->IsSelected()) //if only one selected.if numselected increased than 1, it won't affect
-				pFigure = pManager->GetFigure(i);
-		}
+		int selectedCount = pManager->getSelectedCount();
 
-		if (numSelected == 1)
-			pOut->PrintMessage(pFigure->printInfo());
-		else if (numSelected > 1)
-			pOut->PrintMessage("Number of Selected Items " + to_string(numSelected));
-		else
+		if (selectedCount == 0) //no selected elements 
 			pOut->ClearStatusBar();
+
+		else if (selectedCount == 1) { //handle the case if there are 2 selected figures and user unselected one of them
+
+			if (pFigure->IsSelected()) //the chosen figure is selected
+				pOut->PrintMessage(pFigure->printInfo());
+
+			else //the chosen figure is unselected, we need to get the real selected figure
+			{
+				int size = 1;
+				CFigure** selectedList = pManager->getSelectedList(size); //get the real selected Figure
+				pOut->PrintMessage(selectedList[0]->printInfo());
+			}
+		}
+		else
+			pOut->PrintMessage("Number of Selected Elements = " + to_string(selectedCount));
 	}
 }

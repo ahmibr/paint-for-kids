@@ -14,6 +14,7 @@ class ApplicationManager
 private:
 	int FigCount;		//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
+	CFigure ** selectedList; //List of selected Figures
 	DataManager* pData; //pointer to data manager to clean up
 	//Pointers to Input and Output classes
 	Input *pIn;
@@ -51,6 +52,8 @@ public:
 	int GetFigureCount() const; //Search for a figure given a point inside the figure
 	CFigure *GetFigure(int index) const;
 	CFigure * GetFigure(int x, int y, CFigure ** figures) const;
+	CFigure ** getSelectedList(int &size);
+	int getSelectedCount()const;
 	//Search for a figure given index of figure
 	void restartApp(); //delete figures before loading new graph
 	// -- Interface Management Functions

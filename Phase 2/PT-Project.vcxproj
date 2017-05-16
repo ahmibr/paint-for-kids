@@ -171,6 +171,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AllActions.h" />
     <ClInclude Include="Actions\AddCircleAction.h" />
     <ClInclude Include="Actions\AddLineAction.h" />
     <ClInclude Include="Actions\AddTriangleAction.h" />
