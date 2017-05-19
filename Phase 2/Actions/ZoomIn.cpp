@@ -6,14 +6,6 @@
 
 #include "SelectAction.h"
 
-void ZoomIn::UpdateFigures(Output * pOut) {
-	pManager->UpdateInterface();
-	for (int i = 0; i < numberOfZooms; i++)
-	{
-		pOut->ZoomIn();
-	}
-}
-
 ZoomIn::ZoomIn(ApplicationManager * pApp) :Action(pApp), maxNumberOfZooms(3)
 {
 	numberOfZooms = 0;

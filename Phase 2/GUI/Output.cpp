@@ -236,9 +236,8 @@ bool Output::getCrntIsFilled() const		//get current is Filled
 }
 
 //======================================================================================//
-//								Figures Drawing Functions								//
+//					Figures Drawing and sounds Functions								//
 //======================================================================================//
-
 void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) const
 {
 	sf::Color DrawingClr;
@@ -281,11 +280,11 @@ void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 
 	//	UpdateWindow();
 }
+///////////////////////////////////////////////////////////////////////////////////////////
 
 void Output::PlayRectangleSound() {
 	shapeSound[0].play();
 }
-
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 void Output::DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected) const
@@ -310,38 +309,12 @@ void Output::DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected) co
 
 	//	UpdateWindow();
 }
+///////////////////////////////////////////////////////////////////////////////////////////
 
 void Output::PlayLineSound() {
 	shapeSound[3].play();
 }
-
 ///////////////////////////////////////////////////////////////////////////////////////////
-void Output::dimIcons(int *iconsIndex, int size) {
-	for (int i = 0; i < size; i++)
-	{
-		sf::Color col = MenuItemSprites[iconsIndex[i]].getColor();
-		col.a = 100;
-		MenuItemSprites[iconsIndex[i]].setColor(col);
-	}
-}
-
-void Output::brightIcons(int *iconsIndex, int size) {
-	for (int i = 0; i < size; i++)
-	{
-		sf::Color col = MenuItemSprites[iconsIndex[i]].getColor();
-		col.a = 255;
-		MenuItemSprites[iconsIndex[i]].setColor(col);
-	}
-}
-
-void Output::brightAllDrawIcons() {
-	for (int i = 0; i < DRAW_ITM_COUNT; i++)
-	{
-		sf::Color col = MenuItemSprites[i].getColor();
-		col.a = 255;
-		MenuItemSprites[i].setColor(col);
-	}
-}
 
 void Output::DrawCirc(Point C, float R, GfxInfo CircGfxInfo, bool selected) const
 {
@@ -371,52 +344,12 @@ void Output::DrawCirc(Point C, float R, GfxInfo CircGfxInfo, bool selected) cons
 	//UpdateWindow();
 
 }
+///////////////////////////////////////////////////////////////////////////////////////////
 
 void Output::PlayCircleSound() {
 	shapeSound[1].play();
 }
-
-//Zoom in by 10% every time called
-void Output::ZoomIn() {
-	int size = drawnObjects->size();	//number of drawn objects
-
-	float displacementValue = 0;		//value of displacement in postions
-
-	if (size > 0) {
-		float scale = drawnObjects->at(0)->getScale().x; // scale of drawn objects
-		for (int i = 0; i < size; i++)
-		{
-			float xpos = (-UI.width / 2 + drawnObjects->at(i)->getPosition().x)* 1.1f;
-			float ypos = (-UI.height / 2 + drawnObjects->at(i)->getPosition().y)* 1.1f;
-			drawnObjects->at(i)->setPosition(xpos + UI.width / 2, ypos + UI.height / 2);
-			drawnObjects->at(i)->setScale(scale + 0.1f, scale + 0.1f); // adding scale by 0.1 for each time
-		}
-
-	}
-
-	UpdateWindow();
-}
-
-//Zoom out by 10% every time called
-void Output::ZoomOut() {
-	int size = drawnObjects->size();	//number of drawn objects
-
-	float displacementValue = 0;		//value of displacement in postions
-
-	if (size > 0) {
-		float scale = drawnObjects->at(0)->getScale().x; // scale of drawn objects
-		for (int i = 0; i < size; i++)
-		{
-			float xpos = (-UI.width / 2 + drawnObjects->at(i)->getPosition().x)* 0.9f;
-			float ypos = (-UI.height / 2 + drawnObjects->at(i)->getPosition().y)* 0.9f;
-			drawnObjects->at(i)->setPosition(xpos + UI.width / 2, ypos + UI.height / 2);
-			drawnObjects->at(i)->setScale(scale - 0.1f, scale - 0.1f); // adding scale by 0.1 for each time
-		}
-
-	}
-
-	UpdateWindow();
-}
+///////////////////////////////////////////////////////////////////////////////////////////
 
 void Output::DrawTriangle(Point P1, Point P2, Point P3, GfxInfo TriangleGfxInfo, bool selected) const {
 
@@ -444,18 +377,54 @@ void Output::DrawTriangle(Point P1, Point P2, Point P3, GfxInfo TriangleGfxInfo,
 
 	//UpdateWindow();
 }
+///////////////////////////////////////////////////////////////////////////////////////////
 
 void Output::PlayTriangleSound() {
 	shapeSound[2].play();
 }
+///////////////////////////////////////////////////////////////////////////////////////////
+
+//======================================================================================//
+//								Window appearance functions								//
+//======================================================================================//
+
+void Output::dimIcons(int *iconsIndex, int size) {
+	for (int i = 0; i < size; i++)
+	{
+		sf::Color col = MenuItemSprites[iconsIndex[i]].getColor();
+		col.a = 100;
+		MenuItemSprites[iconsIndex[i]].setColor(col);
+	}
+}
+///////////////////////////////////////////////////////////////////////////////////////////
+
+void Output::brightIcons(int *iconsIndex, int size) {
+	for (int i = 0; i < size; i++)
+	{
+		sf::Color col = MenuItemSprites[iconsIndex[i]].getColor();
+		col.a = 255;
+		MenuItemSprites[iconsIndex[i]].setColor(col);
+	}
+}
+///////////////////////////////////////////////////////////////////////////////////////////
+
+void Output::brightAllDrawIcons() {
+	for (int i = 0; i < DRAW_ITM_COUNT; i++)
+	{
+		sf::Color col = MenuItemSprites[i].getColor();
+		col.a = 255;
+		MenuItemSprites[i].setColor(col);
+	}
+}
+///////////////////////////////////////////////////////////////////////////////////////////
 
 void Output::SetWindowTitle(string title) {
 	fileName = title;
 
 	pWind->setTitle(fileName + " ,Paint for Kids - Programming Techniques Project");
 }
-
 //////////////////////////////////////////////////////////////////////////////////////////
+
 void Output::UpdateWindow() const {
 
 	pWind->clear();
@@ -488,8 +457,12 @@ void Output::UpdateWindow() const {
 
 	pWind->display();
 }
-
 //////////////////////////////////////////////////////////////////////////////////////////
+
+//======================================================================================//
+//								Guide Functions											//
+//======================================================================================//
+
 void Output::DrawGuideCircle(Point center, float raduis) const {
 
 	pWind->clear();
@@ -529,8 +502,8 @@ void Output::DrawGuideCircle(Point center, float raduis) const {
 
 	pWind->display();
 }
-
 //////////////////////////////////////////////////////////////////////////////////////////
+
 void Output::DrawGuideTriangle(Point P1, Point P2, Point P3) const {
 
 	pWind->clear();
@@ -572,8 +545,8 @@ void Output::DrawGuideTriangle(Point P1, Point P2, Point P3) const {
 
 	pWind->display();
 }
-
 //////////////////////////////////////////////////////////////////////////////////////////
+
 void Output::DrawGuideRectangle(Point P1, Point P2) const {
 
 	pWind->clear();
@@ -627,8 +600,8 @@ void Output::DrawGuideRectangle(Point P1, Point P2) const {
 
 	pWind->display();
 }
-
 //////////////////////////////////////////////////////////////////////////////////////////
+
 void Output::DrawGuideLine(Point P1, Point P2) const {
 
 	pWind->clear();
@@ -670,6 +643,8 @@ void Output::DrawGuideLine(Point P1, Point P2) const {
 
 	pWind->display();
 }
+///////////////////////////////////////////////////////////////////////////////////////////
+
 
 //draw pop menu by taking the top left coner
 void Output::DrawPopMenu(int x, int y) {
@@ -742,7 +717,6 @@ void Output::DrawPopMenu(int x, int y) {
 
 	pWind->display();
 }
-
 //////////////////////////////////////////////////////////////////////////////////////////
 
 Output::~Output()

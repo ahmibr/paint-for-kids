@@ -35,13 +35,14 @@ void MoveByDrag::Execute()
 		lastXpos = xpos;
 		lastYpos = ypos;
 
-		for (int i = 0; i < pManager->GetFigureCount(); i++)
+		/*for (int i = 0; i < pManager->GetFigureCount(); i++)
 		{
 			CFigure *curr = pManager->GetFigure(i);
 			if (curr->IsSelected()) {
 				curr->Move(dx, dy);
 			}
-		}
+		}*/
+		pManager->moveFigures(dx, dy);
 
 		pIn->GetMouseMove(xpos, ypos);
 

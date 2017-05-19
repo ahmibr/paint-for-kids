@@ -9,12 +9,13 @@
 
 void PickHide::byType()
 {
-	for (int i = 0; i < pManager->GetFigureCount(); i++)
+	/*for (int i = 0; i < pManager->GetFigureCount(); i++)
 	{
 		fig = pManager->GetFigure(i);
 		if (fig->getType() == current->getType())
 			figures++;
-	}
+	}*/
+	figures = pManager->NumberOfFigureOfType(current);
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 	while (pickedFigures < figures)
@@ -47,12 +48,13 @@ void PickHide::byType()
 
 void PickHide::byColor()
 {
-	for (int i = 0; i < pManager->GetFigureCount(); i++)
+	/*for (int i = 0; i < pManager->GetFigureCount(); i++)
 	{
 		fig = pManager->GetFigure(i);
 		if (fig->getFillClrName() == current->getFillClrName())
 			figures++;
-	}
+	}*/
+	figures = pManager->NumberOfFigureOfColor(current);
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 	while (pickedFigures < figures)
@@ -81,12 +83,13 @@ void PickHide::byColor()
 
 void PickHide::byType_Color()
 {
-	for (int i = 0; i < pManager->GetFigureCount(); i++)
+	/*for (int i = 0; i < pManager->GetFigureCount(); i++)
 	{
 		fig = pManager->GetFigure(i);
 		if (fig->getType() == current->getType() && fig->getFillClrName() == current->getFillClrName())
 			figures++;
-	}
+	}*/
+	figures = pManager->NumberOfFigureOfColorAndType(current);
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 	while (pickedFigures < figures)
@@ -119,8 +122,8 @@ void PickHide::byArea()
 	Input* pIn = pManager->GetInput();
 	while (pickedFigures < pManager->GetFigureCount())
 	{
-		float area = 0;
-		for (int i = 0; i < pManager->GetFigureCount(); i++)
+		float area = pManager->LargestArea();
+		/*for (int i = 0; i < pManager->GetFigureCount(); i++)
 		{
 			current = pManager->GetFigure(i);
 			if (current->isVisible())
@@ -128,7 +131,7 @@ void PickHide::byArea()
 				if (area < current->getArea())
 					area = current->getArea();
 			}
-		}
+		}*/
 		pIn->GetPointClicked(x, y);
 		choosenFig = pManager->GetFigure(x, y);
 		if (choosenFig != NULL)
@@ -170,7 +173,9 @@ void PickHide::ReadActionParameters()
 		current = NULL;
 	else {
 		PickType = pIn->selectPickType();
-		current = pManager->GetFigure(rand() % pManager->GetFigureCount());
+		//current = pManager->GetFigure(rand() % pManager->GetFigureCount());
+		current = pManager->getRandomFigure();
+		current->SetSelected(false);
 	}
 }
 
@@ -217,10 +222,7 @@ void PickHide::Execute()
 			break;
 
 		}
-		for (int i = 0; i < pManager->GetFigureCount(); i++)
-		{
-			pManager->GetFigure(i)->setVisible(true);
-		}
+		pManager->ShowAllFigures();
 	}
 	else
 		pOut->PrintMessage("Draw or load a graph first");

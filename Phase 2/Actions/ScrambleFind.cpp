@@ -20,6 +20,8 @@ ScrambleFind::~ScrambleFind()
 //Execute the action
 void ScrambleFind::Execute()
 {
+	pManager->DeSelectAllFigures();
+
 	int x, y;
 	Input* pIn = pManager->GetInput();
 	Output* pOut = pManager->GetOutput();

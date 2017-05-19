@@ -150,7 +150,6 @@
     <ClCompile Include="Actions\ResizeAction.cpp" />
     <ClCompile Include="Actions\ResizeByDrag.cpp" />
     <ClCompile Include="Actions\RotateAction.cpp" />
-    <ClCompile Include="Actions\RotateByDrag.cpp" />
     <ClCompile Include="Actions\SaveAction.cpp" />
     <ClCompile Include="Actions\ScrambleFind.cpp" />
     <ClCompile Include="Actions\SelectAction.cpp" />
@@ -190,7 +189,6 @@
     <ClInclude Include="Actions\ResizeAction.h" />
     <ClInclude Include="Actions\ResizeByDrag.h" />
     <ClInclude Include="Actions\RotateAction.h" />
-    <ClInclude Include="Actions\RotateByDrag.h" />
     <ClInclude Include="Actions\SaveAction.h" />
     <ClInclude Include="Actions\ScrambleFind.h" />
     <ClInclude Include="Actions\SelectAction.h" />

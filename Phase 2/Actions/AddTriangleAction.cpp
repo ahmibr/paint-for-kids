@@ -23,20 +23,6 @@ void AddTriangleAction::ReadActionParameters()
 		pIn->GetPointClicked(P1.x, P1.y);
 	} while (P1.y < UI.ToolBarHeight || P1.y > UI.height - UI.StatusBarHeight);//needed check not to draw on status bar or tool bar
 
-	//pOut->PrintMessage("New Triangle: Click at second point");
-
-	//do {
-	//	//Read 2nd corner and store in point P2
-	//	pIn->GetPointClicked(P2.x, P2.y);
-	//} while (P2.y < UI.ToolBarHeight || P2.y > UI.height - UI.StatusBarHeight);//needed check not to draw on status bar or tool bar
-
-	//pOut->PrintMessage("New Triangle: Click at third point");
-
-	//do {
-	//	//Read 3rd corner and store in point P3
-	//	pIn->GetPointClicked(P3.x, P3.y);
-	//} while (P3.y < UI.ToolBarHeight || P3.y > UI.height - UI.StatusBarHeight);//needed check not to draw on status bar or tool bar
-
 	int guideX, guideY;
 	Point guide;
 	while (!pIn->GetMouseMoveNoHold(guideX, guideY) || (guide.y < UI.ToolBarHeight || guide.y > UI.height - UI.StatusBarHeight))

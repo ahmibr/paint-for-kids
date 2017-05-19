@@ -60,18 +60,18 @@ public:
 	void PlayRectangleSound();
 	void DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected) const; //Draw a line
 	void PlayLineSound();
+	void DrawCirc(Point C, float R, GfxInfo CircGfxInfo, bool selected) const;       //Draw a circle
+	void PlayCircleSound();
+	void DrawTriangle(Point P1, Point P2, Point P3, GfxInfo TriangleGfxInfo, bool selected) const; //Draw a triangle
+	void PlayTriangleSound();
+
+								// -- Window appearance functions	
 	void dimIcons(int *iconsIndex, int size);//dim specific icons
 	void brightIcons(int * iconsIndex, int size);
 	void brightAllDrawIcons();
-	void DrawCirc(Point C, float R, GfxInfo CircGfxInfo, bool selected) const;       //Draw a circle
-	void PlayCircleSound();
-	void ZoomIn();
-	void ZoomOut();
-	void DrawTriangle(Point P1, Point P2, Point P3, GfxInfo TriangleGfxInfo, bool selected) const; //Draw a triangle
-	void PlayTriangleSound();
 	void SetWindowTitle(string title);
-
 	void PrintMessage(string msg) const;	//Print a message on Status bar
+
 
 	sf::Color getCrntDrawColor() const;	//get current drwawing color
 	sf::Color getCrntFillColor() const;	//get current filling color

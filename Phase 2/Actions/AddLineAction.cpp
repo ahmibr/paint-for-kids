@@ -24,10 +24,6 @@ void AddLineAction::ReadActionParameters()
 
 	pOut->PrintMessage("New Line: Click at second point");
 
-	//do {
-	//	//Read 2nd corner and store in point P2
-	//	pIn->GetPointClicked(P2.x, P2.y);
-	//} while (P2.y < UI.ToolBarHeight || P2.y > UI.height - UI.StatusBarHeight);//needed check not to draw on status bar or tool bar
 
 	Point Guide;
 	while (!pIn->GetMouseMoveNoHold(Guide.x, Guide.y) || (Guide.y < UI.ToolBarHeight || Guide.y > UI.height - UI.StatusBarHeight))

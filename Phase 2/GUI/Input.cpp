@@ -28,27 +28,6 @@ void Input::GetPointClicked(int &x, int &y) const
 	}
 }
 
-bool Input::GetMouseMoveNoHold(int &x, int &y) const
-{
-	while (true) {
-		while (pWind->pollEvent(*userEvent))
-		{
-			if (userEvent->type == sf::Event::MouseMoved) {
-				x = userEvent->mouseMove.x;
-				y = userEvent->mouseMove.y;
-				return false;
-			}
-			if (userEvent->type == sf::Event::MouseButtonPressed) {
-				if (userEvent->key.code == sf::Mouse::Left) {
-					x = userEvent->mouseButton.x;
-					y = userEvent->mouseButton.y;
-					return true;
-				}
-			}
-		}
-	}
-}
-
 string Input::GetSrting(Output *pO) const
 {
 	string Label;
@@ -249,9 +228,7 @@ ActionType Input::GetUserAction() const
 }
 /////////////////////////////////
 
-
-
-//Added a function to return graphix of shape
+//Added a function to return graphix of shape through creating a window
 void Input::GraphicsInfo(GfxInfo &choice) {
 	sf::RenderWindow colorPalette(sf::VideoMode(300, 400), "Color Palette", sf::Style::Close);
 
@@ -421,6 +398,7 @@ void Input::GraphicsInfo(GfxInfo &choice) {
 	}
 }
 
+//Added a function to return background color through creating a window
 void Input::BackgrndColor() {
 	sf::RenderWindow backgrndWindow(sf::VideoMode(400, 150), "Background Color", sf::Style::Close);
 	sf::RectangleShape backgrndColor(sf::Vector2f(400, 150));
@@ -473,6 +451,7 @@ void Input::BackgrndColor() {
 
 }
 
+//Added a function to return size of shape through creating a window
 float Input::Resize_wind()
 {
 	sf::RenderWindow New_window(sf::VideoMode(200, 50), "Resize ", sf::Style::Close);
@@ -527,6 +506,8 @@ float Input::Resize_wind()
 	return 1;
 
 }
+
+//Added a function to return rotation of shape through creating a window
 float Input::Rotate_wind()
 {
 	sf::RenderWindow New_window(sf::VideoMode(150, 50), "Rotate ", sf::Style::Close);
@@ -578,16 +559,18 @@ float Input::Rotate_wind()
 	return 0;
 }
 
+//returns last Event's pressed position x
 int Input::GetXmousePos() const {
 	return userEvent->mouseButton.x;
 }
 
+//returns last Event's pressed position y
 int Input::GetYmousePos() const {
 	return userEvent->mouseButton.y;
 }
 
-//the function returns the value of xpos and ypos when the mouse is dragged - if the mouse is released
-//returns -1 for both x and y
+//the function returns the value of xpos and ypos when the mouse is dragged
+//if the mouse is released  returns -1 for both x and y
 void Input::GetMouseMove(int &x, int &y) const {
 	while (true) {
 		while (pWind->pollEvent(*userEvent))
@@ -607,6 +590,30 @@ void Input::GetMouseMove(int &x, int &y) const {
 	}
 }
 
+//the function returns the value of xpos and ypos when the mouse is moving
+//if the mouse is released  returns -1 for both x and y
+bool Input::GetMouseMoveNoHold(int &x, int &y) const
+{
+	while (true) {
+		while (pWind->pollEvent(*userEvent))
+		{
+			if (userEvent->type == sf::Event::MouseMoved) {
+				x = userEvent->mouseMove.x;
+				y = userEvent->mouseMove.y;
+				return false;
+			}
+			if (userEvent->type == sf::Event::MouseButtonPressed) {
+				if (userEvent->key.code == sf::Mouse::Left) {
+					x = userEvent->mouseButton.x;
+					y = userEvent->mouseButton.y;
+					return true;
+				}
+			}
+		}
+	}
+}
+
+//Added a function to return the type of pick game through creating a window
 int Input::selectPickType()
 {
 	sf::RenderWindow New_window(sf::VideoMode(300, 600), "Pick ", sf::Style::Close);

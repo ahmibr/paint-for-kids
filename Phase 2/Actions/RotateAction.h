@@ -3,12 +3,12 @@
 #include "Action.h"
 #include "../DataManager.h"
 
-class RotateAction:public Action,public DataManager
+class RotateAction :public Action, public DataManager
 {
-	bool selected;
+	int rotate;
 public:
 	RotateAction(ApplicationManager *pApp);
-	virtual void Execute() ;
+	virtual void Execute();
 	virtual void ReadActionParameters();
 };
 

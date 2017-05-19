@@ -37,13 +37,14 @@ void ResizeByDrag::Execute()
 
 		value = 1 + dx / senstivity;
 
-		for (int i = 0; i < pManager->GetFigureCount(); i++)
+		/*for (int i = 0; i < pManager->GetFigureCount(); i++)
 		{
 			CFigure *curr = pManager->GetFigure(i);
 			if (curr->IsSelected()) {
 				curr->Resize(value);
 			}
-		}
+		}*/
+		pManager->ResizeFigures(value);
 
 		pIn->GetMouseMove(xpos, ypos);
 

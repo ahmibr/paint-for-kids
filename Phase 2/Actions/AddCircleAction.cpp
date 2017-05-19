@@ -36,13 +36,6 @@ void AddCircleAction::ReadActionParameters()
 	P2.y = guideY;
 	/////////////////////////////
 
-	/*do {
-		//Read 2nd point and store in point P2
-		pIn->GetPointClicked(P2.x, P2.y);
-	} while (P2.y < UI.ToolBarHeight || P2.y > UI.height - UI.StatusBarHeight);//needed check not to draw on status bar or tool bar*/
-	//CircleGfxInfo.isFilled = false;	//default is not filled
-	//get drawing, filling colors and pen width from the interface
-
 	CircleGfxInfo.DrawClr = pOut->getCrntDrawColor();
 	CircleGfxInfo.FillClr = pOut->getCrntFillColor();
 	CircleGfxInfo.BorderWdth = pOut->getCrntPenWidth();

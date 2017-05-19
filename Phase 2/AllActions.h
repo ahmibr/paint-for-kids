@@ -23,7 +23,6 @@
 #include "Actions\RotateAction.h"
 #include "Actions\ChangeBkgroundClr.h"
 #include "Actions\ResizeByDrag.h"
-#include "Actions\RotateByDrag.h"
 #include "Actions\PickHide.h"
 #include "Actions\ScrambleFind.h"
 #include "Actions\PopMenu.h"
