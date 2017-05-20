@@ -399,7 +399,6 @@ void ApplicationManager::RestoreFromHalf() {
 	for (int i = 0; i < FigCount; i++)
 		FigList[i]->setTempCord();
 
-	CFigure::setCount(FiguresMaxID);
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //delete figure array
@@ -416,7 +415,7 @@ CFigure** ApplicationManager::createCopyOfFigures() {
 
 	CFigure** figures = new CFigure*[FigCount];
 
-	FiguresMaxID = CFigure::getCount();
+	
 
 	for (int i = 0; i < FigCount; i++)
 	{

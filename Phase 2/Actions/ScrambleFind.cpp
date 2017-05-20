@@ -26,6 +26,8 @@ void ScrambleFind::Execute()
 	Input* pIn = pManager->GetInput();
 	Output* pOut = pManager->GetOutput();
 
+	int FiguresMaxID = CFigure::getCount(); //save it to restore after finish
+
 	pManager->ToLeftHalf();
 	pManager->UpdateInterface();
 
@@ -66,6 +68,7 @@ void ScrambleFind::Execute()
 
 	pOut->PrintMessage("Total grade = " + to_string(((float)validCount / (validCount + inValidCount)) * 100) + '%');
 
+	CFigure::setCount(FiguresMaxID); //restore everything
 	pManager->ShowAllFigures();
 	pManager->RestoreFromHalf();
 	pManager->deleteFigureArray(gameFigures);
