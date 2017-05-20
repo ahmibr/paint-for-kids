@@ -5,6 +5,8 @@
 
 class CopyAction:public Action,public DataManager
 {
+	CFigure** selectedList;
+	int selectedCount;
 public:
 	CopyAction(ApplicationManager *pApp);
 	virtual void Execute() ;

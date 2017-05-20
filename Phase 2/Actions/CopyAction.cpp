@@ -8,6 +8,8 @@
 
 CopyAction::CopyAction(ApplicationManager *pApp) :Action(pApp)
 {
+	selectedList = NULL;
+	selectedCount = 0;
 }
 
 //Execute the action
@@ -15,29 +17,28 @@ void CopyAction::Execute()
 {
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
-	bool selected = false;
+	ReadActionParameters();
 
-	for (int i = 0; i < pManager->GetFigureCount(); i++)
-	{
-		CFigure* curr = pManager->GetFigure(i);
-		if (curr->IsSelected()) { //if current figure is selected
-			if(!selected && getSize())	//if we found a selected element 
-										//and clipBoard is not empty, then overlap happened
-				destroyClipBoard();		//destroy the old clipBoard
+	if (selectedCount) { //there are selected figures
+		if (getSize())				//if clipBoard is not empty, then overlap will happen
+			destroyClipBoard();		//destroy the old clipBoard
+		for (int i = 0; i < selectedCount; i++)
+		{
+			CFigure* curr = selectedList[i];
 
-			selected = true;
-			CFigure* added = curr -> copyClone(); //get a copy of the current figure
-			addToClipBoard(added); //add to to clipboard
+			CFigure* added = curr->copyClone(); //get a copy of the current figure
+			addToClipBoard(added);	//add it to to clipboard
 		}
-	}
-	if (selected)
+
 		pOut->PrintMessage("Copied to clipboard.");
-	else
+	}
+	else //no selected figures found
 		pOut->PrintMessage("Select at least one shape.");
 }
 
 void CopyAction::ReadActionParameters()
 {
+	selectedList = pManager->getSelectedList(selectedCount);
 }
 
 

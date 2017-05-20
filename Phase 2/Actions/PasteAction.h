@@ -6,7 +6,8 @@
 class PasteAction:public Action,public DataManager
 {
 	int dx,dy; //changes in coordinates
-	bool able;
+	bool able; 
+	bool inBorder;
 public:
 	PasteAction(ApplicationManager *pApp);
 	virtual void ReadActionParameters();

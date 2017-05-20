@@ -5,6 +5,8 @@
 
 class CutAction:public Action,public DataManager
 {
+	CFigure** selectedList;
+	int selectedCount;
 public:
 	CutAction(ApplicationManager *pApp);
 	virtual void Execute() ;
