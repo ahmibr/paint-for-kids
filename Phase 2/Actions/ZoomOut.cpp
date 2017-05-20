@@ -24,6 +24,8 @@ void ZoomOut::Execute()
 
 	Output* pOut = pManager->GetOutput();
 
+	pOut->UpdateZoomString();
+
 	int size = 7;
 	int *UnSupportedActions = new int[size];
 	UnSupportedActions[0] = 0;

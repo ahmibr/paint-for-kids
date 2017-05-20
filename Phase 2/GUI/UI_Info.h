@@ -90,6 +90,8 @@ struct UI_Info	//User Interface Info.
 
 							/// Add more members if needed
 	float zoomFactor;
+	int infoWidth;
+	int zoomIconWidth;
 
 }UI;	//create a global object UI
 

@@ -142,6 +142,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 
 	case STATUS:	//a click on the status bar ==> no action
+		pOut->createCreditsWindow();
 		return;
 
 	}
@@ -395,16 +396,10 @@ void ApplicationManager::RandomizePositionsRight(CFigure** figures) {
 ////////////////////////////////////////////////////////////////////////////////////
 //scales the figures to full the screen
 void ApplicationManager::RestoreFromHalf() {
-	int maxID = 0;
 	for (int i = 0; i < FigCount; i++)
-	{
 		FigList[i]->setTempCord();
-		if (FigList[i]->getID() > maxID)
-			maxID = FigList[i]->getID();
-	}
-	if (FigCount > 0) {
-		CFigure::setCount(maxID);
-	}
+
+	CFigure::setCount(FiguresMaxID);
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //delete figure array
@@ -420,6 +415,8 @@ void ApplicationManager::deleteFigureArray(CFigure** figures) {
 CFigure** ApplicationManager::createCopyOfFigures() {
 
 	CFigure** figures = new CFigure*[FigCount];
+
+	FiguresMaxID = CFigure::getCount();
 
 	for (int i = 0; i < FigCount; i++)
 	{

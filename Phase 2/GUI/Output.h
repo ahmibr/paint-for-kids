@@ -14,6 +14,7 @@ private:
 	//Added by us ------- CHOSEN AS POINTERS BECAUSE THEY ARE USED IN CONST FUNCTIONS
 	sf::RenderWindow* pWind;	//Pointer to the Graphics Window
 	sf::Text *statusMessage;		//message text
+	sf::Text ZoomPercent;		//message text
 	sf::Font messageFont;
 
 	sf::SoundBuffer buffer;
@@ -31,6 +32,9 @@ private:
 	sf::Sprite MenuItemSprites[DRAW_ITM_COUNT];		//Menu items sprites
 	sf::Texture MenuPlayImages[PLAY_ITM_COUNT];		//Play items images
 	sf::Sprite MenuPlaySprites[PLAY_ITM_COUNT];		//Play items sprites
+
+	sf::Texture ZoomImages[2];		//Zoom images
+	sf::Sprite ZoomSprites[2];		//Zoom sprites
 
 	vector<sf::Shape*> *drawnObjects;	//vector to redraw shapes any new events
 
@@ -65,20 +69,24 @@ public:
 	void DrawTriangle(Point P1, Point P2, Point P3, GfxInfo TriangleGfxInfo, bool selected) const; //Draw a triangle
 	void PlayTriangleSound();
 
-								// -- Window appearance functions	
+	// -- Window appearance functions	
 	void dimIcons(int *iconsIndex, int size);//dim specific icons
 	void brightIcons(int * iconsIndex, int size);
 	void brightAllDrawIcons();
 	void SetWindowTitle(string title);
 	void PrintMessage(string msg) const;	//Print a message on Status bar
+	void UpdateZoomString();
 
+	void createCreditsWindow();
 
 	sf::Color getCrntDrawColor() const;	//get current drwawing color
 	sf::Color getCrntFillColor() const;	//get current filling color
 	int getCrntPenWidth() const;		//get current pen width
 	bool getCrntIsFilled() const;		//get current is filled status
 
+
 	~Output();
+
 };
 
 #endif

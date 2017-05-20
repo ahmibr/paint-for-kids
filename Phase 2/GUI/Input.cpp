@@ -185,6 +185,15 @@ ActionType Input::GetUserAction() const
 		}
 
 		//[3] User clicks on the status bar
+		if (UI.width - x < UI.infoWidth) {
+			return EMPTY;
+		}
+		else if (UI.width - x < UI.infoWidth + UI.zoomIconWidth) {
+			return ZOOM_OUT;
+		}
+		else if (UI.width - x < UI.infoWidth + 2 * UI.zoomIconWidth) {
+			return ZOOM_IN;
+		}
 		return STATUS;
 	}
 	else	//GUI is in PLAY mode

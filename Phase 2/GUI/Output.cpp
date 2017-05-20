@@ -17,6 +17,9 @@ Output::Output()
 	UI.PopMenuHeight = 5 * 50;
 	UI.PopMenuWidth = 150;
 
+	UI.infoWidth = 80;
+	UI.zoomIconWidth = 50;
+
 	UI.StatusBarHeight = 50;
 	UI.ToolBarHeight = 50;
 	UI.MenuItemWidth = 64;
@@ -37,6 +40,19 @@ Output::Output()
 	statusMessage = new sf::Text("", messageFont, 20);
 	statusMessage->setFillColor(UI.MsgColor);
 	statusMessage->setPosition(sf::Vector2f(0, UI.height - UI.StatusBarHeight));
+
+	ZoomPercent.setFont(messageFont);
+	ZoomPercent.setFillColor(sf::Color::White);
+	ZoomPercent.setPosition(UI.width - UI.infoWidth, UI.height - UI.StatusBarHeight + 5);
+	ZoomPercent.setCharacterSize(30);
+	ZoomPercent.setString(to_string((int)(UI.zoomFactor * 100)) + "%");
+
+	ZoomImages[0].loadFromFile("images\\MenuItems\\Zoom_Out.png", sf::IntRect(0, 0, UI.zoomIconWidth, UI.StatusBarHeight));
+	ZoomImages[1].loadFromFile("images\\MenuItems\\Zoom_In.png", sf::IntRect(0, 0, UI.zoomIconWidth, UI.StatusBarHeight));
+	ZoomSprites[0].setTexture(ZoomImages[0]);
+	ZoomSprites[1].setTexture(ZoomImages[1]);
+	ZoomSprites[0].setPosition(sf::Vector2f(UI.width - UI.infoWidth - UI.zoomIconWidth, UI.height - UI.StatusBarHeight));
+	ZoomSprites[1].setPosition(sf::Vector2f(UI.width - UI.infoWidth - 2 * UI.zoomIconWidth, UI.height - UI.StatusBarHeight));
 
 
 
@@ -455,6 +471,13 @@ void Output::UpdateWindow() const {
 
 	pWind->draw(*statusMessage);
 
+	pWind->draw(ZoomPercent);
+
+	for (int i = 0; i < 2; i++)
+	{
+		pWind->draw(ZoomSprites[i]);
+	}
+
 	pWind->display();
 }
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -500,6 +523,13 @@ void Output::DrawGuideCircle(Point center, float raduis) const {
 
 	pWind->draw(*statusMessage);
 
+	pWind->draw(ZoomPercent);
+
+	for (int i = 0; i < 2; i++)
+	{
+		pWind->draw(ZoomSprites[i]);
+	}
+
 	pWind->display();
 }
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -542,6 +572,13 @@ void Output::DrawGuideTriangle(Point P1, Point P2, Point P3) const {
 	pWind->draw(*stbar);
 
 	pWind->draw(*statusMessage);
+
+	pWind->draw(ZoomPercent);
+
+	for (int i = 0; i < 2; i++)
+	{
+		pWind->draw(ZoomSprites[i]);
+	}
 
 	pWind->display();
 }
@@ -598,6 +635,13 @@ void Output::DrawGuideRectangle(Point P1, Point P2) const {
 	example.setOutlineThickness(2);
 	pWind->draw(example);
 
+	pWind->draw(ZoomPercent);
+
+	for (int i = 0; i < 2; i++)
+	{
+		pWind->draw(ZoomSprites[i]);
+	}
+
 	pWind->display();
 }
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -640,6 +684,13 @@ void Output::DrawGuideLine(Point P1, Point P2) const {
 	example.setFillColor(sf::Color::Black);
 
 	pWind->draw(example);
+
+	pWind->draw(ZoomPercent);
+
+	for (int i = 0; i < 2; i++)
+	{
+		pWind->draw(ZoomSprites[i]);
+	}
 
 	pWind->display();
 }
@@ -719,6 +770,11 @@ void Output::DrawPopMenu(int x, int y) {
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 
+//draw pop menu by taking the top left coner
+void Output::UpdateZoomString() {
+	ZoomPercent.setString(to_string((int)(UI.zoomFactor * 100)) + "%");
+}
+
 Output::~Output()
 {
 	delete statusMessage;
@@ -733,3 +789,46 @@ Output::~Output()
 	delete drawnObjects;
 }
 
+void Output::createCreditsWindow() {
+	sf::RenderWindow New_window(sf::VideoMode(510, 460), "Credits", sf::Style::Close);
+	sf::RectangleShape backgrnd(sf::Vector2f(510, 460));		//background color
+	backgrnd.setFillColor(UI.BkGrndColor);
+
+	sf::Font f;
+	f.loadFromFile("Resource Files\\Arial.ttf");
+
+	string creditsMessage = "This program is developed by Team 2\n";
+	creditsMessage += "\t\tAhmed Ibrahim\n";
+	creditsMessage += "\t\tAhmed Soliman\n";
+	creditsMessage += "\t\tBassel Mostafa\n";
+	creditsMessage += "\t\tDalia Mohamed\n";
+	creditsMessage += "\nUseful shortcuts:\n";
+	creditsMessage += "1- To drag selected press \"D\"\n";
+	creditsMessage += "2- To resize selected press \"S\"\n";
+	creditsMessage += "3- Right click for pop Menu\n";
+	creditsMessage += "\nThank you for using our program\n";
+	creditsMessage += "All rights preserved 2017\n";
+
+
+	sf::Text creditsBlock;
+	creditsBlock.setColor(sf::Color::Black);
+	creditsBlock.setString(creditsMessage);
+	creditsBlock.setFont(f);
+
+	New_window.draw(backgrnd);
+	New_window.draw(creditsBlock);
+	New_window.display();
+
+	while (New_window.isOpen())
+	{
+		// Process events
+		sf::Event event;
+		while (New_window.pollEvent(event))
+		{
+			// Close window: exit
+			if (event.type == sf::Event::Closed)
+				New_window.close();
+		}
+	}
+
+}

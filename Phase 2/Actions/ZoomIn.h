@@ -10,8 +10,6 @@ class ZoomIn : public Action
 
 	int numberOfZooms;				//number of current zooms
 
-	void UpdateFigures(Output* pOut);
-
 public:
 	ZoomIn(ApplicationManager *pApp);
 	~ZoomIn();
