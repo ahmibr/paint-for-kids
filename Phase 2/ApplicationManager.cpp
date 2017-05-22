@@ -338,7 +338,7 @@ bool ApplicationManager::DeleteFigures()
 		CFigure *curr = FigList[i];
 		if (curr->IsSelected()) {
 			selected = true;
-			pManager->removeFigure(curr->getID());
+			removeFigure(curr->getID());
 			i--;
 		}
 	}
@@ -429,7 +429,7 @@ CFigure** ApplicationManager::createCopyOfFigures() {
 
 	CFigure** figures = new CFigure*[FigCount];
 
-	
+
 
 	for (int i = 0; i < FigCount; i++)
 	{
@@ -542,3 +542,4 @@ ApplicationManager::~ApplicationManager()
 		delete[] selectedList;
 	pData->destroyClipBoard(); //if the program is over and clipboard still has data
 }
+

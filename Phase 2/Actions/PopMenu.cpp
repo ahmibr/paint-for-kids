@@ -26,10 +26,6 @@ void PopMenu::Execute()
 {
 	ActionType procedureAction;
 
-	/*procedureAction = SELECT;
-	pManager->ExecuteAction(procedureAction);
-	pManager->UpdateInterface();*/
-
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 
@@ -77,9 +73,6 @@ void PopMenu::Execute()
 	}
 
 	pManager->ExecuteAction(procedureAction);
-
-	//pManager->DeSelectAllFigures();
-
 }
 
 

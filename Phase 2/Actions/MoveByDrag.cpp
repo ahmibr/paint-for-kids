@@ -25,6 +25,7 @@ void MoveByDrag::Execute()
 	pOut->PrintMessage("Dragging selected objects.");
 
 	pIn->GetPointClicked(xpos, ypos);
+
 	lastXpos = xpos;//during the first frame xpos is the last
 	lastYpos = ypos;//during the first frame ypos is the last
 
@@ -35,16 +36,9 @@ void MoveByDrag::Execute()
 		lastXpos = xpos;
 		lastYpos = ypos;
 
-		/*for (int i = 0; i < pManager->GetFigureCount(); i++)
-		{
-			CFigure *curr = pManager->GetFigure(i);
-			if (curr->IsSelected()) {
-				curr->Move(dx, dy);
-			}
-		}*/
 		pManager->moveFigures(dx, dy);
 
-		pIn->GetMouseMove(xpos, ypos);
+		pIn->GetMouseMove(xpos, ypos);			//for more smoothness calling read action parameters is not prefarable
 
 		pManager->UpdateInterface();
 	}

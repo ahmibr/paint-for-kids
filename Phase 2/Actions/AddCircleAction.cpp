@@ -30,7 +30,6 @@ void AddCircleAction::ReadActionParameters()
 	while (!pIn->GetMouseMoveNoHold(guideX, guideY) || (guideY < UI.ToolBarHeight || guideY > UI.height - UI.StatusBarHeight)) {
 		float guideRadius = sqrt(pow(P1.x - guideX, 2) + pow(P1.y - guideY, 2));
 		pOut->DrawGuideCircle(P1, guideRadius);
-		//cout << guideX << " " << guideY << "///";
 	}
 	P2.x = guideX;
 	P2.y = guideY;

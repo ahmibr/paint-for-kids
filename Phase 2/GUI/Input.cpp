@@ -65,7 +65,8 @@ ActionType Input::GetUserAction() const
 		{
 			// Close window: exit
 			if (userEvent->type == sf::Event::Closed)
-				return EXIT;
+				if (confirmExit())
+					return EXIT;
 
 			if (userEvent->type == sf::Event::MouseButtonPressed) { //normal Actions
 				if (userEvent->key.code == sf::Mouse::Left) {
@@ -155,7 +156,9 @@ ActionType Input::GetUserAction() const
 			case ITM_Undo: return UNDO;
 			case ITM_Redo: return REDO;
 			case ITM_Play: return TO_PLAY;
-			case ITM_EXIT: return EXIT;
+			case ITM_EXIT:
+				if (confirmExit())
+					return EXIT;
 			}
 
 			if (UI.zoomFactor == 1) {
@@ -215,7 +218,9 @@ ActionType Input::GetUserAction() const
 			case ITM_Pick: return PICK;
 			case ITM_Find: return SCRAMBLE_FIND;
 			case ITM_Draw: return TO_DRAW;
-			case ITM_EXIT2: return EXIT;
+			case ITM_EXIT2:
+				if (confirmExit())
+					return EXIT;
 
 			default: return EMPTY;	//A click on empty place in desgin toolbar
 			}
@@ -514,6 +519,62 @@ float Input::Resize_wind()
 
 	return 1;
 
+}
+
+//Added a function to return exit confirmation
+bool Input::confirmExit()const
+{
+	sf::RenderWindow New_window(sf::VideoMode(320, 50), "Resize ", sf::Style::Close);
+	sf::RectangleShape backgrnd(sf::Vector2f(320, 50));		//background color
+	backgrnd.setFillColor(UI.BkGrndColor);
+
+	sf::RectangleShape yes(sf::Vector2f(160, 25));		//yes color
+	yes.setPosition(0, 25);
+	yes.setFillColor(sf::Color(200, 30, 30));
+	sf::RectangleShape no(sf::Vector2f(160, 25));		//no color
+	no.setPosition(160, 25);
+	no.setFillColor(sf::Color(30, 200, 30));
+
+	sf::Font f;
+	f.loadFromFile("Resource Files\\Arial.ttf");
+
+	sf::Text Question;
+	Question.setString("Do you really want to Exit ? ? ?\n\t\t\tyes\t\t\t\t\tNO");
+
+	New_window.clear();
+	New_window.draw(backgrnd);
+
+
+	Question.setFillColor(sf::Color::Black);
+	Question.setFont(f);
+	Question.setCharacterSize(20);
+	Question.setPosition(0, 0);
+	New_window.draw(yes);
+	New_window.draw(no);
+	New_window.draw(Question);
+
+	New_window.display();
+
+	while (New_window.isOpen())
+	{
+		// Process events
+		sf::Event event;
+		while (New_window.pollEvent(event))
+		{
+			// Close window: exit
+			if (event.type == sf::Event::Closed)
+				New_window.close();
+
+			if (event.type == sf::Event::MouseButtonPressed) {
+				if (event.mouseButton.y > 25) {
+					if (event.mouseButton.x / 160 == 0)
+						return true;
+					if (event.mouseButton.x / 160 == 1)
+						return false;
+				}
+			}
+		}
+	}
 }
 
 //Added a function to return rotation of shape through creating a window
