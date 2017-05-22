@@ -68,7 +68,7 @@ void PopMenu::Execute()
 		procedureAction = ROTATE;
 		break;
 	default:
-		procedureAction = EMPTY;
+		procedureAction = SELECT;
 		break;
 	}
 

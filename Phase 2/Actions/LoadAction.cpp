@@ -24,9 +24,9 @@ void LoadAction::Execute()
 {
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
-	pOut->PrintMessage("Load: Do you want to save your current work? Y or N");
-	string choice = pIn->GetSrting(pOut);
-	if (choice == "Y" || choice == "y")
+
+
+	if (pIn->confirmAction("Save"))
 		pManager->ExecuteAction(SAVE);
 	ReadActionParameters();
 	if (loadfile.is_open()) {

@@ -14,9 +14,8 @@ void ExitAction::ReadActionParameters()
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 
-	pOut->PrintMessage("Exit: Do you want to save ? Y or N");
-	string choice = pIn->GetSrting(pOut);
-	if (choice == "Y" || choice == "y")
+
+	if (pIn->confirmAction("Save before Exit"))
 		pManager->ExecuteAction(SAVE); //execute save action before exit
 
 }

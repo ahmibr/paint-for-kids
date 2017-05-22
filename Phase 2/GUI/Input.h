@@ -24,7 +24,7 @@ public:
 	string GetSrting(Output* pO) const;	 //Returns a string entered by the user
 
 	float Resize_wind();//Added a function to return size of shape through creating a window
-	bool confirmExit()const;//Added a function to return exit confirmation
+	bool confirmAction(string editable)const;//Added a function to return exit confirmation
 	//Added a function to return size of shape through creating a window
 	float Rotate_wind();//Added a function to return rotation of shape through creating a window
 	int GetXmousePos() const;//returns last Event's pressed position x

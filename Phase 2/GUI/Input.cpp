@@ -65,7 +65,7 @@ ActionType Input::GetUserAction() const
 		{
 			// Close window: exit
 			if (userEvent->type == sf::Event::Closed)
-				if (confirmExit())
+				if (confirmAction("Exit"))
 					return EXIT;
 
 			if (userEvent->type == sf::Event::MouseButtonPressed) { //normal Actions
@@ -157,7 +157,7 @@ ActionType Input::GetUserAction() const
 			case ITM_Redo: return REDO;
 			case ITM_Play: return TO_PLAY;
 			case ITM_EXIT:
-				if (confirmExit())
+				if (confirmAction("Exit"))
 					return EXIT;
 			}
 
@@ -219,7 +219,7 @@ ActionType Input::GetUserAction() const
 			case ITM_Find: return SCRAMBLE_FIND;
 			case ITM_Draw: return TO_DRAW;
 			case ITM_EXIT2:
-				if (confirmExit())
+				if (confirmAction("Exit"))
 					return EXIT;
 
 			default: return EMPTY;	//A click on empty place in desgin toolbar
@@ -522,7 +522,7 @@ float Input::Resize_wind()
 }
 
 //Added a function to return exit confirmation
-bool Input::confirmExit()const
+bool Input::confirmAction(string editableText)const
 {
 	sf::RenderWindow New_window(sf::VideoMode(320, 50), "Resize ", sf::Style::Close);
 	sf::RectangleShape backgrnd(sf::Vector2f(320, 50));		//background color
@@ -539,7 +539,7 @@ bool Input::confirmExit()const
 	f.loadFromFile("Resource Files\\Arial.ttf");
 
 	sf::Text Question;
-	Question.setString("Do you really want to Exit ? ? ?\n\t\t\tyes\t\t\t\t\tNO");
+	Question.setString("Do you want to " + editableText + " ? ? ?\n\t\t\tyes\t\t\t\t\tNO");
 
 	New_window.clear();
 	New_window.draw(backgrnd);

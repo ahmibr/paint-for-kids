@@ -14,9 +14,9 @@ void DeleteAction::ReadActionParameters()
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 
-	pOut->PrintMessage("Delete: Are you sure you want to delete? Y or N");
-	string choice = pIn->GetSrting(pOut);
-	if (choice == "y" || choice == "Y")
+
+
+	if (pIn->confirmAction("Delete"))
 		confirm = true;
 	else
 		pOut->ClearStatusBar();
