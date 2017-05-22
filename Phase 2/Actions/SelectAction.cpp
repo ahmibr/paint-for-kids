@@ -24,21 +24,37 @@ void SelectAction::Execute()
 	ReadActionParameters();
 	Output* pOut = pManager->GetOutput();
 
-	bool wasSelected;
-	if (pFigure)
-		 wasSelected = pFigure->IsSelected();
-	pManager->DeSelectAllFigures();
+	if (pManager->getSelectedCount() > 1) { //case if switched from multi-select to select(to make it more windows-like)
 
-	if (pFigure) { //if he clicked on a figure, not an empty area
-		if (wasSelected) //now it won't be selected
-			pOut->ClearStatusBar();
-		else
+		pManager->DeSelectAllFigures();
+
+		if (pFigure)
 		{
 			pFigure->SetSelected(true);
 			pOut->PrintMessage(pFigure->printInfo());
 		}
+		else
+			pOut->ClearStatusBar();
 	}
-	else //clicked on empty area
-		pOut->ClearStatusBar();
 
+	else { //normal case
+
+		bool wasSelected;
+		if (pFigure)
+			wasSelected = pFigure->IsSelected();
+
+		pManager->DeSelectAllFigures();
+
+		if (pFigure) { //if he clicked on a figure, not an empty area
+			if (wasSelected) //now it won't be selected
+				pOut->ClearStatusBar();
+			else
+			{
+				pFigure->SetSelected(true);
+				pOut->PrintMessage(pFigure->printInfo());
+			}
+		}
+		else //clicked on empty area
+			pOut->ClearStatusBar();
+	}
 }

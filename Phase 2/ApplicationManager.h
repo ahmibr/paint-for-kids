@@ -34,7 +34,7 @@ public:
 
 	// -- Figures Management Functions
 	void AddFigure(CFigure* pFig); //Adds a new figure to the FigList
-	void removeFigure(int ID); //Remove figure by it's ID
+	bool removeFigure(int ID); //Remove figure by it's ID
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
 	CFigure *GetFigure(int index) const;//get figure given index
 	void restartApp(); //delete figures before loading new graph

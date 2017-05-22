@@ -165,7 +165,7 @@ void ApplicationManager::AddFigure(CFigure* pFig)
 		FigList[FigCount++] = pFig;
 }
 ////////////////////////////////////////////////////////////////////////////////////
-void ApplicationManager::removeFigure(int ID) {
+bool ApplicationManager::removeFigure(int ID) {
 	bool found = false;
 	for (int i = 0; i < FigCount; i++)
 	{
@@ -182,7 +182,7 @@ void ApplicationManager::removeFigure(int ID) {
 		fixFigList();
 		FigCount--;
 	}
-
+	return found;
 }
 ////////////////////////////////////////////////////////////////////////////////////
 void ApplicationManager::fixFigList() {
