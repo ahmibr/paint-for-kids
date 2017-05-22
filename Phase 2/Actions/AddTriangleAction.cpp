@@ -41,21 +41,19 @@ void AddTriangleAction::ReadActionParameters()
 	}
 	P3 = guide;
 
-	//TriangleGfxInfo.isFilled = false;	//default is not filled
 	//get drawing, filling colors and pen width from the interface
 	TriangleGfxInfo.DrawClr = pOut->getCrntDrawColor();
 	TriangleGfxInfo.FillClr = pOut->getCrntFillColor();
 	TriangleGfxInfo.BorderWdth = pOut->getCrntPenWidth();
 	TriangleGfxInfo.isFilled = pOut->getCrntIsFilled();
 
-	pOut->ClearStatusBar();
-
-	pOut->PlayTriangleSound();
 }
 
 //Execute the action
 void AddTriangleAction::Execute()
 {
+	Output* pOut = pManager->GetOutput();
+
 	//This action needs to read some parameters first
 	ReadActionParameters();
 
@@ -64,4 +62,9 @@ void AddTriangleAction::Execute()
 
 	//Add the triangle to the list of figures
 	pManager->AddFigure(T);
+
+	pOut->PlayTriangleSound();
+
+	pOut->ClearStatusBar();
+
 }

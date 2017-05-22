@@ -37,6 +37,11 @@ void PopMenu::Execute()
 	if (UI.height - menuCornerY < UI.PopMenuHeight)
 		menuCornerY -= UI.PopMenuHeight;
 
+	if (!pManager->getSelectedCount()){ //if user right clicked on a figure, while no other figures are selected
+		pManager->ExecuteAction(SELECT);
+		pManager->UpdateInterface();
+	}
+
 	pOut->DrawPopMenu(menuCornerX, menuCornerY);
 
 	ReadActionParameters();
@@ -68,7 +73,7 @@ void PopMenu::Execute()
 		procedureAction = ROTATE;
 		break;
 	default:
-		procedureAction = SELECT;
+		procedureAction = EMPTY;
 		break;
 	}
 

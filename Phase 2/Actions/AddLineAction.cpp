@@ -37,15 +37,13 @@ void AddLineAction::ReadActionParameters()
 	LineGfxInfo.FillClr = pOut->getCrntDrawColor();
 	LineGfxInfo.BorderWdth = pOut->getCrntPenWidth();
 
-	pOut->PlayLineSound();
-
-	pOut->ClearStatusBar();
-
 }
 
 //Execute the action
 void AddLineAction::Execute()
 {
+	Output* pOut = pManager->GetOutput();
+
 	//This action needs to read some parameters first
 	ReadActionParameters();
 
@@ -54,4 +52,8 @@ void AddLineAction::Execute()
 
 	//Add the line to the list of figures
 	pManager->AddFigure(L);
+
+	pOut->PlayLineSound();
+
+	pOut->ClearStatusBar();
 }

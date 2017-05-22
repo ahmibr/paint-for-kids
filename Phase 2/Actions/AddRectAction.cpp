@@ -37,15 +37,13 @@ void AddRectAction::ReadActionParameters()
 	RectGfxInfo.BorderWdth = pOut->getCrntPenWidth();
 	RectGfxInfo.isFilled = pOut->getCrntIsFilled();
 
-	pOut->PlayRectangleSound();
-
-	pOut->ClearStatusBar();
-
 }
 
 //Execute the action
 void AddRectAction::Execute()
 {
+	Output* pOut = pManager->GetOutput();
+
 	//This action needs to read some parameters first
 	ReadActionParameters();
 
@@ -54,4 +52,9 @@ void AddRectAction::Execute()
 
 	//Add the rectangle to the list of figures
 	pManager->AddFigure(R);
+
+	pOut->PlayRectangleSound();
+
+	pOut->ClearStatusBar();
+
 }
