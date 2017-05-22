@@ -194,6 +194,18 @@ void CLine::Save(ofstream & OutFile)
 	OutFile << getDrawClrName() << "  ";
 }
 
+void CLine::Load(ifstream & Infile)
+{
+	Infile >> ID;
+	Infile >> p1.x;
+	Infile >> p1.y;
+	Infile >> p2.x;
+	Infile >> p2.y;
+	setPoints(p1, p2);
+	Infile >> FigGfxInfo.BorderWdth;
+	readColors(Infile, FigGfxInfo, true);
+}
+
 int CLine::getOriginXpos() {
 	return (p1.x + p2.x) / 2;
 }

@@ -77,13 +77,7 @@ void SaveAction::Execute()
 		int count = pManager->GetFigureCount();
 		savefile << count;
 		savefile << endl;
-		CFigure* currentFigure;
-		for (int i = 0; i < count; i++)
-		{
-			currentFigure = pManager->GetFigure(i);
-			currentFigure->Save(savefile);
-			savefile << endl;
-		}
+		pManager->Save(savefile);
 		pOut->PrintMessage("File saved succefully!");
 		savefile.close();
 	}

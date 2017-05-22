@@ -57,7 +57,8 @@ public:
 	virtual void setTempCord() = 0;		//set the temperoly position saved to position
 
 	virtual void Save(ofstream &OutFile) = 0;	//Save the figure parameters to the file
-	//virtual void Load(ifstream &Infile) = 0;	//Load the figure parameters to the file
+	virtual void Load(ifstream &Infile) = 0;	//Load the figure parameters from the file
+	void readColors(ifstream & Infile, GfxInfo & GFX, bool isLine); //Load Fig graphics info
 
 	//virtual void PrintInfo(Output* pOut) = 0;	//print all figure info on the status bar
 };

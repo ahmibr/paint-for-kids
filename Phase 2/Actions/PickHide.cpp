@@ -21,6 +21,10 @@ void PickHide::byType()
 	while (pickedFigures < figures)
 	{
 		pIn->GetPointClicked(x, y);
+		if (y >= 0 && y < UI.ToolBarHeight)
+		{
+			break;
+		}
 		choosenFig = pManager->GetFigure(x, y);
 		if (choosenFig != NULL)
 		{
@@ -60,6 +64,10 @@ void PickHide::byColor()
 	while (pickedFigures < figures)
 	{
 		pIn->GetPointClicked(x, y);
+		if (y >= 0 && y < UI.ToolBarHeight)
+		{
+			break;
+		}
 		choosenFig = pManager->GetFigure(x, y);
 		if (choosenFig != NULL)
 		{
@@ -95,6 +103,10 @@ void PickHide::byType_Color()
 	while (pickedFigures < figures)
 	{
 		pIn->GetPointClicked(x, y);
+		if (y >= 0 && y < UI.ToolBarHeight)
+		{
+			break;
+		}
 		choosenFig = pManager->GetFigure(x, y);
 		if (choosenFig != NULL)
 		{
@@ -133,6 +145,10 @@ void PickHide::byArea()
 			}
 		}*/
 		pIn->GetPointClicked(x, y);
+		if (y >= 0 && y < UI.ToolBarHeight)
+		{
+			break;
+		}
 		choosenFig = pManager->GetFigure(x, y);
 		if (choosenFig != NULL)
 		{

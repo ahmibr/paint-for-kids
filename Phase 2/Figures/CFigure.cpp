@@ -133,3 +133,53 @@ bool CFigure::isVisible()
 {
 	return visible;
 }
+
+void CFigure::readColors(ifstream & Infile, GfxInfo & GFX, bool isLine)
+{
+	string color;
+	Infile >> color;
+	if (color == "Black")
+		GFX.DrawClr = sf::Color(0, 0, 0);
+	else if (color == "White")
+		GFX.DrawClr = sf::Color(255, 255, 255);
+	else if (color == "Green")
+		GFX.DrawClr = sf::Color(0, 255, 0);
+	else if (color == "Red")
+		GFX.DrawClr = sf::Color(255, 0, 0);
+	else if (color == "Blue")
+		GFX.DrawClr = sf::Color(0, 0, 255);
+	else if (color == "Turquoise")
+		GFX.DrawClr = sf::Color(0, 255, 127.5);
+	else if (color == "Yellow")
+		GFX.DrawClr = sf::Color(255, 255, 127.5);
+	else if (color == "Orange")
+		GFX.DrawClr = sf::Color(255, 127.5, 0);
+	else
+		GFX.DrawClr = sf::Color(127.5, 127.5, 127.5);
+	if (isLine)
+	{
+		GFX.FillClr = GFX.DrawClr;
+		return;
+	}
+	Infile >> color;
+	if (color == "Black")
+		GFX.FillClr = sf::Color(0, 0, 0);
+	else if (color == "White")
+		GFX.FillClr = sf::Color(255, 255, 255);
+	else if (color == "Green")
+		GFX.FillClr = sf::Color(0, 255, 0);
+	else if (color == "Red")
+		GFX.FillClr = sf::Color(255, 0, 0);
+	else if (color == "Blue")
+		GFX.FillClr = sf::Color(0, 0, 255);
+	else if (color == "Turquoise")
+		GFX.FillClr = sf::Color(0, 255, 127.5);
+	else if (color == "Yellow")
+		GFX.FillClr = sf::Color(255, 255, 127.5);
+	else if (color == "Orange")
+		GFX.FillClr = sf::Color(255, 127.5, 0);
+	else if (color == "Grey")
+		GFX.FillClr = sf::Color(127.5, 127.5, 127.5);
+	else
+		GFX.isFilled = false;
+}

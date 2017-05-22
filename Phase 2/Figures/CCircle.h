@@ -29,6 +29,7 @@ public:
 	virtual bool isClicked(int x, int y) const;//function to check if given point is related to the figure
 	virtual string printInfo() const;
 	virtual void Save(ofstream &OutFile); //Save Circle parameters to the file
+	virtual void Load(ifstream &Infile);	//Load the circle parameters from the file
 	int getOriginXpos();
 	int getOriginYpos();
 	int getHeight();

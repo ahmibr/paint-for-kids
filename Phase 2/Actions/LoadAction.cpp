@@ -88,66 +88,34 @@ void LoadAction::Execute()
 		else
 			UI.BkGrndColor = sf::Color(0, 200, 200);
 
-		int count, ID;
-		GfxInfo gfx;
+		int count;
 		loadfile >> count;
 		CFigure* currentFigure;
 		for (int i = 0; i < count; i++)
 		{
 			loadfile >> read;
-			loadfile >> ID;
 			if (read == "Line")
 			{
-				Point p1, p2;
-				loadfile >> p1.x;
-				loadfile >> p1.y;
-				loadfile >> p2.x;
-				loadfile >> p2.y;
-				loadfile >> gfx.BorderWdth;
-				readColors(gfx, true);
-				currentFigure = new CLine(p1, p2, gfx);
-				currentFigure->setID(ID);
+				currentFigure = new CLine;
+				currentFigure->Load(loadfile);
 				pManager->AddFigure(currentFigure);
 			}
 			else if (read == "Circle")
 			{
-				Point p1, p2;
-				float r;
-				loadfile >> p1.x;
-				loadfile >> p1.y;
-				loadfile >> r;
-				loadfile >> gfx.BorderWdth;
-				readColors(gfx, false);
-				currentFigure = new CCircle(p1, r, gfx);
-				currentFigure->setID(ID);
+				currentFigure = new CCircle;
+				currentFigure->Load(loadfile);
 				pManager->AddFigure(currentFigure);
 			}
 			else if (read == "Rectangle")
 			{
-				Point p1, p2;
-				loadfile >> p1.x;
-				loadfile >> p1.y;
-				loadfile >> p2.x;
-				loadfile >> p2.y;
-				loadfile >> gfx.BorderWdth;
-				readColors(gfx, false);
-				currentFigure = new CRectangle(p1, p2, gfx);
-				currentFigure->setID(ID);
+				currentFigure = new CRectangle;
+				currentFigure->Load(loadfile);
 				pManager->AddFigure(currentFigure);
 			}
 			else if (read == "Triangle")
 			{
-				Point p1, p2, p3;
-				loadfile >> p1.x;
-				loadfile >> p1.y;
-				loadfile >> p2.x;
-				loadfile >> p2.y;
-				loadfile >> p3.x;
-				loadfile >> p3.y;
-				loadfile >> gfx.BorderWdth;
-				readColors(gfx, false);
-				currentFigure = new CTriangle(p1, p2, p3, gfx);
-				currentFigure->setID(ID);
+				currentFigure = new CTriangle;
+				currentFigure->Load(loadfile);
 				pManager->AddFigure(currentFigure);
 			}
 		}
@@ -168,55 +136,4 @@ void LoadAction::ReadActionParameters()
 		fileName += ".txt";
 	pOut->SetWindowTitle(fileName);
 	loadfile.open(fileName, ios::in);
-}
-
-void LoadAction::readColors(GfxInfo & GFX, bool isLine)
-{
-	string color;
-	loadfile >> color;
-	if (color == "Black")
-		GFX.DrawClr = sf::Color(0, 0, 0);
-	else if (color == "White")
-		GFX.DrawClr = sf::Color(255, 255, 255);
-	else if (color == "Green")
-		GFX.DrawClr = sf::Color(0, 255, 0);
-	else if (color == "Red")
-		GFX.DrawClr = sf::Color(255, 0, 0);
-	else if (color == "Blue")
-		GFX.DrawClr = sf::Color(0, 0, 255);
-	else if (color == "Turquoise")
-		GFX.DrawClr = sf::Color(0, 255, 127.5);
-	else if (color == "Yellow")
-		GFX.DrawClr = sf::Color(255, 255, 127.5);
-	else if (color == "Orange")
-		GFX.DrawClr = sf::Color(255, 127.5, 0);
-	else
-		GFX.DrawClr = sf::Color(127.5, 127.5, 127.5);
-	if (isLine)
-	{
-		GFX.FillClr = GFX.DrawClr;
-		return;
-	}
-	loadfile >> color;
-	if (color == "Black")
-		GFX.FillClr = sf::Color(0, 0, 0);
-	else if (color == "White")
-		GFX.FillClr = sf::Color(255, 255, 255);
-	else if (color == "Green")
-		GFX.FillClr = sf::Color(0, 255, 0);
-	else if (color == "Red")
-		GFX.FillClr = sf::Color(255, 0, 0);
-	else if (color == "Blue")
-		GFX.FillClr = sf::Color(0, 0, 255);
-	else if (color == "Turquoise")
-		GFX.FillClr = sf::Color(0, 255, 127.5);
-	else if (color == "Yellow")
-		GFX.FillClr = sf::Color(255, 255, 127.5);
-	else if (color == "Orange")
-		GFX.FillClr = sf::Color(255, 127.5, 0);
-	else if (color == "Grey")
-		GFX.FillClr = sf::Color(127.5, 127.5, 127.5);
-	else
-		GFX.isFilled = false;
-
 }

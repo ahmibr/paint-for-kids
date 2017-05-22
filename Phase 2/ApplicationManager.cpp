@@ -240,6 +240,15 @@ void ApplicationManager::DeSelectAllFigures() {
 		FigList[i]->SetSelected(false);
 	}
 }
+
+void ApplicationManager::Save(ofstream& savefile)
+{
+	for (int i = 0; i < FigCount; i++)
+	{
+		FigList[i]->Save(savefile);
+		savefile << endl;
+	}
+}
 //////////////////////////////////////////////////////////////////////////////////
 
 //==================================================================================//

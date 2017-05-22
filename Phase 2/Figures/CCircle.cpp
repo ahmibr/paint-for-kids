@@ -128,6 +128,17 @@ void CCircle::Save(ofstream & OutFile)
 	OutFile << getFillClrName() << "  ";
 }
 
+void CCircle::Load(ifstream & Infile)
+{
+	Infile >> ID;
+	Infile >> center.x;
+	Infile >> center.y;
+	Infile >> radius;
+	setRadius(radius);
+	Infile >> FigGfxInfo.BorderWdth;
+	readColors(Infile, FigGfxInfo, false);
+}
+
 int CCircle::getOriginXpos() {
 	return center.x;
 }

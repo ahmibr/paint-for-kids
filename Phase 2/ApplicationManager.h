@@ -41,6 +41,7 @@ public:
 	int GetFigureCount() const; //Search for a figure given a point inside the figure
 	void SelectAllFigures();
 	void DeSelectAllFigures();
+	void Save(ofstream& savefile);   //Loop on figures to save them
 
 	// -- selected Figures Management Functions
 	CFigure ** getSelectedList(int &size);

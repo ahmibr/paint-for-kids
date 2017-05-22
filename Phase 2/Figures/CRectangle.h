@@ -32,6 +32,7 @@ public:
 	virtual bool isClicked(int x, int y) const;
 	virtual string printInfo() const;
 	virtual void Save(ofstream &OutFile); //Save Rectangle parameters to the file
+	virtual void Load(ifstream &Infile);	//Load the rectangle parameters from the file
 	int getOriginXpos();
 	int getOriginYpos();
 	int getHeight();

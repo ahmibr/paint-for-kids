@@ -34,6 +34,7 @@ public:
 	virtual bool isClicked(int x, int y) const;
 	virtual string printInfo() const;
 	virtual void Save(ofstream &OutFile); //Save Triangle parameters to the file
+	virtual void Load(ifstream &Infile);	//Load the triangle parameters from the file
 	int getOriginXpos();
 	int getOriginYpos();
 	int getHeight();

@@ -202,6 +202,18 @@ void CRectangle::Save(ofstream & OutFile)
 	OutFile << getFillClrName() << "  ";
 }
 
+void CRectangle::Load(ifstream & Infile)
+{
+	Infile >> ID;
+	Infile >> Corner1.x;
+	Infile >> Corner1.y;
+	Infile >> Corner2.x;
+	Infile >> Corner2.y;
+	setPoints(Corner1, Corner2);
+	Infile >> FigGfxInfo.BorderWdth;
+	readColors(Infile, FigGfxInfo, false);
+}
+
 int CRectangle::getOriginXpos() {
 	return (Corner1.x + Corner2.x) / 2;
 }

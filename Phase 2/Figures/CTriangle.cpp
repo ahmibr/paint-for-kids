@@ -239,6 +239,20 @@ void CTriangle::Save(ofstream & OutFile)
 	OutFile << getFillClrName() << "  ";
 }
 
+void CTriangle::Load(ifstream & Infile)
+{
+	Infile >> ID;
+	Infile >> p1.x;
+	Infile >> p1.y;
+	Infile >> p2.x;
+	Infile >> p2.y;
+	Infile >> p3.x;
+	Infile >> p3.y;
+	setPoints(p1, p2, p3);
+	Infile >> FigGfxInfo.BorderWdth;
+	readColors(Infile, FigGfxInfo, false);
+}
+
 int CTriangle::getOriginXpos() {
 	int orginx = (p2.x + p3.x) / 2;
 	orginx = (p1.x + orginx) / 2;
