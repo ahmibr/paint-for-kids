@@ -10,9 +10,12 @@ SwitchToPlayMode::SwitchToPlayMode(ApplicationManager *pApp) :Action(pApp)
 
 void SwitchToPlayMode::ReadActionParameters()
 {
-	Output* pOut = pManager->GetOutput();
+	//no parameters to reads
+}
 
-	pOut->PrintMessage("Switch to play mode ");
+void SwitchToPlayMode::Execute()
+{
+	Output* pOut = pManager->GetOutput();
 
 	pManager->DeSelectAllFigures();
 
@@ -20,13 +23,8 @@ void SwitchToPlayMode::ReadActionParameters()
 	pOut->brightAllDrawIcons();
 
 	pOut->CreatePlayToolBar();
+	pOut->PrintMessage("Switch to play mode ");
 
-}
-
-void SwitchToPlayMode::Execute()
-{
-	//need only to read action parameters
-	ReadActionParameters();
 }
 
 

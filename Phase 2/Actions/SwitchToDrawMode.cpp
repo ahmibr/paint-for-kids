@@ -10,22 +10,19 @@ SwitchToDrawMode::SwitchToDrawMode(ApplicationManager *pApp) :Action(pApp)
 
 void SwitchToDrawMode::ReadActionParameters()
 {
-	Output* pOut = pManager->GetOutput();
-
-	//load the original graph 
-	pOut->PrintMessage("Switch to Draw mode ");
-
-	pManager->ShowAllFigures();
-
-	pOut->CreateDrawToolBar();
-	//pOut->ClearStatusBar();
-
+	//no parameters to read
 }
 
 void SwitchToDrawMode::Execute()
 {
-	//need only to read action parameters
-	ReadActionParameters();
+	Output* pOut = pManager->GetOutput();
+
+	//load the original graph 
+	pManager->ShowAllFigures();
+
+	pOut->CreateDrawToolBar();
+	pOut->PrintMessage("Switch to Draw mode ");
+
 }
 
 
