@@ -196,7 +196,9 @@ void CLine::Save(ofstream & OutFile)
 
 void CLine::Load(ifstream & Infile)
 {
-	Infile >> ID;
+	int id;
+	Infile >> id;
+	setID(id);
 	Infile >> p1.x;
 	Infile >> p1.y;
 	Infile >> p2.x;

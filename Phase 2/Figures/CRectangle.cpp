@@ -204,7 +204,9 @@ void CRectangle::Save(ofstream & OutFile)
 
 void CRectangle::Load(ifstream & Infile)
 {
-	Infile >> ID;
+	int id;
+	Infile >> id;
+	setID(id);
 	Infile >> Corner1.x;
 	Infile >> Corner1.y;
 	Infile >> Corner2.x;

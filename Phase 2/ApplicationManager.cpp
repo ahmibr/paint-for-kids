@@ -219,6 +219,7 @@ void ApplicationManager::restartApp()
 		delete FigList[i];
 	FigCount = 0;
 	pData->destroyClipBoard();
+	CFigure::setCount(0);
 }
 //////////////////////////////////////////////////////////////////////////////////
 //Returns number of figures

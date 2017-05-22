@@ -130,7 +130,9 @@ void CCircle::Save(ofstream & OutFile)
 
 void CCircle::Load(ifstream & Infile)
 {
-	Infile >> ID;
+	int id;
+	Infile >> id;
+	setID(id);
 	Infile >> center.x;
 	Infile >> center.y;
 	Infile >> radius;
