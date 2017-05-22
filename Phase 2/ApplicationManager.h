@@ -49,6 +49,7 @@ public:
 	bool ResizeFigures(float resize);
 	bool RotateFigures(float rotate);
 	void moveFigures(int dx, int dy);
+	bool DeleteFigures();
 
 	// -- Play mode related Functions
 	CFigure * GetFigure(int x, int y, CFigure ** figures) const;//get figure from a specific figure list

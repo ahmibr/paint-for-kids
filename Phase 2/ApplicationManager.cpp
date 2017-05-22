@@ -330,6 +330,20 @@ void ApplicationManager::moveFigures(int dx, int dy)
 		}
 	}
 }
+bool ApplicationManager::DeleteFigures()
+{
+	bool selected = false;
+	for (int i = 0; i < GetFigureCount(); i++)
+	{
+		CFigure *curr = FigList[i];
+		if (curr->IsSelected()) {
+			selected = true;
+			pManager->removeFigure(curr->getID());
+			i--;
+		}
+	}
+	return selected;
+}
 //==================================================================================//
 //								Play mode related Functions							//
 //==================================================================================//
