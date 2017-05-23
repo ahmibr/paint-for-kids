@@ -5,7 +5,6 @@
 
 #include "..\Figures\CFigure.h"
 
-//Add Circle Action class
 class MoveByDrag : public Action
 {
 private:
@@ -18,11 +17,9 @@ private:
 	int *selectedFigsIds;
 public:
 	MoveByDrag(ApplicationManager *pApp);
-
-	//Reads circle parameters
+	~MoveByDrag();
 	virtual void ReadActionParameters();
 
-	//Add circle to the ApplicationManager
 	virtual void Execute();
 
 	void Undo();

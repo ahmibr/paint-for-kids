@@ -12,6 +12,7 @@ class RotateAction :public Action, public DataManager
 	int *selectedFigsIds;
 public:
 	RotateAction(ApplicationManager *pApp);
+	~RotateAction();
 	virtual void Execute();
 	virtual void ReadActionParameters();
 	void Undo();

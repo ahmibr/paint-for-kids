@@ -36,6 +36,7 @@ void ResizeAction::Execute()
 
 ResizeAction::~ResizeAction()
 {
+	delete[] selectedFigsIds;
 }
 
 void ResizeAction::Undo() {

@@ -11,6 +11,7 @@ class AddTriangleAction : public Action
 private:
 	Point P1, P2, P3; //Rectangle Corners
 	GfxInfo TriangleGfxInfo;
+	int FigureId;
 	CTriangle *T;
 public:
 	AddTriangleAction(ApplicationManager *pApp);

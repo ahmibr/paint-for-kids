@@ -8,11 +8,12 @@ class PasteAction :public Action, public DataManager
 	int dx, dy; //changes in coordinates
 	bool able;
 	bool inBorder;
-
-	CFigure **pastedFigures;
+	vector<CFigure*> oldClipBoard;
+	int *pastedFigsIds;
 	int pastedFigCount;
 public:
 	PasteAction(ApplicationManager *pApp);
+	~PasteAction();
 	virtual void ReadActionParameters();
 	virtual void Execute();
 

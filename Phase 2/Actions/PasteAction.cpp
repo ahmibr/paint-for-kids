@@ -11,7 +11,14 @@ PasteAction::PasteAction(ApplicationManager *pApp) :Action(pApp)
 	able = true;
 	inBorder = true;
 
-	Undoable = true;
+	Undoable = false;
+}
+
+PasteAction::~PasteAction()
+{
+	for (int i = 0; i < oldClipBoard.size(); i++)
+		delete oldClipBoard[i];
+	oldClipBoard.clear();
 }
 
 
@@ -61,12 +68,20 @@ void PasteAction::Execute()
 	else if (!able)
 		pOut->PrintMessage("Clipboard is empty!");
 	else {
+		pastedFigCount = getSize();
+		pastedFigsIds = new int[pastedFigCount];
+		Undoable = true;
 		for (int i = 0; i < getSize(); i++)
 		{
+			pastedFigsIds[i] = clipBoard[i]->getID();
 			clipBoard[i]->Move(dx, dy);
 			pManager->AddFigure(clipBoard[i]);
 
 			clipBoard[i] = clipBoard[i]->copyClone();//refresh the clipBoard (get new objects of old one)
+
+			oldClipBoard.push_back(clipBoard[i]->copyClone()); //prepair to restore clipboard if undo is called
+			oldClipBoard[i]->setID(pastedFigsIds[i]);
+			CFigure::setCount(CFigure::getCount() - 1);
 		}
 		pOut->PrintMessage("Paste is done succefully.");
 	}
@@ -75,20 +90,21 @@ void PasteAction::Execute()
 
 
 void PasteAction::Undo() {
-
-	CFigure ** tempCopiedFigures = pManager->CreateAcopyArray(pastedFigures, pastedFigCount);
-
-	for (int i = 0; i < pastedFigCount; i++)
-	{
-		pManager->removeFigure(pastedFigures[i]->getCount());
-	}
-
-	pastedFigures = tempCopiedFigures;
+	Output* pOut = pManager->GetOutput();
+	for (int i = 0; i < pastedFigCount; i++) //remove all pasted figures
+		pManager->removeFigure(pastedFigsIds[i]);
+	pOut->ClearStatusBar();
 }
 
 void PasteAction::Redo() {
-	for (int i = 0; i < pastedFigCount; i++)
-	{
-		pManager->AddFigure(pastedFigures[i]);
+	Output* pOut = pManager->GetOutput();
+	for (int i = 0; i < pastedFigCount; i++) {
+		pManager->AddFigure(oldClipBoard[i]);
+
+		oldClipBoard[i] = oldClipBoard[i]->copyClone();
+		oldClipBoard[i]->setID(pastedFigsIds[i]);
+		CFigure::setCount(CFigure::getCount() - 1);
 	}
+	pManager->DeSelectAllFigures();
+	pOut->ClearStatusBar();
 }

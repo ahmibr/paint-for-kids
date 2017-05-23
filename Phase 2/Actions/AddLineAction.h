@@ -11,7 +11,7 @@ class AddLineAction : public Action
 private:
 	Point P1, P2; //Line points
 	GfxInfo LineGfxInfo;
-
+	int FigureId;
 	CLine *L;
 public:
 	AddLineAction(ApplicationManager *pApp);

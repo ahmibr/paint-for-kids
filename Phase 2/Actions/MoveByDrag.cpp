@@ -15,6 +15,11 @@ MoveByDrag::MoveByDrag(ApplicationManager * pApp) :Action(pApp)
 	totalMovementY = 0;
 }
 
+MoveByDrag::~MoveByDrag()
+{
+	delete[] selectedFigsIds;
+}
+
 void MoveByDrag::ReadActionParameters()
 {
 

@@ -14,7 +14,6 @@ protected:
 
 	bool Undoable;
 
-	int FigureId;
 public:
 
 	Action(ApplicationManager *pApp) { pManager = pApp; }	//constructor

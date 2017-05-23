@@ -11,6 +11,7 @@ class AddCircleAction : public Action
 private:
 	Point P1, P2; //Circle points
 	GfxInfo CircleGfxInfo;
+	int FigureId;
 	CCircle *C;
 public:
 	AddCircleAction(ApplicationManager *pApp);

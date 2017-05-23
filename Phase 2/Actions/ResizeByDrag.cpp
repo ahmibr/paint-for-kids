@@ -12,6 +12,11 @@ ResizeByDrag::ResizeByDrag(ApplicationManager * pApp) :Action(pApp)
 	totalResize = 0;
 }
 
+ResizeByDrag::~ResizeByDrag()
+{
+	delete[] selectedFigsIds;
+}
+
 void ResizeByDrag::ReadActionParameters()
 {
 

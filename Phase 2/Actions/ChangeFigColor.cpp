@@ -14,6 +14,7 @@ ChangeFigColor::ChangeFigColor(ApplicationManager * pApp) :Action(pApp)
 
 ChangeFigColor::~ChangeFigColor()
 {
+	delete[] selectedFigsIds;
 }
 
 //Execute the action

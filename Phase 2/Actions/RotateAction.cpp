@@ -11,6 +11,11 @@ RotateAction::RotateAction(ApplicationManager *pApp) :Action(pApp)
 	rotate = 0;
 }
 
+RotateAction::~RotateAction()
+{
+	delete[] selectedFigsIds;
+}
+
 //Execute the action
 void RotateAction::Execute()
 {

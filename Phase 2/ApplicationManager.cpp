@@ -594,9 +594,23 @@ ApplicationManager::~ApplicationManager()
 		delete FigList[i];
 	delete pIn;
 	delete pOut;
+
 	if (selectedList)
 		delete[] selectedList;
+
 	pData->destroyClipBoard(); //if the program is over and clipboard still has data
+
+	while (actionsToUndo.size()) { //release undo 
+		Action* temp = actionsToUndo.front();
+		actionsToUndo.pop_front();
+		delete temp;
+	}
+
+	while (actionsToRedo.size()) { //release redo
+		Action* temp = actionsToRedo.front();
+		actionsToRedo.pop_front();
+		delete temp;
+	}
 }
 
 //==================================================================================//

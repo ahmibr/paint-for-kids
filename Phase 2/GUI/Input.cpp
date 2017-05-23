@@ -524,7 +524,7 @@ float Input::Resize_wind()
 //Added a function to return exit confirmation
 bool Input::confirmAction(string editableText)const
 {
-	sf::RenderWindow New_window(sf::VideoMode(320, 50), "Resize ", sf::Style::Close);
+	sf::RenderWindow New_window(sf::VideoMode(320, 50), editableText, sf::Style::Close);
 	sf::RectangleShape backgrnd(sf::Vector2f(320, 50));		//background color
 	backgrnd.setFillColor(UI.BkGrndColor);
 
