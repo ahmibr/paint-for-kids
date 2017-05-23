@@ -38,8 +38,14 @@ void ChangeBkgroundClr::ReadActionParameters()
 
 void ChangeBkgroundClr::Undo() {
 	UI.BkGrndColor = prevBckColor;
+
+	Output* pOut = pManager->GetOutput();
+	pOut->PrintMessage("ChangeBkgroundClr Undone");
 }
 
 void ChangeBkgroundClr::Redo() {
 	UI.BkGrndColor = currBckColor;
+
+	Output* pOut = pManager->GetOutput();
+	pOut->PrintMessage("ChangeBkgroundClr Redone");
 }

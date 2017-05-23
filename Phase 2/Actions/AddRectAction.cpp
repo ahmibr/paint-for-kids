@@ -65,6 +65,9 @@ void AddRectAction::Execute()
 
 void AddRectAction::Undo() {
 	pManager->removeFigure(FigureId);
+
+	Output* pOut = pManager->GetOutput();
+	pOut->PrintMessage("Add AddRectAction Undone");
 }
 
 void AddRectAction::Redo() {
@@ -77,4 +80,7 @@ void AddRectAction::Redo() {
 	CFigure::setCount(tempCount);
 
 	pManager->AddFigure(R);
+
+	Output* pOut = pManager->GetOutput();
+	pOut->PrintMessage("Add AddRectAction Redone");
 }

@@ -73,6 +73,9 @@ void MoveByDrag::Undo() {
 	}
 
 	pManager->moveFigures(-totalMovementX, -totalMovementY);
+
+	Output* pOut = pManager->GetOutput();
+	pOut->PrintMessage("MoveByDrag Undone");
 }
 
 void MoveByDrag::Redo() {
@@ -84,4 +87,7 @@ void MoveByDrag::Redo() {
 	}
 
 	pManager->moveFigures(totalMovementX, totalMovementY);
+
+	Output* pOut = pManager->GetOutput();
+	pOut->PrintMessage("MoveByDrag Redone");
 }

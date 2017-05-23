@@ -5,7 +5,7 @@
 
 ResizeAction::ResizeAction(ApplicationManager *pApp) :Action(pApp)
 {
-
+	Undoable = true;
 }
 
 void ResizeAction::ReadActionParameters()
@@ -48,6 +48,9 @@ void ResizeAction::Undo() {
 	}
 
 	pManager->ResizeFigures(1 / resize);
+
+	Output* pOut = pManager->GetOutput();
+	pOut->PrintMessage("ResizeAction Undone");
 }
 
 void ResizeAction::Redo() {
@@ -59,4 +62,7 @@ void ResizeAction::Redo() {
 	}
 
 	pManager->ResizeFigures(resize);
+
+	Output* pOut = pManager->GetOutput();
+	pOut->PrintMessage("ResizeAction Redone");
 }

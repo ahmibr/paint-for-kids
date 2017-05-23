@@ -57,6 +57,9 @@ void RotateAction::Undo() {
 	}
 
 	pManager->RotateFigures(360 - rotate);
+
+	Output* pOut = pManager->GetOutput();
+	pOut->PrintMessage("RotateAction Undone");
 }
 
 void RotateAction::Redo() {
@@ -68,4 +71,7 @@ void RotateAction::Redo() {
 	}
 
 	pManager->RotateFigures(rotate);
+
+	Output* pOut = pManager->GetOutput();
+	pOut->PrintMessage("RotateAction Redone");
 }

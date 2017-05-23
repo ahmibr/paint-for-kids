@@ -75,6 +75,9 @@ void AddTriangleAction::Execute()
 
 void AddTriangleAction::Undo() {
 	pManager->removeFigure(FigureId);
+
+	Output* pOut = pManager->GetOutput();
+	pOut->PrintMessage("Add AddTriangleAction Undone");
 }
 
 void AddTriangleAction::Redo() {
@@ -87,4 +90,7 @@ void AddTriangleAction::Redo() {
 	CFigure::setCount(tempCount);
 
 	pManager->AddFigure(T);
+
+	Output* pOut = pManager->GetOutput();
+	pOut->PrintMessage("Add AddTriangleAction Redone");
 }

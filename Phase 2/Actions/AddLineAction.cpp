@@ -64,6 +64,9 @@ void AddLineAction::Execute()
 
 void AddLineAction::Undo() {
 	pManager->removeFigure(FigureId);
+
+	Output* pOut = pManager->GetOutput();
+	pOut->PrintMessage("Add line Undone");
 }
 
 void AddLineAction::Redo() {
@@ -76,4 +79,7 @@ void AddLineAction::Redo() {
 	CFigure::setCount(tempCount);
 
 	pManager->AddFigure(L);
+
+	Output* pOut = pManager->GetOutput();
+	pOut->PrintMessage("Add line Redone");
 }

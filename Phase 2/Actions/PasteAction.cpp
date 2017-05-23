@@ -94,6 +94,8 @@ void PasteAction::Undo() {
 	for (int i = 0; i < pastedFigCount; i++) //remove all pasted figures
 		pManager->removeFigure(pastedFigsIds[i]);
 	pOut->ClearStatusBar();
+
+	pOut->PrintMessage("PasteAction Undone");
 }
 
 void PasteAction::Redo() {
@@ -107,4 +109,7 @@ void PasteAction::Redo() {
 	}
 	pManager->DeSelectAllFigures();
 	pOut->ClearStatusBar();
+
+
+	pOut->PrintMessage("PasteAction Redone");
 }

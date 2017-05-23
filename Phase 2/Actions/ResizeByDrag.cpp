@@ -10,6 +10,8 @@ ResizeByDrag::ResizeByDrag(ApplicationManager * pApp) :Action(pApp)
 {
 	senstivity = 50;
 	totalResize = 0;
+
+	Undoable = true;
 }
 
 ResizeByDrag::~ResizeByDrag()
@@ -71,6 +73,9 @@ void ResizeByDrag::Undo() {
 	cout << totalResize << endl;
 
 	pManager->ResizeFigures(1 / totalResize);
+
+	Output* pOut = pManager->GetOutput();
+	pOut->PrintMessage("ResizeByDrag Undone");
 }
 
 void ResizeByDrag::Redo() {
@@ -82,4 +87,7 @@ void ResizeByDrag::Redo() {
 	}
 
 	pManager->ResizeFigures(totalResize);
+
+	Output* pOut = pManager->GetOutput();
+	pOut->PrintMessage("ResizeByDrag Redone");
 }

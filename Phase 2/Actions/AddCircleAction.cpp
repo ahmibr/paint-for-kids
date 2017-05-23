@@ -74,6 +74,9 @@ void AddCircleAction::Execute()
 
 void AddCircleAction::Undo() {
 	pManager->removeFigure(FigureId);
+
+	Output* pOut = pManager->GetOutput();
+	pOut->PrintMessage("Add AddCircleAction Undone");
 }
 
 void AddCircleAction::Redo() {
@@ -87,4 +90,7 @@ void AddCircleAction::Redo() {
 	CFigure::setCount(tempCount);
 
 	pManager->AddFigure(C);
+
+	Output* pOut = pManager->GetOutput();
+	pOut->PrintMessage("Add AddCircleAction Redone");
 }

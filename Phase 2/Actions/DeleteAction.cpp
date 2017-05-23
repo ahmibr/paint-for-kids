@@ -52,6 +52,9 @@ void DeleteAction::Undo() {
 		pManager->AddFigure(deletionCopy);
 	}
 	CFigure::setCount(tempMaxCount);
+
+	Output* pOut = pManager->GetOutput();
+	pOut->PrintMessage("DeleteAction Undone");
 }
 
 void DeleteAction::Redo() {
@@ -70,4 +73,7 @@ void DeleteAction::Redo() {
 	{
 		pManager->removeFigure(deletedFigures[i]->getID());
 	}
+
+	Output* pOut = pManager->GetOutput();
+	pOut->PrintMessage("DeleteAction Redone");
 }

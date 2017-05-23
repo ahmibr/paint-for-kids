@@ -72,6 +72,9 @@ void ChangeFigColor::Undo() {
 		}
 	}
 	pManager->ChangeSelectedColor(prevInfo);
+
+	Output* pOut = pManager->GetOutput();
+	pOut->PrintMessage("Change Fig Color Undone");
 }
 
 void ChangeFigColor::Redo() {
@@ -88,4 +91,7 @@ void ChangeFigColor::Redo() {
 		}
 	}
 	pManager->ChangeSelectedColor(currInfo);
+
+	Output* pOut = pManager->GetOutput();
+	pOut->PrintMessage("Change Fig Color Redone");
 }
