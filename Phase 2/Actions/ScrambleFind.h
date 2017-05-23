@@ -27,6 +27,10 @@ public:
 
 	void RestartGame();			//Procedures of restarting a game
 
+	void Undo();
+
+	void Redo();
+
 };
 
 #endif

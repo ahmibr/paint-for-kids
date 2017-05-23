@@ -12,6 +12,7 @@
 
 LoadAction::LoadAction(ApplicationManager * pApp) :Action(pApp)
 {
+	Undoable = false;
 }
 
 
@@ -136,4 +137,10 @@ void LoadAction::ReadActionParameters()
 		fileName += ".txt";
 	pOut->SetWindowTitle(fileName);
 	loadfile.open(fileName, ios::in);
+}
+
+void LoadAction::Undo() {
+}
+
+void LoadAction::Redo() {
 }

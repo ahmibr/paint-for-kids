@@ -177,6 +177,8 @@ PickHide::PickHide(ApplicationManager * pApp) :Action(pApp)
 	pickedFigures = 0;
 	current = NULL;
 	choosenFig = NULL;
+
+	Undoable = false;
 }
 
 void PickHide::ReadActionParameters()
@@ -242,4 +244,9 @@ void PickHide::Execute()
 	}
 	else
 		pOut->PrintMessage("Draw or load a graph first");
+}
+
+void PickHide::Undo() {
+}
+void PickHide::Redo() {
 }

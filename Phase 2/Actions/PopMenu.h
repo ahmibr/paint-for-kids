@@ -10,5 +10,7 @@ public:
 	virtual void ReadActionParameters();
 	virtual void Execute();
 	~PopMenu();
+	void Undo();
+	void Redo();
 };
 

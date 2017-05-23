@@ -19,6 +19,10 @@ void ResizeAction::Execute()
 {
 	Output* pOut = pManager->GetOutput();
 
+	selectedFigs = pManager->getSelectedList(selectedFigsCount);
+	//selectedFigs = pManager->CreateAcopyArray(selectedFigs, selectedFigsCount);
+	selectedFigsIds = pManager->getIdArray(selectedFigs, selectedFigsCount);
+
 	ReadActionParameters();
 	if (resize)
 	{
@@ -32,4 +36,26 @@ void ResizeAction::Execute()
 
 ResizeAction::~ResizeAction()
 {
+}
+
+void ResizeAction::Undo() {
+	pManager->DeSelectAllFigures();
+
+	for (int i = 0; i < selectedFigsCount; i++)
+	{
+		pManager->selectById(selectedFigsIds[i]);
+	}
+
+	pManager->ResizeFigures(1 / resize);
+}
+
+void ResizeAction::Redo() {
+	pManager->DeSelectAllFigures();
+
+	for (int i = 0; i < selectedFigsCount; i++)
+	{
+		pManager->selectById(selectedFigsIds[i]);
+	}
+
+	pManager->ResizeFigures(resize);
 }

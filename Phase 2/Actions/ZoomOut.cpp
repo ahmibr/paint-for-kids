@@ -8,6 +8,7 @@
 ZoomOut::ZoomOut(ApplicationManager * pApp) :Action(pApp), maxNumberOfZooms(5)
 {
 	numberOfZooms = 0;
+	Undoable = false;
 }
 
 
@@ -48,4 +49,9 @@ void ZoomOut::Execute()
 void ZoomOut::ReadActionParameters()
 {
 	//empty because not needed here
+}
+
+void ZoomOut::Undo() {
+}
+void ZoomOut::Redo() {
 }

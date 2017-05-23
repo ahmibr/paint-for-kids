@@ -9,5 +9,7 @@ public:
 	virtual void ReadActionParameters();
 	virtual void Execute();
 	~SwitchToDrawMode();
+	void Undo();
+	void Redo();
 };
 

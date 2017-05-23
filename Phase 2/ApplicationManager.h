@@ -6,11 +6,17 @@
 #include "GUI\input.h"
 #include "GUI\output.h"
 #include "DataManager.h"
+#include "Actions\Action.h"
+
+#include <deque>
+
+
+using namespace std;
 //Main class that manages everything in the application.
 class ApplicationManager
 {
 	enum { MaxFigCount = 200 };	//Max no of figures
-
+	enum { MaxUndoCount = 100 };
 private:
 	int FigCount;		//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
@@ -23,6 +29,8 @@ private:
 	// -- Figures Management Functions
 	void fixFigList(); //utility function to rearrange figurelist after deleting items
 
+	deque<Action*> actionsToUndo;
+	deque<Action*> actionsToRedo;
 public:
 	ApplicationManager();
 	~ApplicationManager();
@@ -42,6 +50,8 @@ public:
 	void SelectAllFigures();
 	void DeSelectAllFigures();
 	void Save(ofstream& savefile);   //Loop on figures to save them
+	CFigure ** CreateAcopyArray(CFigure **, int number);
+	int * getIdArray(CFigure ** figures, int number);
 
 	// -- selected Figures Management Functions
 	CFigure ** getSelectedList(int &size);
@@ -51,6 +61,7 @@ public:
 	bool RotateFigures(float rotate);
 	void moveFigures(int dx, int dy);
 	bool DeleteFigures();
+	void selectById(int id);
 
 	// -- Play mode related Functions
 	CFigure * GetFigure(int x, int y, CFigure ** figures) const;//get figure from a specific figure list
@@ -74,6 +85,10 @@ public:
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output
 	void UpdateInterface() const;	//Redraws all the drawing window	
+
+	// -- Undo related Functions
+	void undoLastAction();
+	void redoLastAction();
 };
 
 #endif

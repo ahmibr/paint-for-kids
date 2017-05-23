@@ -7,7 +7,9 @@
 #include "..\GUI\Output.h"
 
 AddLineAction::AddLineAction(ApplicationManager * pApp) :Action(pApp)
-{}
+{
+	Undoable = true;
+}
 
 void AddLineAction::ReadActionParameters()
 {
@@ -48,7 +50,9 @@ void AddLineAction::Execute()
 	ReadActionParameters();
 
 	//Create a line with the parameters read from the user
-	CLine *L = new CLine(P1, P2, LineGfxInfo);
+	L = new CLine(P1, P2, LineGfxInfo);
+
+	FigureId = L->getID();
 
 	//Add the line to the list of figures
 	pManager->AddFigure(L);
@@ -56,4 +60,20 @@ void AddLineAction::Execute()
 	pOut->PlayLineSound();
 
 	pOut->ClearStatusBar();
+}
+
+void AddLineAction::Undo() {
+	pManager->removeFigure(FigureId);
+}
+
+void AddLineAction::Redo() {
+
+	int tempCount = CFigure::getCount();
+
+	L = new CLine(P1, P2, LineGfxInfo);
+	L->setID(FigureId);
+
+	CFigure::setCount(tempCount);
+
+	pManager->AddFigure(L);
 }

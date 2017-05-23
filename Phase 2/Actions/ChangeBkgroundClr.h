@@ -5,7 +5,8 @@
 
 class ChangeBkgroundClr : public Action
 {
-
+	sf::Color prevBckColor;
+	sf::Color currBckColor;
 public:
 	ChangeBkgroundClr(ApplicationManager *pApp);
 	~ChangeBkgroundClr();
@@ -13,6 +14,9 @@ public:
 	virtual void Execute();
 
 	virtual void ReadActionParameters();
+
+	void Undo();
+	void Redo();
 
 
 };

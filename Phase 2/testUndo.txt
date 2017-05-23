@@ -1,0 +1,7 @@
+Blue  Green  Beige  
+5
+Circle  1  231  300  104.995  3  Blue  Green  
+Triangle  3  1200  199  1061  269  904  144  3  Blue  Green  
+Line  4  142  157  339  455  3  Blue  
+Circle  5  1005  261  52.8394  3  Blue  Green  
+Rectangle  2  388  191  541  379  3  Blue  Green  

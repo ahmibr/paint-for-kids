@@ -9,6 +9,7 @@
 ZoomIn::ZoomIn(ApplicationManager * pApp) :Action(pApp), maxNumberOfZooms(5)
 {
 	numberOfZooms = 0;
+	Undoable = false;
 }
 
 
@@ -51,3 +52,7 @@ void ZoomIn::ReadActionParameters()
 	//empty because not needed here
 }
 
+void ZoomIn::Undo() {
+}
+void ZoomIn::Redo() {
+}

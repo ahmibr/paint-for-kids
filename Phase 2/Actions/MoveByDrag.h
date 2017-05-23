@@ -3,11 +3,19 @@
 
 #include "Action.h"
 
+#include "..\Figures\CFigure.h"
+
 //Add Circle Action class
 class MoveByDrag : public Action
 {
 private:
 	int dx, dy;
+
+	int totalMovementX, totalMovementY;
+
+	CFigure **selectedFigs;
+	int selectedFigsCount;
+	int *selectedFigsIds;
 public:
 	MoveByDrag(ApplicationManager *pApp);
 
@@ -16,6 +24,9 @@ public:
 
 	//Add circle to the ApplicationManager
 	virtual void Execute();
+
+	void Undo();
+	void Redo();
 
 };
 

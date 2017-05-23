@@ -18,6 +18,10 @@ void RotateAction::Execute()
 
 	ReadActionParameters();
 
+	selectedFigs = pManager->getSelectedList(selectedFigsCount);
+	//selectedFigs = pManager->CreateAcopyArray(selectedFigs, selectedFigsCount);
+	selectedFigsIds = pManager->getIdArray(selectedFigs, selectedFigsCount);
+
 	if (rotate)
 	{
 		if (pManager->RotateFigures(rotate))
@@ -36,4 +40,27 @@ void RotateAction::ReadActionParameters()
 	Input* pIn = pManager->GetInput();
 
 	rotate = pIn->Rotate_wind();
+}
+
+
+void RotateAction::Undo() {
+	pManager->DeSelectAllFigures();
+
+	for (int i = 0; i < selectedFigsCount; i++)
+	{
+		pManager->selectById(selectedFigsIds[i]);
+	}
+
+	pManager->RotateFigures(360 - rotate);
+}
+
+void RotateAction::Redo() {
+	pManager->DeSelectAllFigures();
+
+	for (int i = 0; i < selectedFigsCount; i++)
+	{
+		pManager->selectById(selectedFigsIds[i]);
+	}
+
+	pManager->RotateFigures(rotate);
 }

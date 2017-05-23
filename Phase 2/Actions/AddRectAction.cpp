@@ -7,7 +7,9 @@
 #include "..\GUI\Output.h"
 
 AddRectAction::AddRectAction(ApplicationManager * pApp) :Action(pApp)
-{}
+{
+	Undoable = true;
+}
 
 void AddRectAction::ReadActionParameters()
 {
@@ -48,7 +50,9 @@ void AddRectAction::Execute()
 	ReadActionParameters();
 
 	//Create a rectangle with the parameters read from the user
-	CRectangle *R = new CRectangle(P1, P2, RectGfxInfo);
+	R = new CRectangle(P1, P2, RectGfxInfo);
+
+	FigureId = R->getID();
 
 	//Add the rectangle to the list of figures
 	pManager->AddFigure(R);
@@ -57,4 +61,20 @@ void AddRectAction::Execute()
 
 	pOut->ClearStatusBar();
 
+}
+
+void AddRectAction::Undo() {
+	pManager->removeFigure(FigureId);
+}
+
+void AddRectAction::Redo() {
+
+	int tempCount = CFigure::getCount();
+
+	R = new CRectangle(P1, P2, RectGfxInfo);
+	R->setID(FigureId);
+
+	CFigure::setCount(tempCount);
+
+	pManager->AddFigure(R);
 }

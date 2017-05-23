@@ -11,6 +11,8 @@ public:
 	CutAction(ApplicationManager *pApp);
 	virtual void Execute() ;
 	virtual void ReadActionParameters();
+	void Undo();
+	void Redo();
 };
 
 #endif

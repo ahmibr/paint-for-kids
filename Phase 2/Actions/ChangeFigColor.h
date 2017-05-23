@@ -3,10 +3,18 @@
 
 #include "Action.h"
 
+#include "..\Figures\CFigure.h"
+
 class ChangeFigColor : public Action
 {
 	GfxInfo selectedColor;
 
+	CFigure** selectedFigs;
+	int selectedFigsCount;
+	int *selectedFigsIds;
+
+	GfxInfo prevInfo;
+	GfxInfo currInfo;
 public:
 	ChangeFigColor(ApplicationManager *pApp);
 	~ChangeFigColor();
@@ -14,6 +22,9 @@ public:
 	virtual void Execute();
 
 	virtual void ReadActionParameters();
+
+	void Undo();
+	void Redo();
 
 
 };

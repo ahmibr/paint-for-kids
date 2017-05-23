@@ -9,7 +9,9 @@
 #include<SFML\Audio.hpp>
 
 AddTriangleAction::AddTriangleAction(ApplicationManager * pApp) :Action(pApp)
-{}
+{
+	Undoable = true;
+}
 
 void AddTriangleAction::ReadActionParameters()
 {
@@ -58,13 +60,31 @@ void AddTriangleAction::Execute()
 	ReadActionParameters();
 
 	//Create a triangle with the parameters read from the user
-	CTriangle *T = new CTriangle(P1, P2, P3, TriangleGfxInfo);
+	T = new CTriangle(P1, P2, P3, TriangleGfxInfo);
 
 	//Add the triangle to the list of figures
 	pManager->AddFigure(T);
+
+	FigureId = T->getID();
 
 	pOut->PlayTriangleSound();
 
 	pOut->ClearStatusBar();
 
+}
+
+void AddTriangleAction::Undo() {
+	pManager->removeFigure(FigureId);
+}
+
+void AddTriangleAction::Redo() {
+
+	int tempCount = CFigure::getCount();
+
+	T = new CTriangle(P1, P2, P3, TriangleGfxInfo);
+	T->setID(FigureId);
+
+	CFigure::setCount(tempCount);
+
+	pManager->AddFigure(T);
 }

@@ -10,6 +10,8 @@ PasteAction::PasteAction(ApplicationManager *pApp) :Action(pApp)
 {
 	able = true;
 	inBorder = true;
+
+	Undoable = true;
 }
 
 
@@ -72,3 +74,21 @@ void PasteAction::Execute()
 }
 
 
+void PasteAction::Undo() {
+
+	CFigure ** tempCopiedFigures = pManager->CreateAcopyArray(pastedFigures, pastedFigCount);
+
+	for (int i = 0; i < pastedFigCount; i++)
+	{
+		pManager->removeFigure(pastedFigures[i]->getCount());
+	}
+
+	pastedFigures = tempCopiedFigures;
+}
+
+void PasteAction::Redo() {
+	for (int i = 0; i < pastedFigCount; i++)
+	{
+		pManager->AddFigure(pastedFigures[i]);
+	}
+}

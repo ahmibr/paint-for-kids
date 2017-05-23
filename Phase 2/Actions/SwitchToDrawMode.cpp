@@ -6,6 +6,7 @@
 
 SwitchToDrawMode::SwitchToDrawMode(ApplicationManager *pApp) :Action(pApp)
 {
+	Undoable = false;
 }
 
 void SwitchToDrawMode::ReadActionParameters()
@@ -28,4 +29,9 @@ void SwitchToDrawMode::Execute()
 
 SwitchToDrawMode::~SwitchToDrawMode()
 {
+}
+
+void SwitchToDrawMode::Undo() {
+}
+void SwitchToDrawMode::Redo() {
 }

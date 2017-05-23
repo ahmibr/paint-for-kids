@@ -1,6 +1,6 @@
 #include "ApplicationManager.h"
 #include "AllActions.h"
-
+#include <queue>
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -141,6 +141,14 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct = new PopMenu(this);
 		break;
 
+	case UNDO:
+		undoLastAction();
+		break;
+
+	case REDO:
+		redoLastAction();
+		break;
+
 	case STATUS:	//a click on the status bar ==> no action
 		pOut->createCreditsWindow();
 		return;
@@ -151,8 +159,13 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	if (pAct != NULL)
 	{
 		pAct->Execute();//Execute
-		delete pAct;	//Action is not needed any more ==> delete it
-		pAct = NULL;
+		if (pAct->isUndoable()) {
+			actionsToUndo.push_back(pAct);
+		}
+		else {
+			delete pAct;	//Action is not needed any more ==> delete it
+			pAct = NULL;
+		}
 	}
 }
 //==================================================================================//
@@ -250,8 +263,30 @@ void ApplicationManager::Save(ofstream& savefile)
 		savefile << endl;
 	}
 }
+CFigure ** ApplicationManager::CreateAcopyArray(CFigure **figures, int number)
+{
+	int tempCount = CFigure::getCount();
+	CFigure ** copiedList = new CFigure*[number];
+	for (int i = 0; i < number; i++)
+	{
+		copiedList[i] = figures[i]->copyClone();
+		copiedList[i]->setID(figures[i]->getID());
+	}
+	CFigure::setCount(tempCount);
+	return copiedList;
+}
 //////////////////////////////////////////////////////////////////////////////////
-
+//returns arrays of id
+int* ApplicationManager::getIdArray(CFigure **figures, int number)
+{
+	int * copiedList = new int[number];
+	for (int i = 0; i < number; i++)
+	{
+		copiedList[i] = figures[i]->getID();
+	}
+	return copiedList;
+}
+//////////////////////////////////////////////////////////////////////////////////
 //==================================================================================//
 //								selected figures related							//
 //==================================================================================//
@@ -353,6 +388,17 @@ bool ApplicationManager::DeleteFigures()
 		}
 	}
 	return selected;
+}
+
+void ApplicationManager::selectById(int id)
+{
+	for (int i = 0; i < FigCount; i++)
+	{
+		if (FigList[i]->getID() == id) {
+			FigList[i]->SetSelected(true);
+			return;
+		}
+	}
 }
 //==================================================================================//
 //								Play mode related Functions							//
@@ -553,3 +599,34 @@ ApplicationManager::~ApplicationManager()
 	pData->destroyClipBoard(); //if the program is over and clipboard still has data
 }
 
+//==================================================================================//
+//									Undo related Functions							//
+//==================================================================================//
+//
+void ApplicationManager::undoLastAction() {
+	if (actionsToUndo.size() > 0) {
+		if (actionsToUndo.size() == MaxUndoCount) {
+			Action *release = actionsToUndo.front();
+			actionsToUndo.pop_front();
+			delete release;
+		}
+		Action* undone = actionsToUndo.back();
+		actionsToUndo.pop_back();
+		undone->Undo();
+		actionsToRedo.push_back(undone);
+	}
+}
+
+void ApplicationManager::redoLastAction() {
+	if (actionsToRedo.size() > 0) {
+		if (actionsToRedo.size() == MaxUndoCount) {
+			Action *release = actionsToRedo.front();
+			actionsToRedo.pop_front();
+			delete release;
+		}
+		Action* undone = actionsToRedo.back();
+		actionsToRedo.pop_back();
+		undone->Redo();
+		actionsToUndo.push_back(undone);
+	}
+}

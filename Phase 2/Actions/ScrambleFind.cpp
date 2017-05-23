@@ -9,6 +9,8 @@ ScrambleFind::ScrambleFind(ApplicationManager * pApp) :Action(pApp)
 {
 	validCount = 0;
 	inValidCount = 0;
+
+	Undoable = false;
 }
 
 
@@ -129,4 +131,9 @@ void ScrambleFind::RestartGame()
 
 	pManager->RandomizePositionsRight(gameFigures);
 	pManager->UpdateInterface(gameFigures);
+}
+
+void ScrambleFind::Undo() {
+}
+void ScrambleFind::Redo() {
 }

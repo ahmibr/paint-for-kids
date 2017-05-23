@@ -18,6 +18,9 @@ public:
 
 	virtual void ReadActionParameters();
 
+	void Undo();
+	void Redo();
+
 };
 
 #endif

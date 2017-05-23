@@ -9,6 +9,7 @@
 ResizeByDrag::ResizeByDrag(ApplicationManager * pApp) :Action(pApp)
 {
 	senstivity = 50;
+	totalResize = 0;
 }
 
 void ResizeByDrag::ReadActionParameters()
@@ -30,6 +31,10 @@ void ResizeByDrag::Execute()
 	pIn->GetPointClicked(xpos, ypos);
 	lastXpos = xpos;//during the first frame xpos is the last
 
+	selectedFigs = pManager->getSelectedList(selectedFigsCount);
+	//selectedFigs = pManager->CreateAcopyArray(selectedFigs, selectedFigsCount);
+	selectedFigsIds = pManager->getIdArray(selectedFigs, selectedFigsCount);
+
 	while (xpos != -1) {
 
 		dx = xpos - lastXpos;//dx is the change in x from current to last frame
@@ -37,13 +42,8 @@ void ResizeByDrag::Execute()
 
 		value = 1 + dx / senstivity;
 
-		/*for (int i = 0; i < pManager->GetFigureCount(); i++)
-		{
-			CFigure *curr = pManager->GetFigure(i);
-			if (curr->IsSelected()) {
-				curr->Resize(value);
-			}
-		}*/
+		totalResize += value / 10.0;
+
 		pManager->ResizeFigures(value);
 
 		pIn->GetMouseMove(xpos, ypos);
@@ -52,4 +52,29 @@ void ResizeByDrag::Execute()
 	}
 
 	pOut->ClearStatusBar();
+}
+
+
+void ResizeByDrag::Undo() {
+	pManager->DeSelectAllFigures();
+
+	for (int i = 0; i < selectedFigsCount; i++)
+	{
+		pManager->selectById(selectedFigsIds[i]);
+	}
+
+	cout << totalResize << endl;
+
+	pManager->ResizeFigures(1 / totalResize);
+}
+
+void ResizeByDrag::Redo() {
+	pManager->DeSelectAllFigures();
+
+	for (int i = 0; i < selectedFigsCount; i++)
+	{
+		pManager->selectById(selectedFigsIds[i]);
+	}
+
+	pManager->ResizeFigures(totalResize);
 }

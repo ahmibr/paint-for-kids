@@ -9,5 +9,7 @@ public:
 	virtual void ReadActionParameters();
 	virtual void Execute();
 	~ExitAction();
+	void Undo();
+	void Redo();
 };
 

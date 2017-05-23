@@ -7,6 +7,7 @@
 
 SaveAction::SaveAction(ApplicationManager * pApp) :Action(pApp)
 {
+	Undoable = false;
 }
 
 
@@ -95,4 +96,9 @@ void SaveAction::ReadActionParameters()
 		fileName += ".txt";
 	pOut->SetWindowTitle(fileName);
 	savefile.open(fileName, ios::out);
+}
+
+void SaveAction::Undo() {
+}
+void SaveAction::Redo() {
 }

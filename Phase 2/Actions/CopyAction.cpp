@@ -10,6 +10,8 @@ CopyAction::CopyAction(ApplicationManager *pApp) :Action(pApp)
 {
 	selectedList = NULL;
 	selectedCount = 0;
+
+	Undoable = false;
 }
 
 //Execute the action
@@ -41,4 +43,8 @@ void CopyAction::ReadActionParameters()
 	selectedList = pManager->getSelectedList(selectedCount);
 }
 
+void CopyAction::Undo() {
+}
 
+void CopyAction::Redo() {
+}

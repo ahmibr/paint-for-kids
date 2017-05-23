@@ -3,21 +3,27 @@
 
 #include "Action.h"
 
+#include "..\Figures\CRectangle.h"
+
 //Add Rectangle Action class
-class AddRectAction: public Action
+class AddRectAction : public Action
 {
 private:
 	Point P1, P2; //Rectangle Corners
 	GfxInfo RectGfxInfo;
+	CRectangle *R;
 public:
 	AddRectAction(ApplicationManager *pApp);
 
 	//Reads rectangle parameters
 	virtual void ReadActionParameters();
-	
+
 	//Add rectangle to the ApplicationManager
-	virtual void Execute() ;
-	
+	virtual void Execute();
+
+	void Undo();
+	void Redo();
+
 };
 
 #endif

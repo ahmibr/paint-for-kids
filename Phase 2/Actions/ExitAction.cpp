@@ -7,6 +7,7 @@
 
 ExitAction::ExitAction(ApplicationManager *pApp) :Action(pApp)
 {
+	Undoable = false;
 }
 
 void ExitAction::ReadActionParameters()
@@ -30,4 +31,10 @@ void ExitAction::Execute()
 
 ExitAction::~ExitAction()
 {
+}
+
+void ExitAction::Undo() {
+}
+
+void ExitAction::Redo() {
 }

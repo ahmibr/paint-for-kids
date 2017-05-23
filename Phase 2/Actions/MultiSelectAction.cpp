@@ -6,6 +6,8 @@
 MultiSelectAction::MultiSelectAction(ApplicationManager * pApp) :Action(pApp)
 {
 	numSelected = 0;
+
+	Undoable = false;
 }
 
 void MultiSelectAction::ReadActionParameters()
@@ -48,4 +50,10 @@ void MultiSelectAction::Execute()
 		else
 			pOut->PrintMessage("Number of Selected Elements = " + to_string(selectedCount));
 	}
+}
+
+void MultiSelectAction::Undo() {
+}
+
+void MultiSelectAction::Redo() {
 }

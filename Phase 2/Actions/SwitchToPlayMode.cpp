@@ -6,6 +6,7 @@
 
 SwitchToPlayMode::SwitchToPlayMode(ApplicationManager *pApp) :Action(pApp)
 {
+	Undoable = false;
 }
 
 void SwitchToPlayMode::ReadActionParameters()
@@ -30,4 +31,9 @@ void SwitchToPlayMode::Execute()
 
 SwitchToPlayMode::~SwitchToPlayMode()
 {
+}
+
+void SwitchToPlayMode::Undo() {
+}
+void SwitchToPlayMode::Redo() {
 }

@@ -8,7 +8,9 @@
 
 
 AddCircleAction::AddCircleAction(ApplicationManager * pApp) :Action(pApp)
-{}
+{
+	Undoable = true;
+}
 
 void AddCircleAction::ReadActionParameters()
 {
@@ -49,9 +51,9 @@ void AddCircleAction::Execute()
 	ReadActionParameters();
 	float radius = sqrt(pow(P1.x - P2.x, 2) + pow(P1.y - P2.y, 2));
 	Output* pOut = pManager->GetOutput();
-	
+
 	//Create a circle with the parameters read from the user
-	CCircle *C = new CCircle(P1, radius, CircleGfxInfo);
+	C = new CCircle(P1, radius, CircleGfxInfo);
 
 	if (C->isOutOfBorder()) {
 		CFigure::setCount(CFigure::getCount() - 1); //as if the figure wasn't made
@@ -59,10 +61,30 @@ void AddCircleAction::Execute()
 		pOut->PrintMessage("Error! Out of border");
 		return;
 	}
+
+	FigureId = C->getID();
+
 	//Add the circle to the list of figures
 	pManager->AddFigure(C);
 
 	pOut->PlayCircleSound();
 
 	pOut->ClearStatusBar();
+}
+
+void AddCircleAction::Undo() {
+	pManager->removeFigure(FigureId);
+}
+
+void AddCircleAction::Redo() {
+
+	int tempCount = CFigure::getCount();
+
+	float radius = sqrt(pow(P1.x - P2.x, 2) + pow(P1.y - P2.y, 2));
+	C = new CCircle(P1, radius, CircleGfxInfo);
+	C->setID(FigureId);
+
+	CFigure::setCount(tempCount);
+
+	pManager->AddFigure(C);
 }

@@ -5,6 +5,7 @@
 
 SelectAction::SelectAction(ApplicationManager * pApp) :Action(pApp)
 {
+	Undoable = false;
 }
 
 void SelectAction::ReadActionParameters()
@@ -57,4 +58,9 @@ void SelectAction::Execute()
 		else //clicked on empty area
 			pOut->ClearStatusBar();
 	}
+}
+
+void SelectAction::Undo() {
+}
+void SelectAction::Redo() {
 }

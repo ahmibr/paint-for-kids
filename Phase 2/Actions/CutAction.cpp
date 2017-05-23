@@ -10,6 +10,8 @@ CutAction::CutAction(ApplicationManager *pApp) :Action(pApp)
 {
 	selectedList = NULL;
 	selectedCount = 0;
+
+	Undoable = false;
 }
 
 //Execute the action
@@ -43,3 +45,8 @@ void CutAction::ReadActionParameters()
 }
 
 
+void CutAction::Undo() {
+}
+
+void CutAction::Redo() {
+}

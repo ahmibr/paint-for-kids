@@ -22,5 +22,8 @@ public:
 	//Add Pick & Hide to the ApplicationManager
 	virtual void Execute();
 
+	void Undo();
+	void Redo();
+
 };
 

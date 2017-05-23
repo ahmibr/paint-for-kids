@@ -6,6 +6,7 @@
 
 PopMenu::PopMenu(ApplicationManager *pApp) :Action(pApp)
 {
+	Undoable = false;
 }
 
 void PopMenu::ReadActionParameters()
@@ -37,7 +38,7 @@ void PopMenu::Execute()
 	if (UI.height - menuCornerY < UI.PopMenuHeight)
 		menuCornerY -= UI.PopMenuHeight;
 
-	if (!pManager->getSelectedCount()){ //if user right clicked on a figure, while no other figures are selected
+	if (!pManager->getSelectedCount()) { //if user right clicked on a figure, while no other figures are selected
 		pManager->ExecuteAction(SELECT);
 		pManager->UpdateInterface();
 	}
@@ -83,4 +84,9 @@ void PopMenu::Execute()
 
 PopMenu::~PopMenu()
 {
+}
+
+void PopMenu::Undo() {
+}
+void PopMenu::Redo() {
 }
